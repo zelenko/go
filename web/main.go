@@ -1,7 +1,7 @@
 package main
 
 import (
-	"html/template"
+	"html/template" // https://golang.org/pkg/html/template/
 	"log"
 	"net/http"
 )
@@ -29,7 +29,7 @@ func main() {
 func idx(w http.ResponseWriter, req *http.Request) {
 
 	pd := pageData{
-		Title: "Index Page",
+		Title: "Index Page 01",
 	}
 
 	err := tpl.ExecuteTemplate(w, "index.gohtml", pd)
