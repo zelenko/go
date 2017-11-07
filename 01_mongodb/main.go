@@ -32,16 +32,15 @@ func main() {
 	//}
 
 	result := Person{}
-	out := bson.D();
-	err = c.Find(bson.M{"_id": 69466}).One(&out)
+	//out := bson.D()
+	err = c.Find(bson.M{"_id": 69466}).One(&result)
 	if err != nil {
-		//log.Fatal(err)
 		fmt.Println(err)
 	}
 
-	//fmt.Println("Phone:", result.Pline)
-	//fmt.Println("bline:", result.Bline)
-	fmt.Println("bline:", out.Bline)
+	fmt.Println("Phone:", result.Pline)
+	fmt.Println("bline:", result.Bline)
+	//fmt.Println("bline:", out.Bline)
 	fmt.Println("bline:", bson.Now())
 
 	// this examample is  from: https://labix.org/mgo
