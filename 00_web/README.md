@@ -1,24 +1,14 @@
-## Declare and define struct
-```
-	Senddata := struct {
-		prev	int
-		now		int
-		next	int
-	}{
-		next - 1,
-		next,
-		next + 1,
-	}
-```
-
-## Download packages
-`go get -u gopkg.in/mgo.v2`
+## Download GO Packages
+Packages will be downloaded into the `$GOPATH` system varible
+`
+go get -u gopkg.in/mgo.v2
+`
 
 ---
 ## Systemd
 `cd /etc/systemd/system/`
 
-`nano vas.service`
+`nano golang.service`
 
 ```
 [Unit]
@@ -36,13 +26,14 @@ WantedBy=multi-user.target
 ```
 
 ### Start the service
-* `systemctl enable vas.service`
-* `systemctl start vas.service`
-* `systemctl status vas.service`
-* `systemctl stop vas.service`
+* `systemctl enable golang.service`
+* `systemctl start golang.service`
+* `systemctl status golang.service`
+* `systemctl stop golang.service`
 
 ## Build on Linux
 * `export GOPATH=/var/go/web/`
+* `echo $GOPATH`
 ```
 GOOS=linux GOARCH=amd64 go build -o web
 ```
@@ -52,6 +43,26 @@ GOOS=linux GOARCH=amd64 go build -o web
 * `set GOARCH=386`
 * `set GOOS=linux`
 * `set GOOS=windows`
+* `echo %GOROOT%`
 ```
 go build -o hello.exe hello.go
 ```
+
+
+## Installing go on Debian
+```
+cd /usr/local
+curl -LO https://redirector.gvt1.com/edgedl/go/go1.9.2.linux-amd64.tar.gz
+shasum -a 256 go1.9.2.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
+```
+
+`vi ~/.profile`
+```
+export PATH=$PATH:/usr/local/go/bin
+export GOROOT=/usr/local/go
+export GOPATH=/var/go
+```
+`source ~/.profile`
+
+`echo $GOROOT`
