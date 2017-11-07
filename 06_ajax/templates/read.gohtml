@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS reading from TXT file</title>
+            <script>
+                    function loadDoc(url, callback) {
+                      var xhttp = new XMLHttpRequest();
+                      xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                          callback(this.responseText);
+                        }
+                      };
+                    
+                      xhttp.open("GET", url, true);
+                      xhttp.send();
+                    }
+                    
+                    
+                    function clearing() {
+                        document.getElementById("demo").innerHTML = "cleared";
+                    }
+                    
+                    
+                    function populate(text){
+                        var lines = text.split( "\n" );
+                        var output = "";
+                    
+                        for ( var n = 0; n < lines.length; ++n ){
+                            // process each line
+                            output = output + n + " ==> " + lines[n] + "</br>"
+                        }
+                    
+                        document.getElementById("demo").innerHTML = output;
+                    }
+                    
+                    function populate2(text){
+                        var lines = text.split( "\n" );
+                        var output = "";
+                    
+                        for ( var n = 0; n < lines.length; ++n ){
+                            // process each line
+                            output = output + n + ": " + lines[n] + "</br>"
+                        }
+                    
+                        document.getElementById("demo").innerHTML = output;
+                    }
+                    
+                    </script>
+
+    </head>
+<body>
+
+    <button type="button" onclick="loadDoc('test.txt', populate)">Change Content</button>
+    <button type="button" onclick="loadDoc('test.txt', populate2)">Change Content 2</button>
+    <button type="button" onclick="loadDoc('https://raw.githubusercontent.com/zelenko/zelenko.github.io/master/readjs/test.txt', populate2)">Test File</button>
+    <button type="button" onclick="clearing()">Clear Content</button>
+<div id="demo">
+<h1>JS reading from TXT file</h1>
+
+</div>
+
+
+
+</body>
+</html>

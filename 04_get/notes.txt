@@ -1,9 +1,0 @@
-	Senddata := struct {
-		prev	int
-		now		int
-		next	int
-	}{
-		next - 1,
-		next,
-		next + 1,
-	}
