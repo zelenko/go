@@ -23,8 +23,10 @@ func main() {
 	http.HandleFunc("/contact", cntct)
 	http.HandleFunc("/apply", aply)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
-	http.ListenAndServe(":8080", nil)
+	http.Handle("/public/", http.StripPrefix("/public", http.FileServer(http.Dir("./pub"))))
+	http.ListenAndServe(":80", nil)
 }
+
 
 func idx(w http.ResponseWriter, req *http.Request) {
 
