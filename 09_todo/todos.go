@@ -25,6 +25,3 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-
-// inside this directory: /root/Projects/todo
-// go run todos.go
