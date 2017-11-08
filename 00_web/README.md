@@ -1,5 +1,6 @@
 ## Download GO Packages
-Packages will be downloaded into the `$GOPATH` system varible
+Packages will be downloaded into the `$GOPATH` system varible:
+
 `
 go get -u gopkg.in/mgo.v2
 `
