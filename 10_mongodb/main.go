@@ -5,8 +5,31 @@ import (
 	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"html/template"
+	"net/http"
 	"time"
 )
+
+var tmpl = `<html>
+<head>
+    <title>List</title>
+</head>
+<body>
+    <p>
+      <a href="/">main</a> |
+      <a href="/view/">view</a>
+	</p>
+	
+	<h1>Members</h1>
+	<ul>
+		{{range .List}}
+				<li>{{.Name}} - {{.Phone}} - {{.ID}} - {{.Timestamp}}</li>
+		{{end}}
+	</ul>
+
+</body>
+</html>
+`
 
 type Person struct {
 	ID        bson.ObjectId `bson:"_id,omitempty"`
@@ -15,9 +38,9 @@ type Person struct {
 	Timestamp time.Time
 }
 
-func main() {
-	p := fmt.Println
+var Results []Person
 
+func main() {
 	session, err := mgo.Dial(dblogin.Userpass) // mongodb://username:yourpasscode@serverip:27017/database?authSource=admin
 	if err != nil {
 		panic(err)
@@ -28,18 +51,31 @@ func main() {
 
 	// Collection People
 	c := session.DB("test").C("people")
-	var results []Person
 
 	// Query All
-	err = c.Find(bson.M{}).Sort("-timestamp").All(&results)
+	err = c.Find(bson.M{}).Sort("-timestamp").All(&Results)
 	if err != nil {
 		panic(err)
 	}
 
-	for _, v := range results {
+	//for _, v := range Results {
 		//fmt.Printf("%s -> %s\n", k, v)
 		//t1, e := time.Parse(time.RFC3339,			"2012-08-11T22:08:41+00:00")
-		p(v.Phone, "\t", v.Timestamp.Format("2006-01-02 3:04PM"), "\t", v.Name, "\t")
+	//	p(v.Phone, "\t", v.Timestamp.Format("2006-01-02 3:04PM"), "\t", v.Name, "\t")
+	//}
+	fmt.Printf("Total Results: %d\n", len(Results))
+
+	// start the server
+	server := http.Server{
+		Addr: ":8080",
 	}
-	fmt.Printf("Total results: %d\n", len(results))
+	http.HandleFunc("/", index)
+	server.ListenAndServe()
+}
+
+
+func index(w http.ResponseWriter, r *http.Request) {
+	t := template.New("main") //name of the template is main
+	t, _ = t.Parse(tmpl)      // parsing of template string
+	t.Execute(w, struct{List []Person }{Results})
 }
