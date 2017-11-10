@@ -50,7 +50,7 @@ go build -o hello.exe hello.go
 ```
 
 
-## Installing go on Debian
+## Installing GO on Debian
 ```
 cd /usr/local
 curl -LO https://redirector.gvt1.com/edgedl/go/go1.9.2.linux-amd64.tar.gz
@@ -67,3 +67,8 @@ export GOPATH=/var/go
 `source ~/.profile`
 
 `echo $GOROOT`
+
+## Installing GO on Windows
+After [downloading](https://golang.org/dl/) and installing, specify where the code is stored: `set GOPATH=F:\GoCode`
+
+Check existing variables `go env`.  Check current version `go version`.
