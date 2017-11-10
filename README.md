@@ -1,7 +1,7 @@
 # todo
 Explore Golang features.
 
-![Go](https://raw.githubusercontent.com/zelenko/golang-collection/master/web/pub/img/toby.jpg)
+![Go](https://raw.githubusercontent.com/zelenko/go/master/00_web/pub/img/toby.jpg)
 
 ## Go Resorces
 * http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
