@@ -79,6 +79,6 @@ export GOPATH=/var/go
 `echo $GOROOT`
 
 ## Installing GO on Windows
-After [downloading](https://golang.org/dl/) and installing, specify where the code is stored: `set GOPATH=F:\GoCode`
+After [downloading](https://golang.org/dl/) and installing, specify where the code is stored in system variable.  CLI command: `set GOPATH=F:\GoCode`
 
 Check existing variables `go env`.  Check current version `go version`.
