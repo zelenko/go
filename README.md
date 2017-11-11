@@ -11,9 +11,9 @@
 ## Download GO Packages
 Packages are downloaded into folder specified in the `$GOPATH` system varible:
 
-`
-go get -u gopkg.in/mgo.v2
-`
+`go get -u gopkg.in/mgo.v2`
+
+The 'go get' command requires that the `git` is [installed](https://git-scm.com/download/win) on Windows.
 
 ---
 ## Systemd
