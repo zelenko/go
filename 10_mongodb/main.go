@@ -59,8 +59,8 @@ func main() {
 	}
 
 	//for _, v := range Results {
-		//fmt.Printf("%s -> %s\n", k, v)
-		//t1, e := time.Parse(time.RFC3339,			"2012-08-11T22:08:41+00:00")
+	//fmt.Printf("%s -> %s\n", k, v)
+	//t1, e := time.Parse(time.RFC3339,			"2012-08-11T22:08:41+00:00")
 	//	p(v.Phone, "\t", v.Timestamp.Format("2006-01-02 3:04PM"), "\t", v.Name, "\t")
 	//}
 	fmt.Printf("Total Results: %d\n", len(Results))
@@ -73,9 +73,8 @@ func main() {
 	server.ListenAndServe()
 }
 
-
 func index(w http.ResponseWriter, r *http.Request) {
 	t := template.New("main") //name of the template is main
 	t, _ = t.Parse(tmpl)      // parsing of template string
-	t.Execute(w, struct{List []Person }{Results})
+	t.Execute(w, struct{ List []Person }{Results})
 }
