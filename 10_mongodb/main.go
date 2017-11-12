@@ -53,7 +53,7 @@ func main() {
 	c := session.DB("test").C("people")
 
 	// Query All
-	err = c.Find(bson.M{}).Sort("-timestamp").All(&Results)
+	err = c.Find(bson.M{"name": bson.M{"$ne": "Alex1"}}).Sort("-timestamp").All(&Results)
 	if err != nil {
 		panic(err)
 	}
