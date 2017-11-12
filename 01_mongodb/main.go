@@ -1,6 +1,7 @@
+// This code selects one record from MongoDB and displays it in CLI
+
 package main
 
-// MongoDB - 2017-11-06
 import (
 	"dblogin"
 	"fmt"
