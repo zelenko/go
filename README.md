@@ -7,6 +7,7 @@
 * http://exercism.io/languages/go/about
 * https://golang.org/pkg/html/template/
 * https://www.youtube.com/watch?v=PZTnp8rDnl0 Web Programming with the Go Programming Language
+* https://devhints.io/go Go cheatsheet
 
 ## Download GO Packages
 Packages are downloaded into folder specified in the `$GOPATH` system varible:
