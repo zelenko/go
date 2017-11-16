@@ -1,8 +1,8 @@
 package main
 
 import (
-	"dblogin"
 	"database/sql"
+	"dblogin"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"golang.org/x/crypto/bcrypt"
@@ -13,7 +13,7 @@ import (
 var db *sql.DB
 var err error
 
-type Person struct {
+type personaFields struct {
 	Id       int
 	Username string
 }
@@ -87,8 +87,8 @@ func loginPage(res http.ResponseWriter, req *http.Request) {
 func allPage(res http.ResponseWriter, req *http.Request) {
 
 	var (
-		person  Person
-		persons []Person
+		person  personaFields
+		persons []personaFields
 	)
 
 	rows, err := db.Query("select id, username from go_users;")

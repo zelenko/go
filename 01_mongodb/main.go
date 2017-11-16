@@ -9,6 +9,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// Person fields
 type Person struct {
 	Name  string
 	Pline string
@@ -43,7 +44,4 @@ func main() {
 	fmt.Println("bline:", result.Bline)
 	//fmt.Println("bline:", out.Bline)
 	fmt.Println("bline:", bson.Now())
-
-	// this examample is  from: https://labix.org/mgo
-	// https://github.com/GoesToEleven/golang-web-dev/blob/master/046_mongodb/16_go-mongo/books/models.go  <== more examples here
 }

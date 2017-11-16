@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
 	"github.com/wcharczuk/go-chart"
+	"net/http"
 )
 
 func drawChart(res http.ResponseWriter, req *http.Request) {
@@ -25,7 +25,7 @@ func drawChart(res http.ResponseWriter, req *http.Request) {
 			},
 		},
 		Series: []chart.Series{
-			
+
 			// first chart
 			chart.ContinuousSeries{
 				Style: chart.Style{

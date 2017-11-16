@@ -30,15 +30,16 @@ var tmpl = `<html>
 </body>
 </html>
 `
-
-type Person struct {
+// Person fields
+type person struct {
 	ID        bson.ObjectId `bson:"_id,omitempty"`
 	Name      string
 	Phone     string
 	Timestamp time.Time
 }
 
-var Results []Person
+// Results
+var results []person
 
 func main() {
 	session, err := mgo.Dial(dblogin.Userpass) // mongodb://username:yourpasscode@serverip:27017/database?authSource=admin
@@ -53,7 +54,7 @@ func main() {
 	c := session.DB("test").C("people")
 
 	// Query All
-	err = c.Find(bson.M{"name": bson.M{"$ne": "Alex1"}}).Sort("-timestamp").All(&Results)
+	err = c.Find(bson.M{"name": bson.M{"$ne": "Alex1"}}).Sort("-timestamp").All(&results)
 	if err != nil {
 		panic(err)
 	}
@@ -63,7 +64,7 @@ func main() {
 	//t1, e := time.Parse(time.RFC3339,			"2012-08-11T22:08:41+00:00")
 	//	p(v.Phone, "\t", v.Timestamp.Format("2006-01-02 3:04PM"), "\t", v.Name, "\t")
 	//}
-	fmt.Printf("Total Results: %d\n", len(Results))
+	fmt.Printf("Total Results: %d\n", len(results))
 
 	// start the server
 	server := http.Server{
@@ -76,5 +77,5 @@ func main() {
 func index(w http.ResponseWriter, r *http.Request) {
 	t := template.New("main") //name of the template is main
 	t, _ = t.Parse(tmpl)      // parsing of template string
-	t.Execute(w, struct{ List []Person }{Results})
+	t.Execute(w, struct{ List []person }{results})
 }

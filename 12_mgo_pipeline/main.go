@@ -33,14 +33,14 @@ var tmpl = `<html>
 
 //{{.Timestamp}}
 
-type Person struct {
+type personaFields struct {
 	ID        bson.ObjectId `bson:"_id,omitempty"`
 	Name      string
 	Phone     string
 	Timestamp time.Time
 }
 
-var Results []Person
+var results []personaFields
 
 func main() {
 	session, err := mgo.Dial(dblogin.Userpass) // mongodb://username:yourpasscode@serverip:27017/database?authSource=admin
@@ -66,12 +66,12 @@ func main() {
 		{"$sort": bson.M{"name": 1}},
 		{"$limit": 300}},
 	)
-	err = pipe.All(&Results)
+	err = pipe.All(&results)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("Total Results: %d\n", len(Results))
+	fmt.Printf("Total results: %d\n", len(results))
 
 	// start the server
 	server := http.Server{
@@ -84,5 +84,5 @@ func main() {
 func index(w http.ResponseWriter, r *http.Request) {
 	t := template.New("main") //name of the template is main
 	t, _ = t.Parse(tmpl)      // parsing of template string
-	t.Execute(w, struct{ List []Person }{Results})
+	t.Execute(w, struct{ List []personaFields }{results})
 }

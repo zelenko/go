@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// Todo fields
 type Todo struct {
 	Task string
 	Done bool

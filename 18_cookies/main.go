@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-const navigation_menu string = `<a href="/">01</a> | 
+const navigationMenu string = `<a href="/">01</a> | 
 <a href="/02">02 login </a> | 
 <a href="/03">03 view</a> | 
 <a href="/04">04 logout</a> | 
@@ -17,13 +17,13 @@ const navigation_menu string = `<a href="/">01</a> |
 
 // Main page
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	html_string := navigation_menu + ` 01 `
+	htmlString := navigationMenu + ` 01 `
 	output, err := r.Cookie("username")
 	if err == nil {
-		html_string += output.Name + "(" + output.Value + ")"
+		htmlString += output.Name + "(" + output.Value + ")"
 	}
 
-	fmt.Fprint(w, html_string)
+	fmt.Fprint(w, htmlString)
 }
 
 // Login
@@ -38,8 +38,8 @@ func p02(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	for _, cookie := range r.Cookies() {
 		output += " " + cookie.Name + "(" + cookie.Value + ")"
 	}
-	html_string := navigation_menu + ` 02` + output
-	fmt.Fprint(w, html_string)
+	htmlString := navigationMenu + ` 02` + output
+	fmt.Fprint(w, htmlString)
 }
 
 // View
@@ -49,8 +49,8 @@ func p03(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	for _, cookie := range r.Cookies() {
 		output += " " + cookie.Name + "(" + cookie.Value + ")"
 	}
-	html_string := navigation_menu + ` 03` + output
-	fmt.Fprint(w, html_string)
+	htmlString := navigationMenu + ` 03` + output
+	fmt.Fprint(w, htmlString)
 }
 
 // Logout
@@ -60,14 +60,14 @@ func p04(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	cookie := http.Cookie{Name: "username", Value: "astaxie", Expires: expiration}
 	http.SetCookie(w, &cookie)
 
-	fmt.Fprint(w, navigation_menu+` 04 logout`)
+	fmt.Fprint(w, navigationMenu+` 04 logout`)
 }
 
 // Hello page
 func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	html_string := navigation_menu + ` 03
+	htmlString := navigationMenu + ` 03
 	` + ps.ByName("name")
-	fmt.Fprintf(w, html_string)
+	fmt.Fprintf(w, htmlString)
 	//fmt.Fprintf(w, "hello, %s!\n", ps.ByName("name"))
 }
 

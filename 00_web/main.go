@@ -27,7 +27,6 @@ func main() {
 	http.ListenAndServe(":80", nil)
 }
 
-
 func idx(w http.ResponseWriter, req *http.Request) {
 
 	pd := pageData{

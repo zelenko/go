@@ -6,9 +6,10 @@ import (
 	"gopkg.in/mgo.v2"      // same as ==> labix.org/v2/mgo
 	"gopkg.in/mgo.v2/bson" // sames as ==> labix.org/v2/mgo/bson
 	"time"
+	"strconv"
 )
 
-type Person struct {
+type person struct {
 	ID        bson.ObjectId `bson:"_id,omitempty"`
 	Name      string
 	Phone     string
@@ -57,8 +58,8 @@ func main() {
 	}
 
 	// Insert Datas
-	err = c.Insert(&Person{Name: "Alex1", Phone: "+55 88 1234 4321", Timestamp: time.Now()},
-		&Person{Name: "Clara1", Phone: "+66 88 1234 5678", Timestamp: time.Now()})
+	err = c.Insert(&person{Name: "Alex1", Phone: "+55 88 1234 4321", Timestamp: time.Now()},
+		&person{Name: "Clara1", Phone: "+66 88 1234 5678", Timestamp: time.Now()})
 
 	if err != nil {
 		//panic(err)
@@ -66,7 +67,7 @@ func main() {
 	}
 
 	// Query One
-	result := Person{}
+	result := person{}
 	err = c.Find(bson.M{"name": "Ale"}).Select(bson.M{"phone": 0}).One(&result)
 	if err != nil {
 		panic(err)
@@ -74,7 +75,7 @@ func main() {
 	fmt.Println("Phone", result)
 
 	// Query All
-	var results []Person
+	var results []person
 	err = c.Find(bson.M{"name": "Ale"}).Sort("-timestamp").All(&results)
 
 	if err != nil {
@@ -102,7 +103,7 @@ func main() {
 	fmt.Printf("%T\n", results)
 
 	for k, v := range results {
-		fmt.Printf("%s -> %s\n", k, v)
+		fmt.Printf("%s -> %s\n", strconv.Itoa(k), v)
 	}
 
 }
