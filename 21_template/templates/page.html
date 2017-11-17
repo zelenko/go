@@ -1,0 +1,18 @@
+{{define "sub-template"}}<br />content{{end}}
+{{template "header"}}
+       
+        <p>
+          <a href="/">main</a> |
+          <a href="/test/zero">00</a> | 
+          <a href="/test/one">01</a> | 
+          <a href="/test/two">02</a> | 
+          <a href="/test/three">03</a> | 
+          <a href="/static/index.html">static</a> | 
+          {{template "sub-template"}}
+          {{template "template-one"}}<br />
+          {{ . }}
+        </p>
+    
+
+
+{{template "footer"}}
