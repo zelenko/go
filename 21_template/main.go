@@ -1,10 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"html/template"
 	"net/http"
-	"fmt"
 )
 
 var tpl *template.Template
@@ -12,7 +12,6 @@ var tpl *template.Template
 func init() {
 	tpl = template.Must(template.ParseGlob("templates/*.html"))
 }
-
 
 func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	err := tpl.ExecuteTemplate(w, "page-02.html", nil)
@@ -23,7 +22,7 @@ func serveTemplate(w http.ResponseWriter, r *http.Request, params httprouter.Par
 	// Declare template
 	//tpl, err := template.ParseFiles(fp)  // can have multiple, separated by comas
 
-	output := params.ByName("tmpl") + " | " + r.URL.Path 
+	output := params.ByName("tmpl") + " | " + r.URL.Path
 
 	// Run template
 	if err := tpl.ExecuteTemplate(w, "page.html", output); err != nil {
@@ -32,7 +31,6 @@ func serveTemplate(w http.ResponseWriter, r *http.Request, params httprouter.Par
 		// http.Error(w, http.StatusText(500), 500)
 	}
 }
-
 
 func checkErr(err error) {
 	if err != nil {
