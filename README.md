@@ -1,3 +1,4 @@
+[![Go Report Card](https://goreportcard.com/badge/zelenko/go)](https://goreportcard.com/report/zelenko/go)
 # Explore Golang features
 ![Go](https://raw.githubusercontent.com/zelenko/go/master/00_web/pub/img/toby.jpg)
 
