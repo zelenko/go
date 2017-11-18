@@ -1,0 +1,19 @@
+{{template "header"}}
+
+    
+    <table class="fixed_headers seven_columns">
+	<thead><tr><th>Product ID & Buyline</th><th>Product Description</th><th>Onhand: BRID</th><th>12 Mo Sales</th><th>Category</th></tr></thead>
+	
+    {{range .}}
+    <tr>
+        <td>{{.Pline}}</td>
+        <td>{{.Bline}}</td>
+        <td>{{.Category}} -</td>
+        <td>{{.Price}}</td>
+        <td>--</td>
+    </tr>
+    {{end}}
+
+	</table>
+
+{{template "footer"}}

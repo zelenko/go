@@ -1,0 +1,118 @@
+{{define "header"}}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Title</title>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+<style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dashed black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 440px;
+    background-color: #555;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+   /* bottom: 125%;
+  /*  left: 50%; */
+    
+    top: -3px; /* vertical tip location */
+    left: 105%;
+    
+    margin-left: 10px; /* how far right */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+    /*
+    bottom: 100%;  /* At the top of the tooltip 
+    left: 50%;
+    margin-left: -5px;
+    
+    top: 50%;
+    right: 100%; /* To the left of the tooltip 
+    margin-top: -5px;
+    */
+
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+	top: 8px;  /* arrow position */
+    left: -7px;
+    margin-left: -5px;
+    
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<div id="pagewrap">
+
+	<div id="bar"><div style="float: left;">Name
+		</div><a href="/">Home</a>
+    | <a href="#">Dead Stock</a>
+	| <a href="#">Stock Shortages</a>
+    | <a href="/old">SS BQ</a>
+	</div>
+
+	<div id="content">
+
+<div> Branch 
+<a href="/stock/branch/BR01/">1</a>
+<a href="/stock/branch/BR02/">2</a>
+<a href="/stock/branch/BR03/">3</a>
+<a href="/stock/branch/BR04/">4</a>
+<a href="/stock/branch/BR05/">5</a>
+<a href="/stock/branch/BR07/">7</a>
+<a href="/stock/branch/BR08/">8</a>
+<a href="/stock/branch/BR12/">12</a>
+<a href="/stock/branch/BR13/">13</a>
+<a href="/stock/branch/BR14/">14</a>
+<a href="/stock/branch/BR16/">16</a>
+<a href="/stock/branch/BR17/">17</a>
+<a href="/stock/branch/BR19/">19</a>
+<a href="/stock/branch/BR21/">21</a>
+<a href="/stock/branch/BR22/">22</a>
+<a href="/stock/branch/BRPT/">PT</a>
+</div>
+    {{end}}
+   
+
+{{define "footer"}}
+</div>
+<div id="footer">
+		<div style="float: center;"><p class="rek"><font color="#999999">http://localhost/<br>
+&copy; 2017 Items in Stock<br>
+
+Script execution time: 
+</font></p>
+		</div>
+		
+	</div>
+
+</div>
+</body></html>
+
+{{end}}
