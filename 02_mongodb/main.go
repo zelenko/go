@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"gopkg.in/mgo.v2"      // same as ==> labix.org/v2/mgo
 	"gopkg.in/mgo.v2/bson" // sames as ==> labix.org/v2/mgo/bson
-	"time"
 	"strconv"
+	"time"
 )
 
 type person struct {

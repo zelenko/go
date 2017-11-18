@@ -21,7 +21,7 @@ func main() {
 	}
 }
 
-// Generates QR code as an image
+// QrGenerator Generates QR code as an image
 func QrGenerator(w http.ResponseWriter, r *http.Request) {
 	data := r.URL.Query().Get("data")
 	if data == "" {

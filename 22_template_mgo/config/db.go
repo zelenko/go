@@ -6,12 +6,16 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
-// database
+// DB bookstore database
 var DB *mgo.Database
+
+// OS onlinstore database
 var OS *mgo.Database
 
-// collections
+// Books collection
 var Books *mgo.Collection
+
+// Products3 collection
 var Products3 *mgo.Collection
 
 func init() {

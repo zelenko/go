@@ -15,7 +15,7 @@ const navigationMenu string = `<a href="/">01</a> |
 
 `
 
-// Main page
+// Index Main page
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	htmlString := navigationMenu + ` 01 `
 	output, err := r.Cookie("username")

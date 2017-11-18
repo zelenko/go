@@ -30,6 +30,7 @@ var tmpl = `<html>
 </body>
 </html>
 `
+
 // Person fields
 type person struct {
 	ID        bson.ObjectId `bson:"_id,omitempty"`

@@ -1,3 +1,6 @@
+// This programs connects to MySQL database for user registration, login, and user list.
+// Results are displayed in browser port :8080
+
 package main
 
 import (
@@ -14,7 +17,7 @@ var db *sql.DB
 var err error
 
 type personaFields struct {
-	Id       int
+	ID       int
 	Username string
 }
 
@@ -97,7 +100,7 @@ func allPage(res http.ResponseWriter, req *http.Request) {
 		fmt.Print(err.Error())
 	}
 	for rows.Next() {
-		err = rows.Scan(&person.Id, &person.Username)
+		err = rows.Scan(&person.ID, &person.Username)
 		persons = append(persons, person)
 		if err != nil {
 			fmt.Print(err.Error())
@@ -108,7 +111,7 @@ func allPage(res http.ResponseWriter, req *http.Request) {
 	out := " "
 
 	for _, v := range persons {
-		id := strconv.Itoa(v.Id)
+		id := strconv.Itoa(v.ID)
 		out += v.Username + "(" + id + "), "
 	}
 

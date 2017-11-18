@@ -22,10 +22,10 @@ type Book struct {
 type Prod struct {
 	// add ID and tags if you need them
 	// ID     bson.ObjectId // `json:"id" bson:"_id"`
-	Pline   string  // `json:"isbn" bson:"isbn"`
-	Bline  string  // `json:"title" bson:"title"`
+	Pline    string  // `json:"isbn" bson:"isbn"`
+	Bline    string  // `json:"title" bson:"title"`
 	Category string  // `json:"author" bson:"author"`
-	Price  float32 // `json:"price" bson:"price"`
+	Price    float32 // `json:"price" bson:"price"`
 }
 
 // SomeProducts records from produts3 collection
@@ -38,7 +38,6 @@ func SomeProducts() ([]Prod, error) {
 	return prods, nil
 }
 
-
 // AllBooks finds all records
 func AllBooks() ([]Book, error) {
 	bks := []Book{}
@@ -49,12 +48,12 @@ func AllBooks() ([]Book, error) {
 	return bks, nil
 }
 
-// Find one record
+// OneBook Find one record
 func OneBook(r *http.Request) (Book, error) {
 	bk := Book{}
 	isbn := r.FormValue("isbn")
 	if isbn == "" {
-		return bk, errors.New("400. Bad Request.")
+		return bk, errors.New("400. Bad Request")
 	}
 	err := config.Books.Find(bson.M{"isbn": isbn}).One(&bk)
 	if err != nil {
@@ -63,7 +62,7 @@ func OneBook(r *http.Request) (Book, error) {
 	return bk, nil
 }
 
-// Insert
+// PutBook - Insert
 func PutBook(r *http.Request) (Book, error) {
 	// get form values
 	bk := Book{}
@@ -74,25 +73,25 @@ func PutBook(r *http.Request) (Book, error) {
 
 	// validate form values
 	if bk.Isbn == "" || bk.Title == "" || bk.Author == "" || p == "" {
-		return bk, errors.New("400. Bad request. All fields must be complete.")
+		return bk, errors.New("400. Bad request. All fields must be complete")
 	}
 
 	// convert form values
 	f64, err := strconv.ParseFloat(p, 32)
 	if err != nil {
-		return bk, errors.New("406. Not Acceptable. Price must be a number.")
+		return bk, errors.New("406. Not Acceptable. Price must be a number")
 	}
 	bk.Price = float32(f64)
 
 	// insert values
 	err = config.Books.Insert(bk)
 	if err != nil {
-		return bk, errors.New("500. Internal Server Error." + err.Error())
+		return bk, errors.New("500. Internal Server Error" + err.Error())
 	}
 	return bk, nil
 }
 
-// Update record
+// UpdateBook - Update record
 func UpdateBook(r *http.Request) (Book, error) {
 	// get form values
 	bk := Book{}
@@ -102,13 +101,13 @@ func UpdateBook(r *http.Request) (Book, error) {
 	p := r.FormValue("price")
 
 	if bk.Isbn == "" || bk.Title == "" || bk.Author == "" || p == "" {
-		return bk, errors.New("400. Bad Request. Fields can't be empty.")
+		return bk, errors.New("400. Bad Request. Fields can't be empty")
 	}
 
 	// convert form values
 	f64, err := strconv.ParseFloat(p, 32)
 	if err != nil {
-		return bk, errors.New("406. Not Acceptable. Enter number for price.")
+		return bk, errors.New("406. Not Acceptable. Enter number for price")
 	}
 	bk.Price = float32(f64)
 
@@ -120,11 +119,11 @@ func UpdateBook(r *http.Request) (Book, error) {
 	return bk, nil
 }
 
-// Delete record
+// DeleteBook Delete record
 func DeleteBook(r *http.Request) error {
 	isbn := r.FormValue("isbn")
 	if isbn == "" {
-		return errors.New("400. Bad Request.")
+		return errors.New("400. Bad Request")
 	}
 
 	err := config.Books.Remove(bson.M{"isbn": isbn})

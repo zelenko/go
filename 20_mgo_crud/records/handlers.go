@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-// Show all
+// Index - Show all
 func Index(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -21,7 +21,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "books.gohtml", bks)
 }
 
-// View one
+// Show - View one
 func Show(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -37,12 +37,12 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "show.gohtml", bk)
 }
 
-// Insert page
+// Create - Insert form
 func Create(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "create.gohtml", nil)
 }
 
-// Insert
+// CreateProcess - Insert
 func CreateProcess(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -58,7 +58,7 @@ func CreateProcess(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "created.gohtml", bk)
 }
 
-// Update page
+// Update form
 func Update(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -74,7 +74,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "update.gohtml", bk)
 }
 
-// Update
+// UpdateProcess - Update
 func UpdateProcess(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -90,7 +90,7 @@ func UpdateProcess(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "updated.gohtml", bk)
 }
 
-// Delete
+// DeleteProcess Delete record and return to items page
 func DeleteProcess(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)

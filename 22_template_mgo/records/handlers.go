@@ -2,11 +2,11 @@ package records
 
 import (
 	"../config"
-	"net/http"
 	"github.com/julienschmidt/httprouter"
+	"net/http"
 )
 
-// Show all
+// Index Show all
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -22,7 +22,7 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	config.TPL.ExecuteTemplate(w, "books.gohtml", bks)
 }
 
-// View one
+// Show - View one
 func Show(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -38,12 +38,12 @@ func Show(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	config.TPL.ExecuteTemplate(w, "show.gohtml", bk)
 }
 
-// Insert page
+// Create - Insert page
 func Create(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	config.TPL.ExecuteTemplate(w, "create.gohtml", nil)
 }
 
-// Insert
+// CreateProcess - Insert
 func CreateProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -75,7 +75,7 @@ func Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	config.TPL.ExecuteTemplate(w, "update.gohtml", bk)
 }
 
-// Update
+// UpdateProcess - Update
 func UpdateProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -91,7 +91,7 @@ func UpdateProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 	config.TPL.ExecuteTemplate(w, "updated.gohtml", bk)
 }
 
-// Delete
+// DeleteProcess will delete one record, and return to items page
 func DeleteProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -106,7 +106,6 @@ func DeleteProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 
 	http.Redirect(w, r, "/items", http.StatusSeeOther)
 }
-
 
 // OldDesign is old HTML template used by PHP
 func OldDesign(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
