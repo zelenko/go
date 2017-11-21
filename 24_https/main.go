@@ -61,8 +61,6 @@ func notSecure(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
 // you can just use the path to the GO SDK
 // wherever it is on your computer
 
-
-
 // debian 8 (jessie)
 // sudo apt-get install certbot -t jessie-backports
 
@@ -70,5 +68,3 @@ func notSecure(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
 
 // to generate self-signed:
 // openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
-
-
