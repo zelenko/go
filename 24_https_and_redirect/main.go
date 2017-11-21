@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	fmt.Println("HTTPS port :10443")
-	fmt.Println("HTTP port :10444")
+	fmt.Println("HTTPS port :443")
+	fmt.Println("HTTP port :80")
 
 	r := httprouter.New()
 	r.GET("/", secure)
@@ -19,14 +19,17 @@ func main() {
 
 	//  Start HTTP
 	go func() {
-		err := http.ListenAndServe(":10444", n)
+		// err := http.ListenAndServe(":80", n)
+		err := http.ListenAndServe(":80", http.HandlerFunc(redirect))
 		if err != nil {
 			log.Fatalln("Web server (HTTP): ", err)
 		}
 	}()
 
+	//go http.ListenAndServe(":80", http.HandlerFunc(redirect))
+
 	//  Start HTTPS
-	err := http.ListenAndServeTLS(":10443", "cert.pem", "key.pem", r)
+	err := http.ListenAndServeTLS(":443", "cert.pem", "key.pem", r)
 	if err != nil {
 		log.Fatal("Web server (HTTPS): ", err)
 	}
@@ -44,7 +47,14 @@ func notSecure(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
 	w.Write([]byte("Transport layer is NOT secure.\n"))
 }
 
-// Go to https://localhost:10443/ or https://127.0.0.1:10443/
+// Redicrect from HTTP to HTTPS
+func redirect(w http.ResponseWriter, req *http.Request) {
+    http.Redirect(w, req,
+            "https://" + req.Host + req.URL.String(),
+            http.StatusMovedPermanently)
+}
+
+// Go to https://localhost:443/ or https://127.0.0.1:443/
 // list of TCP ports:
 // https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
 
