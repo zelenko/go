@@ -49,9 +49,9 @@ func notSecure(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
 
 // Redicrect from HTTP to HTTPS
 func redirect(w http.ResponseWriter, req *http.Request) {
-    http.Redirect(w, req,
-            "https://" + req.Host + req.URL.String(),
-            http.StatusMovedPermanently)
+	http.Redirect(w, req,
+		"https://"+req.Host+req.URL.String(),
+		http.StatusMovedPermanently)
 }
 
 // Go to https://localhost:443/ or https://127.0.0.1:443/
