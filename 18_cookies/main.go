@@ -79,5 +79,5 @@ func main() {
 	router.GET("/04", p04)
 	router.GET("/hello/:name", Hello)
 
-	http.ListenAndServe(":8080", router)
+	http.ListenAndServe(":80", router)
 }
