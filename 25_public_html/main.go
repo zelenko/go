@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../24_https/lib"
+	"../25_public_html/lib"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"log"
@@ -17,6 +17,8 @@ func main() {
 	r.GET("/test/", zelenko.Test)
 	r.GET("/test", zelenko.Test2)
 	r.NotFound = http.FileServer(http.Dir("public"))
+	// r.ServeFiles("/static/*filepath", http.Dir("/var/www/public/"))
+	//http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("/home/www/"))))
 
 	//  Start HTTP
 	go func() {

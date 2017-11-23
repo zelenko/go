@@ -23,7 +23,7 @@ func main() {
 	http.HandleFunc("/contact", cntct)
 	http.HandleFunc("/apply", aply)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
-	http.Handle("/public/", http.StripPrefix("/public", http.FileServer(http.Dir("./pub"))))
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./pub"))))
 	http.ListenAndServe(":80", nil)
 }
 
