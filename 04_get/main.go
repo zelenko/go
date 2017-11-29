@@ -1,12 +1,11 @@
 package main
 
-// Created on 2017-11-06 to test GET from url
+// Created to test GET from url
 import (
 	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
-	//"log"
 )
 
 var tpl *template.Template
@@ -16,9 +15,7 @@ func init() {
 }
 
 func main() {
-
 	http.HandleFunc("/", index)
-	//http.HandleFunc("/process", process)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -32,12 +29,13 @@ func index(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("method was get")
 	}
 
+	// Convert string to integer
 	next, err := strconv.Atoi(r.FormValue("next"))
 	if err != nil {
 		fmt.Println(err)
-		//log.Println("LOGGED line 38", err)
 	}
 
+	// Declare and initialize struct
 	senddata := struct {
 		Prev int
 		Now  int
@@ -48,8 +46,8 @@ func index(w http.ResponseWriter, r *http.Request) {
 		next + 1,
 	}
 
+	// Template
 	err = tpl.ExecuteTemplate(w, "index.gohtml", senddata)
-
 	if err != nil {
 		fmt.Println(err)
 	}
