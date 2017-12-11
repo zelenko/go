@@ -60,7 +60,7 @@ GOOS=linux GOARCH=amd64 go build -o web
 ```
 go build -o hello.exe hello.go
 ```
-
+[List of GOOS/GOARCH supported by Go](https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63#go-golang-goos-and-goarch)
 
 ## Installing GO on Debian
 ```
