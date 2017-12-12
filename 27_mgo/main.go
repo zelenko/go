@@ -18,8 +18,11 @@ type Content struct {
 var (
 	// Session for DB
 	Session, _ = mgo.Dial(dblogin.Bookstore) // mongodb://username:yourpasscode@serverip:27017/database?authSource=admin
+	// Database for connection
 	Database   = "bookstore"
+	// Collection for database
 	Collection = "test"
+	// Coll puts all together
 	Coll       = Session.DB(Database).C(Collection)
 
 	content = &Content{
@@ -294,8 +297,8 @@ func testAggregate() {
 			"download": bson.M{"$sum": "$download"},
 		},
 		},
-		{"$sort": bson.M{"download": 1}, //1: Ascending, -1: Descending
-		},
+		{"$sort": bson.M{"download": 1}},//1: Ascending, -1: Descending
+
 	}
 	pipe := Coll.Pipe(pipeline)
 

@@ -10,6 +10,7 @@ import (
 
 var i int
 
+// ReadLine reads file faster
 func ReadLine(filename string) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -36,6 +37,7 @@ func ReadLine(filename string) {
 	}
 }
 
+// ReadString reads file slower
 func ReadString(filename string) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -57,6 +59,7 @@ func ReadString(filename string) {
 	}
 }
 
+// Scan reads file OK
 func scan(filename string) {
 	fileHandle, _ := os.Open(filename)
 	defer fileHandle.Close()
