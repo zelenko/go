@@ -1,5 +1,7 @@
 [![Go Report Card](https://goreportcard.com/badge/zelenko/go)](https://goreportcard.com/report/zelenko/go)
 # Explore Golang features
+This repository is viewable on [sourcegraph.com](https://sourcegraph.com/github.com/zelenko/go).
+
 ![Go](https://raw.githubusercontent.com/zelenko/go/master/00_web/pub/img/toby.jpg)
 
 ## Go Resorces
