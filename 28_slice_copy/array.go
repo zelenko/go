@@ -1,13 +1,10 @@
-/****************************************************************************************
-Slice variable does not hold actual value, but it is a pointer to memory address.
-Here is an example of how slice can get "corrupted".
-This was mentioned in: https://www.upguard.com/blog/our-experience-with-golang
-*****************************************************************************************/
-
 package main
 
 import "fmt"
 
+// Slice variable does not hold actual value, but it is a pointer to memory address.
+// Here is an example of how slice can get "corrupted".
+// This was mentioned in: https://www.upguard.com/blog/our-experience-with-golang
 func main() {
 
 	array := []string{"a", "b", "c", "d", "e", "f"}

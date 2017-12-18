@@ -1,15 +1,36 @@
 package main
 
-// The comments below show another way of doing it.
-//import (
-//"../19_two_files/lib"
-// L "../current_folder/lib"
-//	avery "../19_two_files/lib"
-//)
+// Importing single packages
+// import avery "../19_two_files/lib"
+// import "../19_two_files/config"
 
-import avery "../19_two_files/lib"
+import (
+	"../19_two_files/config"
+	"../19_two_files/db"
+	avery "../19_two_files/lib"
+)
 
 func main() {
 	avery.Demo()
 	avery.Demo2()
+	config.Demo4()
+	config.Demo5()
+	six.Demo6()
 }
+
+/*
+// content
+// bin
+addons
+// examples
+system
+src
+db
+log
+public
+assets
+internal
+view
+helpers
+
+*/
