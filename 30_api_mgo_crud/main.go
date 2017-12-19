@@ -1,22 +1,52 @@
 package main
 
 import (
+	"../30_api_mgo_crud/config"
+	"../30_api_mgo_crud/dao"
+	"../30_api_mgo_crud/models"
 	"encoding/json"
 	"fmt"
-	"net/http"
-	"gopkg.in/mgo.v2/bson"
-	. "../30_api_mgo_crud/config"
-	. "../30_api_mgo_crud/dao"
-	. "../30_api_mgo_crud/models"
 	"github.com/julienschmidt/httprouter"
+	"gopkg.in/mgo.v2/bson"
+	"net/http"
 )
 
-var config = Config{}
-var dao = MoviesDAO{}
+var (
+	confi  config.Configuration // Database Configuration
+	dataAO dao.MoviesDAO        // Data Access Object
+)
+
+// Parse the configuration file 'config.toml', and establish a connection to DB
+func init() {
+	confi.Read()
+	dataAO.Server = confi.Server
+	dataAO.Database = confi.Database
+	dataAO.Connect()
+}
+
+// Define HTTP request routes
+func main() {
+	fmt.Println("HTTP port :3000")
+	r := httprouter.New() // methods GET, POST, PUT, PATCH and DELETE
+
+	r.GET("/", redirect)
+	r.GET("/movies", AllMoviesEndPoint)
+	r.POST("/movies", CreateMovieEndPoint)
+	r.PUT("/movies", UpdateMovieEndPoint)
+	r.DELETE("/movies", DeleteMovieEndPoint)
+	r.GET("/movies/:id", FindMovieEndpoint)
+
+	http.ListenAndServe(":3000", r)
+}
+
+// redirect
+func redirect(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	http.Redirect(w, r, "/movies", http.StatusSeeOther)
+}
 
 // AllMoviesEndPoint - GET list of movies
 func AllMoviesEndPoint(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	movies, err := dao.FindAll()
+	movies, err := dataAO.FindAll()
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
@@ -26,7 +56,7 @@ func AllMoviesEndPoint(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 
 // FindMovieEndpoint - GET a movie by its ID
 func FindMovieEndpoint(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	movie, err := dao.FindById(ps.ByName("id"))
+	movie, err := dataAO.FindById(ps.ByName("id"))
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid Movie ID")
 		return
@@ -37,13 +67,13 @@ func FindMovieEndpoint(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 // CreateMovieEndPoint - POST a new movie
 func CreateMovieEndPoint(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	defer r.Body.Close()
-	var movie Movie
+	var movie models.Movie
 	if err := json.NewDecoder(r.Body).Decode(&movie); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
 	movie.ID = bson.NewObjectId()
-	if err := dao.Insert(movie); err != nil {
+	if err := dataAO.Insert(movie); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -53,12 +83,12 @@ func CreateMovieEndPoint(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 // UpdateMovieEndPoint - PUT update an existing movie
 func UpdateMovieEndPoint(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	defer r.Body.Close()
-	var movie Movie
+	var movie models.Movie
 	if err := json.NewDecoder(r.Body).Decode(&movie); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
-	if err := dao.Update(movie); err != nil {
+	if err := dataAO.Update(movie); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -68,12 +98,12 @@ func UpdateMovieEndPoint(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 // DeleteMovieEndPoint an existing movie
 func DeleteMovieEndPoint(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	defer r.Body.Close()
-	var movie Movie
+	var movie models.Movie
 	if err := json.NewDecoder(r.Body).Decode(&movie); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
-	if err := dao.Delete(movie); err != nil {
+	if err := dataAO.Delete(movie); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -89,36 +119,6 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
-}
-
-// Parse the configuration file 'config.toml', and establish a connection to DB
-func init() {
-	config.Read()
-
-	dao.Server = config.Server
-	dao.Database = config.Database
-	dao.Connect()
-}
-
-// redirect
-func redirect(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	http.Redirect(w, r, "/movies", http.StatusSeeOther)
-}
-
-// Define HTTP request routes
-func main() {
-
-	fmt.Println("HTTP port :3000")
-	r := httprouter.New()
-
-	// methods GET, POST, PUT, PATCH and DELETE
-	r.GET("/", redirect)
-	r.GET("/movies", AllMoviesEndPoint)
-	r.POST("/movies", CreateMovieEndPoint)
-	r.PUT("/movies", UpdateMovieEndPoint)
-	r.DELETE("/movies", DeleteMovieEndPoint)
-	r.GET("/movies/:id", FindMovieEndpoint)
-	http.ListenAndServe(":3000", r)
 }
 
 // curl -sSX POST -d '{"name":"dunkirk","cover_image":"https://image.tmdb.org/t/p/w640/cUqEgoP6kj8ykfNjJx3Tl5zHCcN.jpg", "description":"world war 2 movie"}' http://localhost:3000/movies | jq '.'

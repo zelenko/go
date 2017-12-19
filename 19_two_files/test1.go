@@ -14,7 +14,7 @@ func main() {
 	avery.Demo()
 	avery.Demo2()
 	config.Demo4()
-	config.Demo5()
+	Demo5()
 	six.Demo6()
 }
 
