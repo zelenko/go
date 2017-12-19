@@ -1,9 +1,9 @@
 package main
 
 import (
-	"../30_api_mgo_crud/config"
-	"../30_api_mgo_crud/dao"
-	"../30_api_mgo_crud/models"
+	"./config"
+	"./dao"
+	"./models"
 	"encoding/json"
 	"fmt"
 	"github.com/julienschmidt/httprouter"

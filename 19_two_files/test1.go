@@ -1,20 +1,20 @@
 package main
 
 // Importing single packages
-// import avery "../19_two_files/lib"
-// import "../19_two_files/config"
+// import avery "./lib"
+// import "./config"
 
 import (
-	"../19_two_files/config"
-	"../19_two_files/db"
-	avery "../19_two_files/lib"
+	"./config"
+	"./db"
+	avery "./lib"
 )
 
 func main() {
 	avery.Demo()
 	avery.Demo2()
 	config.Demo4()
-	Demo5()
+	config.Demo5()
 	six.Demo6()
 }
 
