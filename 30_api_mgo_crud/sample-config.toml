@@ -1,0 +1,2 @@
+server="mongodb://username:yourpasscode@serverip:27017/database?authSource=admin"
+database="bockstore"
