@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"../../30_api_mgo_crud/models"
+	"../models"
 	"errors"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"

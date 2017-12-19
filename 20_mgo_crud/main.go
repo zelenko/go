@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../20_mgo_crud/records"
+	"./records"
 	"net/http"
 )
 
