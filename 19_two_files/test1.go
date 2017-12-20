@@ -19,18 +19,24 @@ func main() {
 }
 
 /*
-// content
-// bin
+content
+bin
 addons
-// examples
+examples
 system
 src
 db
 log
+view
+html
+controler
 public
 assets
 internal
 view
 helpers
+config
+records
+templates
 
 */

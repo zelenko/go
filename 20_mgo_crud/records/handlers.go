@@ -2,11 +2,12 @@ package records
 
 import (
 	"../config"
+	"github.com/julienschmidt/httprouter"
 	"net/http"
 )
 
 // Index - Show all
-func Index(w http.ResponseWriter, r *http.Request) {
+func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -22,7 +23,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 // Show - View one
-func Show(w http.ResponseWriter, r *http.Request) {
+func Show(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -38,12 +39,12 @@ func Show(w http.ResponseWriter, r *http.Request) {
 }
 
 // Create - Insert form
-func Create(w http.ResponseWriter, r *http.Request) {
+func Create(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	config.TPL.ExecuteTemplate(w, "create.gohtml", nil)
 }
 
 // CreateProcess - Insert
-func CreateProcess(w http.ResponseWriter, r *http.Request) {
+func CreateProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -59,7 +60,7 @@ func CreateProcess(w http.ResponseWriter, r *http.Request) {
 }
 
 // Update form
-func Update(w http.ResponseWriter, r *http.Request) {
+func Update(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -75,7 +76,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 }
 
 // UpdateProcess - Update
-func UpdateProcess(w http.ResponseWriter, r *http.Request) {
+func UpdateProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
@@ -91,7 +92,7 @@ func UpdateProcess(w http.ResponseWriter, r *http.Request) {
 }
 
 // DeleteProcess Delete record and return to items page
-func DeleteProcess(w http.ResponseWriter, r *http.Request) {
+func DeleteProcess(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
