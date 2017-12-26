@@ -55,7 +55,7 @@ func readLine(filename string) {
 
 		column, err := sliceAtoi(s)
 		//id, err := strconv.Atoi(s[0])
-		checkErr(err)
+		check(err)
 
 		// update := bson.M{"BR01": s[1], "BR02": s[2], "BR03": s[3], "BR04": s[4]}  // works
 		// update := bson.M{"test": bson.M{"BR01": s[1], "BR02": s[2], "BR03": s[3], "BR04": s[4]}} // works as object
@@ -114,6 +114,7 @@ func readLine(filename string) {
 		}
 
 		line, isPrefix, err = r.ReadLine()
+		check(err)
 	}
 
 	// Process Bulk
@@ -157,7 +158,7 @@ func main() {
 	fmt.Print("Time: ", time.Since(start), ";")
 }
 
-func checkErr(err error) {
+func check(err error) {
 	if err != nil {
 		fmt.Println("Error: ", err.Error())
 		//http.Error(w, "Error: " + err.Error(), 500)
