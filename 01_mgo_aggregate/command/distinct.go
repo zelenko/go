@@ -21,6 +21,9 @@ func main() {
 
 	var result []string
 	err = c.Find(bson.M{"category": bson.M{"$exists": 1}}).Distinct("category", &result)
+	if err != nil {
+		panic(err)
+	}
 
 	//fmt.Println("Results All: ", result)
 	for _, v := range result {

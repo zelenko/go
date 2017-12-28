@@ -1,4 +1,4 @@
-// RESTful API in Go with httprouter
+// Restful API in Go with httprouter
 
 package main
 
