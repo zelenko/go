@@ -1,4 +1,4 @@
-// This code selects aggregate data from MongoDB and displays it in CLI
+// This code selects aggregate data from mongodb and displays it in CLI
 
 package main
 
@@ -23,7 +23,7 @@ func main() {
 	c := session.DB("onlinestore").C("products3")
 
 	/*
-		// Same command for use in Mongo Shell
+		// Same command for use in mongodb Shell
 		db.products.aggregate([
 			{$group : {_id:"$category", count:{$sum:1}}},
 			{$sort:{"count":-1}},
@@ -32,7 +32,7 @@ func main() {
 	*/
 
 	pipeline := []bson.M{
-		bson.M{
+		{
 			"$group": bson.M{
 				"_id":   "$category",
 				"count": bson.M{"$sum": 1},

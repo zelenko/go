@@ -84,9 +84,9 @@ func main() {
 	fmt.Println("Results All: ", results)
 
 	// Update
-	colQuerier := bson.M{"name": "Ale"}
+	updateQuery := bson.M{"name": "Ale"}
 	change := bson.M{"$set": bson.M{"phone": "+86 99 8888 7777", "timestamp": time.Now()}}
-	err = c.Update(colQuerier, change)
+	err = c.Update(updateQuery, change)
 	if err != nil {
 		//panic(err)
 		fmt.Println("LINE 89", err)
