@@ -38,12 +38,12 @@ func main() {
 				"count": bson.M{"$sum": 1},
 			},
 		},
-		bson.M{
+		{
 			"$sort": bson.M{
 				"count": -1,
 			},
 		},
-		bson.M{
+		{
 			"$limit": 15,
 		},
 	}
@@ -57,7 +57,7 @@ func main() {
 	resp := []struct {
 		ID    string `json:"id,omitempty" bson:"_id"`
 		Count int    `json:"count,omitempty" bson:"count"`
-	}{}
+	}{{}}
 
 	err = pipe.All(&resp)
 	checkErr(err)

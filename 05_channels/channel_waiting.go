@@ -23,7 +23,7 @@ func main() {
 		var i int
 		for n := range ch2 {
 			i += n
-			fmt.Println("ch2 n:",n,"i:",i)
+			fmt.Println("ch2 n:", n, "i:", i)
 			if i == len(m) {
 				close(ch)
 				fmt.Println("closing ch", len(m))
@@ -39,8 +39,8 @@ func main() {
 		for _, v := range m {
 			ch <- v
 			ch2 <- 1
-			fmt.Println("populating:",v)
-			//fmt.Println("ch2 lenght", len(ch2))
+			fmt.Println("populating:", v)
+			//fmt.Println("ch2 length", len(ch2))
 		}
 		fmt.Println("end of func 2")
 		wg.Done()
@@ -48,7 +48,7 @@ func main() {
 
 	// printing ch
 	for v := range ch {
-		fmt.Println("ch:",v)
+		fmt.Println("ch:", v)
 	}
 
 	//for h := range ch2 {

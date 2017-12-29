@@ -8,23 +8,23 @@ import (
 	"strconv"
 )
 
-// Todo is the record
-type Todo struct {
+// Todos is an array
+var Todos []Todor
+
+// MaxID is the latest record
+var MaxID int
+
+// Todor is the record structure
+type Todor struct {
 	ID          int    `json:"id"`
 	Description string `json:"description"`
 	Complete    bool   `json:"complete"`
 }
 
-// Todos is an array
-var Todos []Todo
-
-// MaxID is the latest record
-var MaxID int
-
 func main() {
 
 	MaxID = 1
-	Todos = []Todo{Todo{ID: MaxID, Description: "Explore Golang"}}
+	Todos = []Todor{Todor{ID: MaxID, Description: "Explore Golang"}}
 
 	r := mux.NewRouter()
 
@@ -59,7 +59,7 @@ var GetAllHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 // CreateOneHandler creates new record, returns record MaxID
 var CreateOneHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
-	var newTodo Todo
+	var newTodo Todor
 
 	err := decoder.Decode(&newTodo)
 
@@ -80,8 +80,8 @@ var CreateOneHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Requ
 })
 
 // Filter returns an array of records, filtering depends on the function
-func Filter(vs []Todo, f func(Todo) bool) []Todo {
-	vsf := make([]Todo, 0)
+func Filter(vs []Todor, f func(Todor) bool) []Todor {
+	vsf := make([]Todor, 0)
 	for _, v := range vs {
 		if f(v) {
 			vsf = append(vsf, v)
@@ -95,7 +95,7 @@ var GetOneHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	params := mux.Vars(r)
 	recordID, _ := strconv.Atoi(params["id"])
 
-	oneRecord := Filter(Todos, func(t Todo) bool {
+	oneRecord := Filter(Todos, func(t Todor) bool {
 		// search criteria
 		return t.ID == recordID
 	})
@@ -108,13 +108,13 @@ var UpdateOneHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Requ
 	params := mux.Vars(r)
 	recordID, _ := strconv.Atoi(params["id"])
 
-	Todos = Filter(Todos, func(t Todo) bool {
+	Todos = Filter(Todos, func(t Todor) bool {
 		// search criteria
 		return t.ID != recordID
 	})
 
 	decoder := json.NewDecoder(r.Body)
-	var newTodo Todo
+	var newTodo Todor
 
 	err := decoder.Decode(&newTodo)
 
@@ -137,7 +137,7 @@ var DeleteHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	params := mux.Vars(r)
 	recordID, _ := strconv.Atoi(params["id"])
 
-	Todos = Filter(Todos, func(t Todo) bool {
+	Todos = Filter(Todos, func(t Todor) bool {
 		return t.ID != recordID
 	})
 
