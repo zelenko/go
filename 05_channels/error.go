@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("result: ", result)
 }
 
-func SomeFunction(a string) (b int, err error) {
+func someFunction(a string) (b int, err error) {
 
 	b, err = strconv.Atoi(a)
 
