@@ -86,3 +86,18 @@ export GOPATH=/var/go
 After [downloading](https://golang.org/dl/) and installing, specify where the code is stored in system variable.  CLI command: `set GOPATH=F:\GoCode`
 
 Check existing variables `go env`.  Check current version `go version`.
+
+
+## The proper way to copy a slice
+```GO
+package main
+
+import "fmt"
+
+func main() {
+	a := []string{"a", "b", "c", "d"}
+	e := make([]string, len(a))
+	copy(e, a)
+	fmt.Println(e)
+}
+```
