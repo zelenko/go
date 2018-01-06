@@ -13,7 +13,7 @@ var DB *mgo.Database
 var Books *mgo.Collection
 
 func init() {
-	// get a mongo sessions
+	// S get a mongo sessions
 	s, err := mgo.Dial(dblogin.Bookstore) // mongodb://username:yourpasscode@serverip:27017/database?authSource=admin
 	if err != nil {
 		panic(err)
