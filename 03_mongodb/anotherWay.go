@@ -7,6 +7,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// Dog is just a type
 type Dog struct {
 	Name             string
 	Drools           bool

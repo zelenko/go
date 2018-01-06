@@ -69,7 +69,6 @@ func htmlTemplate(itemTemplate string) string {
 	return output
 }
 
-
 // main is the entry point for the program.
 func main() {
 	defer s.Close()
@@ -172,8 +171,6 @@ func listHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 	t, _ = t.Parse(htmlTemplate(itemTemplate))
 	t.Execute(w, "List")
 }
-
-
 
 // Anything below here requires database connection.  See db.go for connection details
 
@@ -317,4 +314,3 @@ func aggregateHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Param
 	t, _ = t.Parse(htmlTemplate(itemTemplate))
 	t.Execute(w, "List")
 }
-
