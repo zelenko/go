@@ -19,14 +19,15 @@ func main() {
 	}
 
 	//tmpl := template.Must(template.New("body").Funcs(functionMap).Parse(`
-	tmpl := template.Must(template.New("body").Parse(`
+	tmpl := template.Must(template.New("simple.html").Funcs(functionMap).ParseFiles("simple.html"))
+	tmpl = template.Must(tmpl.New("body").Parse(`
 
         {{ define "body" }}
            Body
         {{ end }}
 
 		{{ define "navigation" -}}
-			one | two | three | four
+			one | two | three | four | five
         {{ end }}
      	`))
 
@@ -45,7 +46,7 @@ func main() {
 
          End of baz template
      	`))
-	tmpl = template.Must(tmpl.New("simple.html").Funcs(functionMap).ParseFiles("simple.html"))
+	//tmpl = template.Must(tmpl.New("simple.html").Funcs(functionMap).ParseFiles("simple.html"))
 	//tmpl = template.Must(tmpl.New("simple.html").ParseFiles("simple.html"))
 
 	//tmpl.ExecuteTemplate(os.Stdout, "base", nil)

@@ -34,40 +34,14 @@ import (
 	"net/http"
 )
 
-// Output is the exported data type
-type Output struct {
-	Message string
-}
-
 // itemTemplate can be overridden in each function locally
 var itemTemplate = `
-	{{- range listFunction }}
-	{{ .Message}}<br />
-	{{- end}}`
-
-// htmlTemplate is what presented to the client
-func htmlTemplate(itemTemplate string) string {
-	output := `<html>
-<head>
-    <title>{{ . }}</title>
-</head>
-<body>
-    {{ . }}
-    <p>
-    <a href="/">Main</a> |
-	<a href="/list/">List</a> |
-	<a href="/products/">Products</a> |
-	<a href="/aggregate/">Aggregate</a> |
-    <a href="/view/">View</a>
-    </p>
-
-
-` + itemTemplate + `
-</body>
-</html>
-`
-	return output
-}
+        {{ define "body" }}
+           {{- range listFunction }}
+			{{ .Message}}<br />
+			{{- end}}
+        {{ end }}
+     	`
 
 // main is the entry point for the program.
 func main() {
@@ -81,9 +55,9 @@ func main() {
 	r.GET("/list/", listHandler)
 	r.GET("/products/", productsHandler)
 	r.GET("/aggregate/", aggregateHandler)
-	//r.GET("/stat/", statHandler)
-
-	//r.NotFound = http.FileServer(http.Dir("public"))
+	r.GET("/aggregate/:br/", aggregateHandler)
+	r.POST("/aggregate/:br/", aggregateHandler)
+	r.NotFound = http.FileServer(http.Dir("public"))
 
 	http.ListenAndServe(":80", r)
 
@@ -92,6 +66,12 @@ func main() {
 // viewHandler uses append to populate slice
 func viewHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 
+	// Data Type
+	type Output struct {
+		Message string
+	}
+
+	// Data
 	listFunction := func() (r []Output) {
 		r = append(r, Output{Message: fmt.Sprint("one")})
 		r = append(r, Output{Message: fmt.Sprint("two")})
@@ -100,27 +80,37 @@ func viewHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 		return
 	}
 
+	// pass functions (passing data)
 	functionMap := template.FuncMap{
 		"listFunction": listFunction,
 		//"listFunction3": listFunction3,
 	}
 
-	t := template.New("main") //name of the template is main
-	t = t.Funcs(functionMap)
-	t, _ = t.Parse(htmlTemplate(itemTemplate)) // parsing of template string
-	err := t.Execute(w, "View")
+	// View
+	itemTemplate := `
+        {{ define "body" }}
+           {{- range listFunction }}
+			{{ .Message}}<br />
+			{{- end}}
+        {{ end }}
+     	`
 
-	//t := template.Must(template.New("email.html").Funcs(functionMap).ParseFiles("email.html"))
-	//err := t.Execute(os.Stdout, createMockStatement())
-	if err != nil {
-		http.Error(w, http.StatusText(500)+err.Error(), http.StatusInternalServerError)
-		panic(err)
-	}
+	// Template
+	t := template.Must(template.New("template.html").Funcs(functionMap).ParseFiles("template.html"))
+	t = template.Must(t.New("body").Parse(itemTemplate))
+	t.ExecuteTemplate(w, "template.html", "View")
+
 }
 
 // indexHandler uses append to populate slice
 func indexHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 
+	// Data Type
+	type Output struct {
+		Message string
+	}
+
+	// Data
 	listFunction := func() (r []Output) {
 		r = append(r, Output{Message: fmt.Sprint("one -")})
 		r = append(r, Output{Message: fmt.Sprint("two-")})
@@ -129,20 +119,28 @@ func indexHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 		return
 	}
 
-	t := template.New("main").Funcs(template.FuncMap{"listFunction": listFunction})
-	t, _ = t.Parse(htmlTemplate(itemTemplate))
-	t.Execute(w, "Index")
+	// pass functions (passing data)
+	functionMap := template.FuncMap{
+		"listFunction": listFunction,
+		//"listFunction3": listFunction3,
+	}
+
+	// Template
+	t := template.Must(template.New("template.html").Funcs(functionMap).ParseFiles("template.html"))
+	t = template.Must(t.New("body").Parse(itemTemplate))
+	t.ExecuteTemplate(w, "template.html", "Index")
 }
 
 // listHandler is executing html template
 func listHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 
-	// branch is the data type
+	// Data Type
 	type branch struct {
 		Message string
 		Note    string
 	}
 
+	// Data
 	// listFunction returns slice of branches.  Branches are declared by a literal.
 	listFunction := func() []branch {
 
@@ -162,14 +160,24 @@ func listHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 		return r
 	}
 
+	// pass functions (passing data)
+	functionMap := template.FuncMap{
+		"listFunction": listFunction,
+		//"listFunction3": listFunction3,
+	}
+
+	// View
 	itemTemplate := `
+{{- define "body" }}
 	{{- range listFunction }}
 	{{ .Message}} => {{ .Note}}<br />
-	{{- end}}`
+	{{- end}}
+ {{ end }}`
 
-	t := template.New("main").Funcs(template.FuncMap{"listFunction": listFunction})
-	t, _ = t.Parse(htmlTemplate(itemTemplate))
-	t.Execute(w, "List")
+	// Template
+	t := template.Must(template.New("template.html").Funcs(functionMap).ParseFiles("template.html"))
+	t = template.Must(t.New("body").Parse(itemTemplate))
+	t.ExecuteTemplate(w, "template.html", "List")
 }
 
 // Anything below here requires database connection.  See db.go for connection details
@@ -177,7 +185,7 @@ func listHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 // productHandler is executing html template
 func productsHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 
-	// Prod Record fields.  The TYPE!
+	// Data Type
 	type Prod struct {
 		// add ID and tags if you need them
 		// ID     bson.ObjectId // `json:"id" bson:"_id"`
@@ -187,7 +195,7 @@ func productsHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params
 		Price    float32 // `json:"price" bson:"price"`
 	}
 
-	// SomeProducts records from products3 collection.  Get the slice of TYPES!
+	// Data
 	listFunction := func() []Prod {
 		prods := []Prod{{}}
 
@@ -207,22 +215,45 @@ func productsHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params
 		return prods
 	}
 
-	// Present on HTML page
-	itemTemplate := `
-	{{- range listFunction }}
-	{{ .Pline}} => {{ .Bline}} ==> {{ .Category}} ==> {{ .Price}}<br />
-	{{- end}}`
-	t := template.New("main").Funcs(template.FuncMap{"listFunction": listFunction})
-	t, _ = t.Parse(htmlTemplate(itemTemplate))
-	t.Execute(w, "List")
+	// View
+	itemTemplate := `{{ define "body" }}
+{{- range listFunction }}
+{{ .Pline}} => {{ .Bline}} ==> {{ .Category}} ==> {{ .Price}}<br />
+{{- end}}
+{{ end }}`
+
+	// Template, alternate way
+	t := template.New("template.html")
+	t = t.Funcs(template.FuncMap{"listFunction": listFunction})
+	t, err := t.ParseFiles("template.html")
+	t = template.Must(t, err)
+
+	t = t.New("body")
+	t, err = t.Parse(itemTemplate)
+	t = template.Must(t, err)
+
+	t.ExecuteTemplate(w, "template.html", "Products")
 }
 
 // aggregateHandler is executing html template
-func aggregateHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
+func aggregateHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
-	// ItemData Record fields.  The TYPE!
-	// This is sample output from mongodb shell:
-	// { "_id" : 42973, "value" : 11.36, "sales_all" : 598.23, "branch" : "BR19", "maxSale" : 303.96 }
+	branchID := ps.ByName("br")
+	err := r.ParseForm()
+	if err != nil {
+		fmt.Println(err)
+	}
+	selector := "Nothing"
+	if r.Method == "POST" {
+		//selector = r.Form["username"]
+		selector = r.PostFormValue("msg")
+
+		//for v := range r.Form["username"] {
+	//		selector =+ selector + v
+	//	}
+	}
+
+	// Data Type
 	type ItemData struct {
 		// ID     bson.ObjectId // `json:"id" bson:"_id"`
 		ID       uint `bson:"_id"` // tags required
@@ -231,12 +262,12 @@ func aggregateHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Param
 		Branch   string
 		MaxSale  float32 `bson:"maxSale"`
 	}
-	// This is how it will look on HTML template:
-	//{{ .ID}} => {{ .Value}} ==> {{ .SalesAll}} ==> {{ .Branch}} ==> {{ .MaxSale}}<br />
+	// Sample output from mongodb shell:
+	// { "_id" : 42973, "value" : 11.36, "sales_all" : 598.23, "branch" : "BR19", "maxSale" : 303.96 }
 
 	// SomeProducts records from products3 collection.  Get the slice of TYPES!
 	listFunction := func() []ItemData {
-		/*	This is how the PIPE looks in mongodb shell:
+		/*	Pipe command for mongodb shell:
 			db.products3.aggregate([
 			  {$match: {'onhand.BR03':{"$gt":0},'sales.BR03':{'$lt':2}, sales_all:{'$gt':0}}},
 			  {$unwind: '$branch'},
@@ -282,7 +313,7 @@ func aggregateHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Param
 				},
 			},
 			{
-				"$match": bson.M{"branch": "BR19"},
+				"$match": bson.M{"branch": branchID}, // "BR19"
 			},
 			{
 				"$sort": bson.M{"value": -1},
@@ -293,24 +324,50 @@ func aggregateHandler(w http.ResponseWriter, _ *http.Request, _ httprouter.Param
 		}
 
 		pipe := Products3.Pipe(pipeline)
-
-		// Declaring type
-		prods := []ItemData{{}}
-		err := pipe.All(&prods)
+		prods := []ItemData{{}} // Declaring type
+		err := pipe.All(&prods) // Get results into memory
 		if err != nil {
-			//http.Error(w, http.StatusText(500)+err.Error(), http.StatusInternalServerError)
 			fmt.Println(err)
 			return nil
 		}
 		return prods
 	}
 
-	// Present on HTML page
-	itemTemplate := `
+	// View
+	itemTemplate := `{{ define "body" }}
+<p>
+<a href="/aggregate/BR01/">01</a> |
+<a href="/aggregate/BR02/">02</a> |
+<a href="/aggregate/BR03/">03</a> |
+<a href="/aggregate/BR04/">04</a> |
+<a href="/aggregate/BR05/">05</a> |
+<a href="/aggregate/BR06/">06</a> |
+
+<form action="/aggregate/BR05/" method="POST">
+<select name="t1" onchange="this.form.submit()">
+<option value="ACCOUNTING">ACCOUNTING</option>
+<option value="ACCOUNTING.AP">ACCOUNTING.AP</option>
+<option value="OP.REG.MGR">OP.REG.MGR</option>
+<option value="OPERATIONS.MGR">OPERATIONS.MGR</option>
+<option value="PURCHASING">PURCHASING</option>
+<option value="RECEIVING">RECEIVING</option>
+<option value="RF.MANAGER">RF.MANAGER</option>
+<option value="SALES.ACCOUNTING">SALES.ACCOUNTIN</option>
+<option value="SUPER SALES">SUPER SALES</option>
+<option value="TEST.OPR.M">TEST.OPR.M</option>
+</select>
+</form>
+
+</p>
+
 	{{- range listFunction }}
 	{{ .ID}} => {{ .Value}} ==> {{ .SalesAll}} ==> {{ .Branch}} ==> {{ .MaxSale}}<br />
-	{{- end}}`
-	t := template.New("main").Funcs(template.FuncMap{"listFunction": listFunction})
-	t, _ = t.Parse(htmlTemplate(itemTemplate))
-	t.Execute(w, "List")
+	{{- end}}
+{{- end}}`
+
+	// Template
+	t := template.Must(template.New("template.html").Funcs(template.FuncMap{"listFunction": listFunction}).
+		ParseFiles("template.html"))
+	t = template.Must(t.New("body").Parse(itemTemplate))
+	t.ExecuteTemplate(w, "template.html", "Aggregation: "+branchID+" "+selector)
 }

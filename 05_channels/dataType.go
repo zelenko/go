@@ -18,13 +18,13 @@ func main() {
 	// m = make(map[string]int)
 	// More info Here: https://blog.golang.org/go-maps-in-action
 
-	// Type, such as map[string]string, []int, [3]int
+	// Type, such as map[string]string, []int, [3]int; https://play.golang.org/p/mhjAAdgrG4
 	fmt.Println("map1:", reflect.TypeOf(map1))
 	fmt.Println("map2:", reflect.TypeOf(map2))
 	fmt.Println("slice1:", reflect.TypeOf(slice1))
 	fmt.Println("array1:", reflect.TypeOf(array1))
 
-	// Value, such as map, slice, array.
+	// Value, such as map, slice, array. https://play.golang.org/p/5AUKxECqNA
 	fmt.Println("map1:", reflect.ValueOf(map1).Kind())
 	fmt.Println("map2:", reflect.ValueOf(map2).Kind())
 	fmt.Println("slice1:", reflect.ValueOf(slice1).Kind())
