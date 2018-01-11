@@ -178,14 +178,10 @@ func CreateTest3(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 
-// CreateTest creates new record, returns record MaxID
-func CreateTest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+// CreateTest working
+func CreateTest(_ http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 
-	if err := r.ParseForm(); err != nil {
-		fmt.Fprintf(w, "ParseForm() err: %v", err)
-		return
-	}
 	fmt.Println("response Status:", r.Header)
 	fmt.Println("response Headers:", r.Response)
 	fmt.Println("response Body:", r.Form)
