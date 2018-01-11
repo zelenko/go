@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <script>
+        "use strict";
+        function submitForm(oFormElement)
+        {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function(){ alert (xhr.responseText + 'ok'); } // success case
+            xhr.onerror = function(){ alert (xhr.responseText + 'err'); } // failure case
+            xhr.open (oFormElement.method, oFormElement.action, true);
+            xhr.send (new FormData (oFormElement));
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+<form method="post" action="/test" onsubmit="return submitForm(this);">
+    <input type="hidden" value="person"   name="description" />
+    <input type="hidden" value="true" name="complete" />
+    <input type="submit" value="post request"/>
+</form>
+</body>
+</html>

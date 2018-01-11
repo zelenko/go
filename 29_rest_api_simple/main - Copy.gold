@@ -8,8 +8,8 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"net/http"
 	"strconv"
-	"io/ioutil"
 	"os"
+	"io/ioutil"
 )
 
 // Item is the record
@@ -38,16 +38,6 @@ func main() {
 	r.GET("/todos", GetAllHandler)
 	r.GET("/todos/:id", GetOneHandler)
 	r.POST("/todos", CreateOneHandler)
-	r.POST("/test", CreateTest)
-	r.PUT("/todos/:id", UpdateOneHandler)
-	r.DELETE("/todos/:id", DeleteHandler)
-	r.NotFound = http.FileServer(http.Dir("public"))
-
-	http.ListenAndServe(":80", r)
-
-}
-
-// redirect
 func redirect(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	http.Redirect(w, r, "/todos", http.StatusSeeOther)
 }
@@ -144,7 +134,7 @@ func DeleteHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 }
 
 // CreateTest creates new record, returns record MaxID
-func CreateTest2(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func CreateTest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 
 	defer r.Body.Close()
@@ -158,51 +148,4 @@ func CreateTest2(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	// print out
 	fmt.Println(os.Stdout, string(htmlData)) //<-- here !
 
-}
-
-
-// CreateTest creates new record, returns record MaxID
-func CreateTest3(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-
-
-	if err := r.ParseForm(); err != nil {
-		fmt.Fprintf(w, "ParseForm() err: %v", err)
-		return
-	}
-	fmt.Fprintf(w, "Post from website! r.PostFrom = %v\n", r.PostForm)
-	name := r.FormValue("description")
-	address := r.FormValue("complete")
-	fmt.Fprintf(os.Stdout, "Name = %s\n", name)
-	fmt.Fprintf(os.Stdout, "Address = %s\n", address)
-
-}
-
-
-// CreateTest creates new record, returns record MaxID
-func CreateTest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-
-
-	if err := r.ParseForm(); err != nil {
-		fmt.Fprintf(w, "ParseForm() err: %v", err)
-		return
-	}
-	fmt.Println("response Status:", r.Header)
-	fmt.Println("response Headers:", r.Response)
-	fmt.Println("response Body:", r.Form)
-	fmt.Println("response value:", r.PostFormValue("description" ))
-	fmt.Println("response PostForm:", r.PostForm)
-	fmt.Println("response Encode:", r.Form.Encode())
-	fmt.Println("response len:", len(r.PostForm))
-
-	for key, values := range r.Form {   // range over map
-		for _, value := range values {    // range over []string
-			fmt.Println("out: " + key, value)
-		}
-	}
-
-	for key, values := range r.PostForm {   // range over map
-		for _, value := range values {    // range over []string
-			fmt.Println("out: " + key, value)
-		}
-	}
 }
