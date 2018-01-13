@@ -6,11 +6,36 @@
         "use strict";
         function submitForm(oFormElement)
         {
+            var isChecked = false;
+            if (oFormElement[1].checked) {
+                isChecked = true;
+            }
+
             var xhr = new XMLHttpRequest();
-            xhr.onload = function(){ alert (xhr.responseText + 'ok'); } // success case
+            xhr.onload = function(){ alert (xhr.responseText + 'ok: ' + isChecked); } // success case
             xhr.onerror = function(){ alert (xhr.responseText + 'err'); } // failure case
             xhr.open (oFormElement.method, oFormElement.action, true);
-            xhr.send (new FormData (oFormElement));
+            xhr.setRequestHeader("Content-type", "application/json");
+
+
+            // getting data
+            /*
+            var data = {};
+            for (var i = 0, ii = oFormElement.length-1; i < ii; ++i) {
+                var input = oFormElement[i];
+                if (input.name) {
+                    data[input.name] = input.value;
+                }
+            } */
+
+            //xhr.send(JSON.stringify(data));
+
+
+            // This is working!
+            var data = JSON.stringify({"description": oFormElement[0].value, "complete": oFormElement[1].checked});
+            xhr.send(data);
+
+            //xhr.send (new FormData (oFormElement));
             return false;
         }
     </script>
@@ -18,8 +43,8 @@
 
 <body>
 <form method="post" action="/test" onsubmit="return submitForm(this);">
-    <input type="hidden" value="person"   name="description" />
-    <input type="hidden" value="true" name="complete" />
+    <input value="person"   name="description" />
+    <input type="checkbox" name="complete" value="true" checked>
     <input type="submit" value="post request"/>
 </form>
 </body>

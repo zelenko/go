@@ -179,9 +179,10 @@ func CreateTest3(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 
 // CreateTest working
-func CreateTest(_ http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func CreateTest4(_ http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
-
+	defer r.Body.Close()
+	fmt.Println("response Body:", &r.Body)
 	fmt.Println("response Status:", r.Header)
 	fmt.Println("response Headers:", r.Response)
 	fmt.Println("response Body:", r.Form)
@@ -201,4 +202,27 @@ func CreateTest(_ http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 			fmt.Println("out: " + key, value)
 		}
 	}
+}
+
+// CreateOneHandler creates new record, returns record MaxID
+func CreateTest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	decoder := json.NewDecoder(r.Body)
+	var newTodo Item
+
+	err := decoder.Decode(&newTodo)
+
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	defer r.Body.Close()
+
+	MaxID++
+	newTodo.ID = MaxID
+
+	Records = append(Records, newTodo)
+
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(MaxID)
 }
