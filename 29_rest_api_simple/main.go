@@ -55,7 +55,7 @@ func redirect(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 // GetAllHandler list all records
 func GetAllHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(Records)
+	json.NewEncoder(w).Encode(Records)  // return Records to writer
 }
 
 // CreateOneHandler creates new record, returns record MaxID
@@ -78,7 +78,7 @@ func CreateOneHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Param
 	Records = append(Records, newTodo)
 
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(MaxID)
+	json.NewEncoder(w).Encode(MaxID) // return MaxID to writer
 }
 
 // Filter returns an array of records, filtering depends on the function
@@ -101,7 +101,7 @@ func GetOneHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 		return t.ID == recordID
 	})
 
-	json.NewEncoder(w).Encode(oneRecord)
+	json.NewEncoder(w).Encode(oneRecord) // return oneRecord to writer
 }
 
 // UpdateOneHandler updates record.  ID required.  IF does not exists, crates new record
@@ -129,7 +129,7 @@ func UpdateOneHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 
 	Records = append(Records, newTodo)
 
-	w.WriteHeader(http.StatusNoContent)
+	w.WriteHeader(http.StatusNoContent) // returns just status, nothing else
 }
 
 // DeleteHandler deletes record.  ID required.
@@ -224,5 +224,5 @@ func CreateTest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	Records = append(Records, newTodo)
 
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(MaxID)
+	json.NewEncoder(w).Encode(MaxID) // returns MaxID to writer
 }
