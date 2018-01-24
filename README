@@ -1,39 +1,41 @@
 COMPONENTS
 
-  00_web                      - html template, simple
-  01_mgo_aggregate            - aggregate data from mongodb displayed in CLI
-  02_mongodb                  - Insert, Update, Drop, Find, Index commands, results in CLI
-  03_mongodb                  - MongoDB Find All, Sort commands, results in CLI
-  04_get                      - Get "FormValue" variable from URL
-  05_channels                 - channels, types, switch, error, recursion, 
-  06_ajax                     - Two Ajax examples: read and write
+  00_data_type                - type, error, recursion, reference, slice, switch, pointer
+  01_concurrency_channel      - channel, waiting, concurrency, sleep, close, count, queue
+  02_mongodb_aggregate_cli    - aggregate data from mongodb displayed in CLI
+  03_mongodb_find_sort_cli    - MongoDB Find All, Sort commands, results in CLI
+  04_get_url_variable         - Get "FormValue" variable from URL
+  05_mongodb_crud_cli         - Insert, Update, Drop, Find, Index commands, results in CLI
+  06_ajax_send_receive        - Two Ajax examples: read and write
   07_one_page_template        - GO code and HTML template in one file
   08_gowiki                   - Simple wiki example
-  09_todo                     - Struct and HTML template
-  10_mongodb                  - mgo query results on HTML page in one go file.
-  11_socket                   - client/server send/receive via socket
-  12_mgo_pipeline             - mgo pipeline query, one go file
-  13_qr_barcode               - generate QR code in browser
-  14_read_txt                 - compare ways to process TXT file
-  15_barchart                 - generate bar chart, PNG or SVG
-  16_httprouter_forms         - Form /w drop down menu, template with sub-templates
-  17_mysql                    - MySQL for user registration, login, and user list.
-  18_cookies                  - Authentication with cookies.
-  19_two_files                - Importing functions from other packages.
-  20_mgo_crud                 - mgo CRUD with REST using httprouter & HTML templates
-  21_template                 - html template with httprouter and ServeFiles
-  22_template_mgo             - mgo CRUD with REST using httprouter & HTML templates
-  23_store_file               - Upload file and save on server
+  09_todo_list_html           - Todo list with struct and HTML template.
+  10_mongodb                  - Mongodb query results on HTML page in one go file.
+  11_socket_send_receive      - Send/receive text between client/server via socket.
+  12_mgo_pipeline             - Mongodb pipeline query saved in one go file
+  13_qr_barcode               - QR code generator displays PNG image in browser.
+  14_read_txt_file            - compare ways to process TXT file
+  15_png_or_svg_barchart      - generate bar chart, PNG or SVG
+  16_drop_down_menu_form      - Form /w drop down menu, template with sub-templates
+  17_mysql_user_login         - MySQL for user registration, login, and user list.
+  18_cookie_authentication    - Authentication with cookies.
+  19_importing_packages       - Importing functions from other packages.
+  20_mongodb_crud             - Mongodb CRUD with REST using httprouter & HTML templates
+  21_httprouter_template      - html template with httprouter and ServeFiles
+  22_mongodb_crud_rest_html   - Mongodb CRUD with REST using httprouter & HTML templates
+  23_file_uploader            - Upload file and save on server
   24_https_and_redirect       - Serve HTTP and HTTPS with redirect
-  25_public_html              - Serve HTTP and HTTPS w/ NotFound for static files
-  26_static_files             - Custom Not Found handler.
-  27_bulk_upsert              - mgo bulk insert from TXT file
+  25_https_static_files       - Serve HTTP and HTTPS w/ NotFound for static files
+  26_url_not_found_handler    - Custom Not Found handler.
+  27_mongodb_bulk_upsert      - Mongodb bulk insert from TXT file
   28_markdown                 - Generate Markdown using blackfriday
-  29_rest_api_simple          - REST API using JSON with httprouter
-  30_api_mgo_crud             - REST API using JSON, httprouter, and toml
+  29_mongodb_crud_json_api    - REST API using JSON with httprouter
+  30_mongodb_crud_json_api    - REST API using JSON, httprouter, and toml
   31_send_email               - Send email with attachment
-  32_cli_color                - Create colorful CLI
-  33_wait_and_go              - wait for goroutines to finish, run code once
-  34_template_with_function   - Pass function to HTML template
-  35_one_page_mgo_aggregate   - One page MGO aggregation with pipeline
-  36_json_and_javascript      - Display JSON on HTML page
+  32_colorful_cli             - Create colorful CLI
+  33_goroutine_waitgroup      - wait for goroutines to finish, run code once
+  34_html_template_function   - Pass function to HTML template
+  35_mongodb_pipeline_page    - One page MGO aggregation with pipeline
+  36_json_html_javascript     - Display JSON on HTML page
+  37_html_template            - Simple html template with Go
+  
