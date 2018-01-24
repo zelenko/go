@@ -1,8 +1,8 @@
-[![Go Report Card](https://goreportcard.com/badge/zelenko/go)](https://goreportcard.com/report/zelenko/go)
-# Explore Golang features
+
+# Explore Golang features [![Go Report Card](https://goreportcard.com/badge/zelenko/go)](https://goreportcard.com/report/zelenko/go)
 This repository is viewable on [sourcegraph.com](https://sourcegraph.com/github.com/zelenko/go).
 
-![Go](https://raw.githubusercontent.com/zelenko/go/master/00_web/pub/img/toby.jpg)
+![Go](https://raw.githubusercontent.com/zelenko/go/master/37_html_template/pub/img/toby.jpg)
 
 ## Go Resorces
 * http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
