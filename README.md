@@ -4,89 +4,49 @@ This repository is viewable on [sourcegraph.com](https://sourcegraph.com/github.
 
 ![Go](https://raw.githubusercontent.com/zelenko/go/master/37_html_template/pub/img/toby.jpg)
 
-## Go Resorces
-* http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
-* https://www.youtube.com/playlist?list=PLSak_q1UXfPrI6D67NF8ajfeJ6f7MH83S Learn To Code - Golang Training
-* http://exercism.io/languages/go/about
-* https://golang.org/pkg/html/template/
-* https://www.youtube.com/watch?v=PZTnp8rDnl0 Web Programming with the Go Programming Language
-* https://devhints.io/go Go cheatsheet
+## Contents
 
-## Download GO Packages
-Packages are downloaded into folder specified in the `$GOPATH` system varible:
-
-`go get -u gopkg.in/mgo.v2`
-
-The 'go get' command requires that the `git` is [installed](https://git-scm.com/download/win) on Windows.
-
----
-## Systemd
-`cd /etc/systemd/system/`
-
-`nano golang.service`
-
-```
-[Unit]
-Description=Go Server
-
-[Service]
-ExecStart=/var/www/web
-WorkingDirectory=/var/www/
-User=root
-Group=root
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
-### Start the service
-* `systemctl enable golang.service`
-* `systemctl start golang.service`
-* `systemctl status golang.service`
-* `systemctl stop golang.service`
-
-## Build on Linux
-* `export GOPATH=/var/go/web/`
-* `echo $GOPATH`
-```
-GOOS=linux GOARCH=amd64 go build -o web
-```
-
-## Build on Windows
-* `set GOARCH=amd64`
-* `set GOARCH=386`
-* `set GOOS=linux`
-* `set GOOS=windows`
-* `echo %GOROOT%`
-```
-go build -o hello.exe hello.go
-```
-[List of GOOS/GOARCH supported by Go](https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63#go-golang-goos-and-goarch)
-
-## Installing GO on Debian
-```
-cd /usr/local
-curl -LO https://redirector.gvt1.com/edgedl/go/go1.9.2.linux-amd64.tar.gz
-shasum -a 256 go1.9.2.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
-```
-
-`vi ~/.profile`
-```
-export PATH=$PATH:/usr/local/go/bin
-export GOROOT=/usr/local/go
-export GOPATH=/var/go
-```
-`source ~/.profile`
-
-`echo $GOROOT`
-
-## Installing GO on Windows
-After [downloading](https://golang.org/dl/) and installing, specify where the code is stored in system variable.  CLI command: `set GOPATH=F:\GoCode`
-
-Check existing variables `go env`.  Check current version `go version`.
-
+| Name | Description |
+| :---- | :---- |
+| 00_data_type                | type, error, recursion, reference, slice, switch, pointer    |
+| 01_concurrency_channel      | channel, waiting, concurrency, sleep, close, count, queue |
+| 02_mongodb_aggregate_cli    | aggregate data from mongodb displayed in CLI |
+| 03_mongodb_find_sort_cli    | MongoDB Find All, Sort commands, results in CLI |
+| 04_get_url_variable         | Get "FormValue" variable from URL |
+| 05_mongodb_crud_cli         | Insert, Update, Drop, Find, Index commands, results in CLI |
+| 06_ajax_send_receive        | Two Ajax examples: read and write |
+| 07_one_page_template        | GO code and HTML template in one file |
+| 08_gowiki                   | Simple wiki example |
+| 09_todo_list_html           | Todo list with struct and HTML template. |
+| 10_mongodb                  | Mongodb query results on HTML page in one go file. |
+| 11_socket_send_receive      | Send/receive text between client/server via socket. |
+| 12_mgo_pipeline             | Mongodb pipeline query saved in one go file |
+| 13_qr_barcode               | QR code generator displays PNG image in browser. |
+| 14_read_txt_file            | compare ways to process TXT file |
+| 15_png_or_svg_barchart      | generate bar chart, PNG or SVG |
+| 16_drop_down_menu_form      | Form /w drop down menu, template with sub-templates |
+| 17_mysql_user_login         | MySQL for user registration, login, and user list. |
+| 18_cookie_authentication    | Authentication with cookies. |
+| 19_importing_packages       | Importing functions from other packages. |
+| 20_mongodb_crud             | Mongodb CRUD with REST using httprouter & HTML templates |
+| 21_httprouter_template      | html template with httprouter and ServeFiles |
+| 22_mongodb_crud_rest_html   | Mongodb CRUD with REST using httprouter & HTML templates |
+| 23_file_uploader            | Upload file and save on server |
+| 24_https_and_redirect       | Serve HTTP and HTTPS with redirect |
+| 25_https_static_files       | Serve HTTP and HTTPS w/ NotFound for static files |
+| 26_url_not_found_handler    | Custom Not Found handler. |
+| 27_mongodb_bulk_upsert      | Mongodb bulk insert from TXT file |
+| 28_markdown                 | Generate Markdown using blackfriday |
+| 29_mongodb_crud_json_api    | REST API using JSON with httprouter |
+| 30_mongodb_crud_json_api    | REST API using JSON, httprouter, and toml |
+| 31_send_email               | Send email with attachment |
+| 32_colorful_cli             | Create colorful CLI |
+| 33_goroutine_waitgroup      | wait for goroutines to finish, run code once |
+| 34_html_template_function   | Pass function to HTML template |
+| 35_mongodb_pipeline_page    | One page MGO aggregation with pipeline |
+| 36_json_html_javascript     | Display JSON on HTML page |
+| 37_html_template            | Simple html template with Go |
+|                             | |
 
 ## The proper way to copy a slice
 ```GO
