@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// Person is data type
 type Person struct {  
     firstName string
     lastName  string

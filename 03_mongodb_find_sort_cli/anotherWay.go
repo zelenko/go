@@ -47,8 +47,8 @@ func main() {
 	// Insert a document
 	var testDoc = bson.M{}
 	testDoc["name"] = "John Doe"
-	var testId = bson.NewObjectId()
-	testDoc["testId"] = testId
+	var testID = bson.NewObjectId()
+	testDoc["testID"] = testID
 	testDoc["slice"] = []string{"one", "two", "three", "four"} // This will be saved as array in database
 	session.DB("test").C("people").Insert(&testDoc)
 
@@ -57,7 +57,7 @@ func main() {
 
 	// Read a single document
 	var testResultDoc = bson.M{}
-	if err := session.DB("test").C("people").Find(bson.M{"testId": testId}).One(&testResultDoc); err != nil {
+	if err := session.DB("test").C("people").Find(bson.M{"testID": testID}).One(&testResultDoc); err != nil {
 		if err == mgo.ErrNotFound {
 			fmt.Println("The document was not found")
 		} else {
