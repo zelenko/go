@@ -15,6 +15,7 @@ type Dog struct {
 	HoursSleptPerDay int
 }
 
+// main is the entry point for the program.
 func main() {
 
 	// Create a mgo session

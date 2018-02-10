@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 )
 
+// main is the entry point for the program.
 func main() {
 	apiURL := "https://talaikis.com/api/quotes/random/"
 	//resource := "/user/"

@@ -8,6 +8,7 @@ import (
 	"github.com/mileusna/crontab"
 )
 
+// main is the entry point for the program.
 func main() {
 
 	ctab := crontab.New() // create cron table

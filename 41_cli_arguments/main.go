@@ -5,6 +5,7 @@ import (
 	"os"
 )
 
+// main is the entry point for the program.
 func main() {
 
 	// number of  arguments

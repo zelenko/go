@@ -17,6 +17,7 @@ func init() {
 	tpl = template.Must(template.ParseGlob("templates/*.gohtml"))
 }
 
+// main is the entry point for the program.
 func main() {
 	http.HandleFunc("/", idx)
 	http.HandleFunc("/about", abot)

@@ -12,6 +12,7 @@ func changeName(p *Person) {
     p.firstName = "Bob"
 }
 
+// main is the entry point for the program.
 func main() {  
     person := Person {
         firstName: "Alice",
