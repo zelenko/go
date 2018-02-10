@@ -26,7 +26,7 @@ func countdown(i int, s []string) (int, []string) {
 
 // main is the entry point for the program.
 func main() {
-	var i int = 15
+	var i = 15
 	fmt.Printf("Factorial of %d is %d\n", i, factorial(i))
 
 	_, s := countdown(i, []string{})

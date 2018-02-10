@@ -38,8 +38,8 @@ func (m *MoviesDAO) FindAll() ([]models.Movie, error) {
 	return movies, err
 }
 
-// FindById - Find a movie by its id
-func (m *MoviesDAO) FindById(id string) (models.Movie, error) {
+// FindByID - Find a movie by its id
+func (m *MoviesDAO) FindByID(id string) (models.Movie, error) {
 	var movie models.Movie
 	err := db.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&movie)
 	return movie, err

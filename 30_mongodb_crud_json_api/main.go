@@ -56,7 +56,7 @@ func AllMoviesEndPoint(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 
 // FindMovieEndpoint - GET a movie by its ID
 func FindMovieEndpoint(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	movie, err := dataAO.FindById(ps.ByName("id"))
+	movie, err := dataAO.FindByID(ps.ByName("id"))
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid Movie ID")
 		return

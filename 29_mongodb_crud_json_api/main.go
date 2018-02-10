@@ -143,7 +143,7 @@ func DeleteHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// CreateTest creates new record, returns record MaxID
+// CreateTest2 creates new record, returns record MaxID
 func CreateTest2(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 
@@ -161,7 +161,7 @@ func CreateTest2(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 
-// CreateTest creates new record, returns record MaxID
+// CreateTest3 creates new record, returns record MaxID
 func CreateTest3(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 
@@ -178,7 +178,7 @@ func CreateTest3(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 
-// CreateTest working
+// CreateTest4 working
 func CreateTest4(_ http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	defer r.Body.Close()
@@ -204,7 +204,7 @@ func CreateTest4(_ http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 }
 
-// CreateOneHandler creates new record, returns record MaxID
+// CreateTest creates new record, returns record MaxID
 func CreateTest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	decoder := json.NewDecoder(r.Body)
 	var newTodo Item

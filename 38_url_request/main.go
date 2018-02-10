@@ -10,13 +10,13 @@ import (
 )
 
 func main() {
-	apiUrl := "https://talaikis.com/api/quotes/random/"
+	apiURL := "https://talaikis.com/api/quotes/random/"
 	//resource := "/user/"
 	data := url.Values{}
 	data.Set("name", "foo")
 	data.Add("surname", "bar")
 
-	u, _ := url.ParseRequestURI(apiUrl)
+	u, _ := url.ParseRequestURI(apiURL)
 	//u.Path = resource
 	urlStr := u.String() // "https://talaikis.com/api/quotes/random/"
 
