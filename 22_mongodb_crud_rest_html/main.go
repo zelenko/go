@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../22_template_mgo/records"
+	"./records"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
 )
