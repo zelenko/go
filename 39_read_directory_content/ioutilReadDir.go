@@ -4,27 +4,35 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"path/filepath"
 )
 
 // main is the entry point for the program.
 func main() {
-	searchFiles("../")
+	// slash := string(os.PathSeparator) //or,
+	slash := string(filepath.Separator) //to be impervious to OS...
+	dirname := "." + slash
+	fmt.Printf("dirname is: %s\n", dirname)
+
+	//searchFiles("../")
+	searchFiles(dirname)
 }
 
 func searchFiles(dir string) { // dir is the parent directory you what to search
+
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	for _, file := range files {
-		if(!file.IsDir()){
-			fmt.Println(" --",file.Name())
 
-		} else{
+		if !file.IsDir() {
+			fmt.Println(" --", file.Name())
+		} else {
 			fmt.Println(file.Name())
 		}
-		
+
 	}
 }
 
