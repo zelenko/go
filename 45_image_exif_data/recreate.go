@@ -1,9 +1,13 @@
+
 // +build ignore
 
 // Run this command: go run recreate.go info2.txt
 // The output will be in the "info2.txt" file.
 // This program will check every file in the "samples" folder.
 
+// fields:
+// https://github.com/rwcarlsen/goexif/blob/709fab3d192d7c62f86043caff1e7e3fb0f42bd8/exif/fields.go#L52:2
+// https://github.com/rwcarlsen/goexif/blob/709fab3d192d7c62f86043caff1e7e3fb0f42bd8/mknote/fields.go
 package main
 
 import (
