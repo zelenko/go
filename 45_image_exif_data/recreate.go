@@ -1,4 +1,3 @@
-
 // +build ignore
 
 // Run this command: go run recreate.go info2.txt
@@ -67,6 +66,10 @@ func makeExpected(files []string, w io.Writer) {
 
 		fmt.Fprintf(w, "\"%v\": map[FieldName]string{\n", filepath.Base(name))
 		x.Walk(&regresswalk{w})
+		jdata, _ := x.MarshalJSON()
+		fmt.Println(string(jdata))
+
+		//fmt.Println(x.String())
 		fmt.Fprintf(w, "},\n\n")
 		f.Close()
 	}
