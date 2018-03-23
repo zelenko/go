@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+    <title>Post Only - No Form</title>
+    <script>
+        
+		// This is to test the API
+		// Sending data in JSON format using POST method
+        // This is working by opening "http://localhost/post_only.gohtml" in browser
+		
+        var xhr = new XMLHttpRequest();
+        var url = "/todos";
+        xhr.open("POST", url, true);
+        var data = JSON.stringify({"description": "record posted by post_only.gohtml", "complete": true});
+        xhr.send(data);
+		
+    </script>
+</head>
+<body>
+<p>This is to test the API
+<p>Sending data in JSON format using POST method
+<p>This is working by opening <a href="http://localhost/post_only.gohtml">http://localhost/post_only.gohtml</a> in browser
+</body>
+</html>

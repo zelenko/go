@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Post Only Form</title>
+    <script>
+		"use strict";
+
+		function submitForm(form){
+
+            // construct an HTTP request
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, form.action, true);
+			
+            /*
+			xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+			xhr.onload = function(){
+				alert ("done 2");
+			} */
+			
+			var data = JSON.stringify({"description": form[0].value, "complete": form[1].checked});
+            xhr.send(data);
+
+            /*xhr.onloadend = function () {
+                // done
+				alert("done");
+            }; */
+
+			return false;
+        };
+    </script>
+</head>
+
+
+<body>
+
+<form method="post" action="/todos" onsubmit="return submitForm(this);">
+    <input name="description" value="data from post_only_form.gohtml" size="100" />
+	<input type="checkbox" id="comp1" name="complete" value="true" checked>
+	<input type="submit" value="Create New"/>
+</form>
+
+</body>
+</html>
