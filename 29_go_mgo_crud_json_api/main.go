@@ -3,12 +3,15 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
+	"log"
 	"net/http"
 	"sort"
 	"strconv"
+	"time"
 )
 
 // Item is the record
@@ -38,6 +41,8 @@ func main() {
 	r.POST("/todos", CreateOneHandler)
 	r.PUT("/todos/:id", UpdateOneHandler)
 	r.DELETE("/todos/:id", DeleteHandler)
+
+	r.GET("/tab", tabDelimited)
 	r.NotFound = http.FileServer(http.Dir("public"))
 
 	err := http.ListenAndServe(":80", r)
@@ -142,4 +147,33 @@ func UpdateOneHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 	sort.Slice(Records, func(i, j int) bool { return Records[i].ID < Records[j].ID })
 
 	w.WriteHeader(http.StatusNoContent) // returns just status, nothing else
+}
+
+// tabDelimited txt file
+func tabDelimited(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
+	buffer := &bytes.Buffer{} // creates IO Writer
+
+	// add title as first row of txt file
+	buffer.WriteString("id\tdescription\tcomplete")
+
+	// write each record (line) to buffer
+	for _, record := range Records {
+
+		// create new line
+		line := fmt.Sprint(strconv.Itoa(record.ID) + "\t" + record.Description + "\t" +
+			strconv.FormatBool(record.Complete) + "\n")
+
+		// write the line to buffer
+		if _, err := buffer.WriteString(line); err != nil {
+			log.Fatalln("Error writing to txt file:", err)
+		}
+	}
+
+	filename := time.Now().Format("2006-03-02_03-04-05pm") + ".txt"
+
+	w.Header().Set("Content-Type", "application/csv-tab-delimited-table")
+	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
+	w.Write(buffer.Bytes()) // respond to request with buffer data
+
 }
