@@ -19,28 +19,21 @@ var tmpl = `<html>
     <p>
       <a href="/">main</a> |
 	  <a href="/csv">csv</a> |
-	  <a download="the_csv_file.csv" href="/csv">csv w/download</a> |
 	  <a href="/csv2">csv 2</a> |
 	  <a href="/tab-delimited">Tab Delimited</a> |
 	  <a href="/csv4">csv 4</a> |
-      <a href="/view/">view</a>
     </p>
 
 </body>
 </html>
 `
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	t := template.New("main") //name of the template is main
-	t, _ = t.Parse(tmpl)      // parsing of template string
-	t.Execute(w, "Hello World!")
-}
-
+// main is the entry point for the program.
 func main() {
 	server := http.Server{
 		Addr: ":80",
 	}
-	http.HandleFunc("/view/", handler)
+
 	http.HandleFunc("/", index)
 	http.HandleFunc("/csv", TestCSV)
 	http.HandleFunc("/csv2", csv2)
@@ -49,20 +42,21 @@ func main() {
 	server.ListenAndServe()
 }
 
+// index shows the main page
 func index(w http.ResponseWriter, r *http.Request) {
 	t := template.New("main") //name of the template is main
 	t, _ = t.Parse(tmpl)      // parsing of template string
 	t.Execute(w, "Main page")
 }
 
-// Test function
+// TestCSV function
 func TestCSV(w http.ResponseWriter, r *http.Request) {
 
 	record := []string{"test1", "test2", "test3"} // just some test data to use for the wr.Writer() method below.
 
-	buffer := &bytes.Buffer{}       // creates IO Writer
-	writerToCSV := csv.NewWriter(buffer)     // creates a csv writer that uses the io buffer.
-	for i := 0; i < 100; i++ { // make a loop for 100 rows just for testing purposes
+	buffer := &bytes.Buffer{}            // creates IO Writer
+	writerToCSV := csv.NewWriter(buffer) // creates a csv writer that uses the io buffer.
+	for i := 0; i < 100; i++ {           // make a loop for 100 rows just for testing purposes
 		if err := writerToCSV.Write(record); err != nil { // converts array of string to comma separated values for 1 row.
 			log.Fatalln("error writing record to csv:", err)
 		}
@@ -77,7 +71,7 @@ func TestCSV(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// Test function writes directly to http.ResponseWriter
+// csv2 function writes directly to http.ResponseWriter
 // no buffer here
 func csv2(w http.ResponseWriter, r *http.Request) {
 
@@ -130,20 +124,23 @@ func tabDelimited(w http.ResponseWriter, r *http.Request) {
 		line := strings.Join(record, "\t") + "\n"
 
 		// write the line to buffer
-		if _, err := buffer.WriteString(line); err != nil{
+		if _, err := buffer.WriteString(line); err != nil {
 			log.Fatalln("Error writing to txt file:", err)
 		}
 	}
 
 	filename := time.Now().Format("2006-03-02_03-04-05pm") + ".txt"
 
+	// Header
 	w.Header().Set("Content-Type", "application/csv-tab-delimited-table")
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
+
+	// return file from buffer
 	w.Write(buffer.Bytes()) // respond to request with buffer data
 
 }
 
-// Test function, writer writes to buffer, then to file
+// csv4 function, writer writes to buffer, then to file
 func csv4(w http.ResponseWriter, r *http.Request) {
 
 	records := [][]string{
@@ -153,8 +150,8 @@ func csv4(w http.ResponseWriter, r *http.Request) {
 		{"Andrew", "Johnson", "ajohnson"},
 	}
 
-	buffer := bytes.NewBuffer(make([]byte, 0))
-	//buffer := &bytes.Buffer{}       // creates IO Writer
+	//buffer := bytes.NewBuffer(make([]byte, 0))
+	buffer := &bytes.Buffer{}       // creates IO Writer
 	writer := csv.NewWriter(buffer) // creates a csv writer that uses the io buffer.
 
 	for _, record := range records {

@@ -1,6 +1,6 @@
 
 # Exploring Golang features [![Go Report Card](https://goreportcard.com/badge/zelenko/go)](https://goreportcard.com/report/zelenko/go)
-This repository is viewable on [sourcegraph.com](https://sourcegraph.com/github.com/zelenko/go).
+You can incorporate these code snippets into your larger programming modules. This repository is viewable on [sourcegraph.com](https://sourcegraph.com/github.com/zelenko/go).
 
 ![Go](https://raw.githubusercontent.com/zelenko/go/master/37_html_template/pub/img/toby.jpg)
 
@@ -37,7 +37,7 @@ This repository is viewable on [sourcegraph.com](https://sourcegraph.com/github.
 | 26_url_not_found_handler    | Custom Not Found handler. |
 | 27_mongodb_bulk_upsert      | Mongodb bulk insert from TXT file |
 | 28_markdown                 | Generate Markdown using blackfriday |
-| 29_go_mgo_crud_json_api     | REST API using JSON with httprouter |
+| 29_go_mgo_crud_json_api     | REST API using JSON with httprouter.  JavaScript is used to view, create, edit, and delete records. |
 | 30_mongodb_crud_json_api    | REST API using JSON, httprouter, and toml |
 | 31_send_email               | Send email with attachment |
 | 32_colorful_cli             | Create colorful CLI |
@@ -55,7 +55,7 @@ This repository is viewable on [sourcegraph.com](https://sourcegraph.com/github.
 | 44_csv_file                 | Read and write to CSV file.  Parse CSV file to slice of objects. |
 | 45_image_exif_data          | Get image attributes for each image in a folder. |
 | 46_video_capture            | Capture video from web camera and display live. |
-| .. | More to come... |
+| 47_download_slice_as_csv    | Dowload link generates CSV or Tab Delimited file that can be saved localy on your computer. |
 ## The proper way to copy a slice
 ```GO
 package main

@@ -6,12 +6,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
 	"sort"
 	"strconv"
 	"time"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 // Item is the record
@@ -27,6 +28,7 @@ var Records []Item
 // MaxID is the latest record
 var MaxID int
 
+// main is the entry point for the program.
 func main() {
 
 	MaxID = 1
@@ -146,6 +148,7 @@ func UpdateOneHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 	// sort
 	sort.Slice(Records, func(i, j int) bool { return Records[i].ID < Records[j].ID })
 
+	// return results
 	w.WriteHeader(http.StatusNoContent) // returns just status, nothing else
 }
 
@@ -155,7 +158,7 @@ func tabDelimited(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	buffer := &bytes.Buffer{} // creates IO Writer
 
 	// add title as first row of txt file
-	buffer.WriteString("id\tdescription\tcomplete")
+	buffer.WriteString("id\tdescription\tcomplete\n")
 
 	// write each record (line) to buffer
 	for _, record := range Records {
