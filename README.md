@@ -32,7 +32,7 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 21_httprouter_template      | html template with httprouter and ServeFiles |
 | 22_mongodb_crud_rest_html   | Mongodb CRUD with REST using httprouter & HTML templates |
 | 23_file_uploader            | Upload file and save on server |
-| 24_https_and_redirect       | Serve HTTP and HTTPS with redirect |
+| 24_calculate_time           | Find out how much time it takes for function to start and finish |
 | 25_https_static_files       | Serve HTTP and HTTPS w/ NotFound for static files |
 | 26_url_not_found_handler    | Custom Not Found handler. |
 | 27_mongodb_bulk_upsert      | Mongodb bulk insert from TXT file |

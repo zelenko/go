@@ -144,7 +144,7 @@ curl -sSX GET http://localhost:3000/movies
 http://192.168.1.2:3000/movies
 
 // CREATE ONE
-curl -i -X POST -d '{"name":"zelenko movie","cover_image":"https://image.tmdb.org/t/p/w640/cUqEgoP6kj8ykfNjJx3Tl5zHCcN.jpg", "description":"the new family movie"}' http://localhost:3000/movies
+curl -i -X POST -d '{"name":"The new family movie","cover_image":"https://image.tmdb.org/t/p/w640/cUqEgoP6kj8ykfNjJx3Tl5zHCcN.jpg", "description":"the new family movie"}' http://localhost:3000/movies
 
 
 // delete

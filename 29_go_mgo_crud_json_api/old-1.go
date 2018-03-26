@@ -38,6 +38,19 @@ func main() {
 	r.GET("/todos", GetAllHandler)
 	r.GET("/todos/:id", GetOneHandler)
 	r.POST("/todos", CreateOneHandler)
+	r.PUT("/todos/:id", UpdateOneHandler)
+	r.DELETE("/todos/:id", DeleteHandler)
+
+	r.GET("/tab", tabDelimited)
+	r.NotFound = http.FileServer(http.Dir("public"))
+
+	err := http.ListenAndServe(":80", r)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+}
+	
+	
 func redirect(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	http.Redirect(w, r, "/todos", http.StatusSeeOther)
 }

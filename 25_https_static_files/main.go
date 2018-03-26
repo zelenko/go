@@ -1,28 +1,30 @@
 package main
 
 import (
-	"../25_public_html/lib"
-	"fmt"
+	"./webpage"
 	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
 )
 
 func main() {
-	fmt.Println("HTTPS port :443")
-	fmt.Println("HTTP port :80")
+	log.Println("HTTPS port :443")
+	log.Println("HTTP port :80")
 
 	r := httprouter.New()
-	r.GET("/", zelenko.Secure)
-	r.GET("/test/", zelenko.Test)
-	r.GET("/test", zelenko.Test2)
+	r.GET("/", webpage.Secure)
+	r.GET("/test/", webpage.Test)
+	r.GET("/test", webpage.Test2)
+	r.GET("/v", webpage.List)
 	r.NotFound = http.FileServer(http.Dir("public"))
+
 	// r.ServeFiles("/static/*filepath", http.Dir("/var/www/public/"))
-	//http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("/home/www/"))))
+	// http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("/home/www/"))))
 
 	//  Start HTTP
 	go func() {
-		err := http.ListenAndServe(":80", http.HandlerFunc(zelenko.Redirect))
+		// redirect all HTTP to HTTPS
+		err := http.ListenAndServe(":80", http.HandlerFunc(webpage.Redirect))
 		if err != nil {
 			log.Fatalln("Web server (HTTP): ", err)
 		}

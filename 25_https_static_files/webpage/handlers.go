@@ -1,4 +1,4 @@
-package zelenko
+package webpage
 
 import (
 	"github.com/julienschmidt/httprouter"
@@ -14,6 +14,28 @@ func Secure(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func Test(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	w.Header().Set("Content-Type", "text/plain")
 	w.Write([]byte("The test function is working. \n"))
+}
+
+// List function
+func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	var tmpl = `<html>
+<head>
+    <title>List</title>
+</head>
+<body>
+    <h1>List</h1>
+    <p>
+      <a href="/">main</a> |
+	  <a href="/test/">/test/</a> |
+	  <a href="/test">/test</a> |
+    </p>
+
+</body>
+</html>
+`
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Write([]byte(tmpl))
 }
 
 // Test2 function

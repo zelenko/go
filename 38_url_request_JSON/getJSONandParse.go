@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// Tour type has name and price
 type Tour struct {
 	Name, Price string
 }
@@ -18,7 +19,7 @@ func main() {
 	url := "http://services.explorecalifornia.org/json/tours.php"
 	content := contentFromServer(url)
 
-	tours := toursFromJson(content)
+	tours := toursFromJSON(content)
 
 	for _, tour := range tours {
 		price, _, _ := big.ParseFloat(tour.Price, 10, 2, big.ToZero)
@@ -46,8 +47,8 @@ func contentFromServer(url string) string {
 	return string(bytes)
 }
 
-// toursFromJson parses json data into struct
-func toursFromJson(content string) []Tour {
+// toursFromJSON parses json data into struct
+func toursFromJSON(content string) []Tour {
 	tours := make([]Tour, 0, 20)
 
 	decoder := json.NewDecoder(strings.NewReader(content))

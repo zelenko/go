@@ -57,7 +57,7 @@ After [downloading](https://golang.org/dl/) and installing, specify where the co
 
 Check existing variables `go env`.  Check current version `go version`.
 
-## Installing golint
+# Installing golint
 To download it run:
 ```
 go get -u github.com/golang/lint/golint
@@ -68,8 +68,11 @@ To build it run:
 go build github.com/golang/lint/golint
 ```
 
+Put it into `GOROOT/bin` where other executables are.
+
 To use it run:
 ```
 golint ./...
 ```
+
 

@@ -8,7 +8,6 @@ import (
 )
 
 // JSON Contains a sample String to unmarshal.
-
 var JSON = `{
     "name":"Mark Taylor",
     "jobtitle":"Software Developer",

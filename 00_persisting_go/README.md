@@ -1,5 +1,5 @@
 
-# Persisting
+# Persisting Go using systemd
 Start your go app when the server starts.  In other word _daemonize_ your golang program.
 
 ## Systemd
@@ -27,3 +27,7 @@ WantedBy=multi-user.target
 * `systemctl start golang.service`
 * `systemctl status golang.service`
 * `systemctl stop golang.service`
+
+#### Find the version of systemd
+* `dpkg -l systemd` will give you name, version, and architecture description.
+* `systemctl --version` Print a short version string

@@ -9,6 +9,7 @@ import (
 	"github.com/rwcarlsen/goexif/mknote"
 )
 
+// ExampleDecode gets EXIF data from image
 func ExampleDecode() {
 	fname := "IMG_6958.JPG"
 
