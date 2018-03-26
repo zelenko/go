@@ -16,6 +16,7 @@ func main() {
 	r.GET("/test/", webpage.Test)
 	r.GET("/test", webpage.Test2)
 	r.GET("/v", webpage.List)
+	r.GET("/html", webpage.HTMLPage)
 	r.NotFound = http.FileServer(http.Dir("public"))
 
 	// r.ServeFiles("/static/*filepath", http.Dir("/var/www/public/"))

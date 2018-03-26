@@ -15,8 +15,8 @@ func main() {
 
 	// MustAddJob is like AddJob but panics on wrong syntax or problems with func/args
 	// use for easier initialization
-	ctab.MustAddJob("* * * * *", myFunc)     // every minute
-	ctab.MustAddJob("0 12 * * *", myFunc3)   // noon lauch
+	ctab.MustAddJob("* * * * *", myFunc)                                       // every minute
+	ctab.MustAddJob("0 12 * * *", myFunc3)                                     // noon lauch
 	ctab.MustAddJob("/2 * * * *", myFunc2, "Monday and Tuesday midnight", 123) // run every two seconds
 
 	// fn with args
@@ -31,8 +31,8 @@ func main() {
 	}
 
 	// all your other app code as usual, or put sleep timer for demo
-	 time.Sleep(10 * time.Minute)
-	 // time.Sleep(5 * time.Second)
+	time.Sleep(10 * time.Minute)
+	// time.Sleep(5 * time.Second)
 }
 
 func myFunc() {

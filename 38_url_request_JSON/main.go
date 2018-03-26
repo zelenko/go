@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
-	"io/ioutil"
 )
 
 // main is the entry point for the program.

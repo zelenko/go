@@ -157,7 +157,7 @@ func CreateTest2(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 
 	// print out
-	fmt.Println(os.Stdout, string(htmlData)) //<-- here !
+	fmt.Fprintf(os.Stdout, string(htmlData)) //<-- here !
 
 }
 

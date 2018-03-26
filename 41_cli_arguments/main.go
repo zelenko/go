@@ -10,7 +10,7 @@ func main() {
 
 	// number of  arguments
 	l := len(os.Args)
-	
+
 	// display arguments using switch
 	switch l {
 	case 1:

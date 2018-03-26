@@ -249,8 +249,8 @@ func aggregateHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 		selector = r.PostFormValue("msg")
 
 		//for v := range r.Form["username"] {
-	//		selector =+ selector + v
-	//	}
+		//		selector =+ selector + v
+		//	}
 	}
 
 	// Data Type

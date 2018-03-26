@@ -13,13 +13,13 @@ func main() {
 	emp["name"] = "John Doe"
 	emp["age"] = "30"
 	emp["phone"] = map[string]interface{}{
-		"mobil":   "555-555-5555",
-		"fax": "564-987-654",
+		"mobil": "555-555-5555",
+		"fax":   "564-987-654",
 	}
 	emp["cars"] = map[string]interface{}{
-	"car1":"Ford",
-	"car2":"BMW",
-	"car3":"Fiat",
+		"car1": "Ford",
+		"car2": "BMW",
+		"car3": "Fiat",
 	}
 	emp["email"] = "noreply@gmail.com"
 

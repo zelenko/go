@@ -6,10 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
-	"net/http"
-	"strconv"
-	"os"
 	"io/ioutil"
+	"net/http"
+	"os"
+	"strconv"
 )
 
 // Item is the record
@@ -49,8 +49,7 @@ func main() {
 		fmt.Println(err.Error())
 	}
 }
-	
-	
+
 func redirect(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	http.Redirect(w, r, "/todos", http.StatusSeeOther)
 }
@@ -149,7 +148,6 @@ func DeleteHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 // CreateTest creates new record, returns record MaxID
 func CreateTest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
-
 	defer r.Body.Close()
 
 	htmlData, err := ioutil.ReadAll(r.Body) //<--- here!
@@ -159,6 +157,6 @@ func CreateTest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 
 	// print out
-	fmt.Println(os.Stdout, string(htmlData)) //<-- here !
+	fmt.Fprintf(w, string(htmlData)) //<-- here !
 
 }
