@@ -20,16 +20,18 @@ func Test(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var tmpl = `<html>
 <head>
-    <title>List</title>
+<title>List</title>
 </head>
 <body>
-    <h1>List</h1>
-    <p>
-      <a href="/">main</a> |
-	  <a href="/test/">/test/</a> |
-	  <a href="/test">/test</a> |
-    </p>
-
+	<h1>List</h1>
+	<p>
+		<a href="/">main</a> |
+		<a href="/test/">/test/</a> |
+		<a href="/test">/test</a> |
+		<a href="index.gohtml">index.gohtml</a> |
+		
+		
+	</p>
 </body>
 </html>
 `
