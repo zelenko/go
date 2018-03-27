@@ -6,27 +6,27 @@ import (
 	"io"
 	"strings"
 
-	"./toy"
+	"./play"
 )
 
 func main() {
-	car := toy.NewToy("Traxxas LaTrax Teton 1/18 4WD RTR RC Monster Truck")
+	car := play.NewToy("Traxxas LaTrax Teton 1/18 4WD RTR RC Monster Truck")
 	fmt.Println(car.String())
 	fmt.Println(car.Length())
 
-	truck := toy.NewToy([]byte(`one`))
+	truck := play.NewToy([]byte(`one`))
 	fmt.Println(truck.String())
 	fmt.Println(truck.Length())
 
-	truck1 := toy.NewToy(12345)
+	truck1 := play.NewToy(12345)
 	fmt.Println(truck1.String())
 	fmt.Println(truck1.Length())
 
-	truck2 := toy.NewToy("12345kit", "boat23")
+	truck2 := play.NewToy("12345kit", "boat23")
 	fmt.Println(truck2.String())
 	fmt.Println(truck2.Length())
 
-	carts, err := toy.NewToys()
+	carts, err := play.NewToys()
 	if err != nil {
 		//panic("Error: " + err.Error())
 		//log.Fatalln("Error:", err.Error())
@@ -36,18 +36,20 @@ func main() {
 		fmt.Print(i, carts[i].String(), " ", carts[i].Length(), "\n")
 	}
 
-	bikes, _ := toy.NewToys("bicycle", "motor", "boat", 345, []byte(`test-bike`))
+	bikes, _ := play.NewToys("bicycle", "motor", "boat", 345, []byte(`test-bike`))
 	for i := range bikes {
 		fmt.Print(i, "-", bikes[i].String(), " ", bikes[i].Length(), "\n")
 	}
 
 	// Experimenting with Readers and Writers
 
-	drone := &toy.Toy{}
+	//drone := &play.Toy{}		   // both allocaions work
+	drone := play.NewToy()         // both allocaions work
 	fmt.Fprint(drone, "Drone 456") // writer (Toy has writer interface, so you can write to it).
 	fmt.Println("name:", drone)
 
-	tesla := &toy.Toy{}
+	//tesla := &play.Toy{}
+	tesla := play.NewToy()
 	tesla.Read([]byte("Tesla 12345676")) // tesla reader
 	fmt.Println("name:", tesla)
 

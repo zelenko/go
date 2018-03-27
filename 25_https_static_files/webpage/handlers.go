@@ -9,7 +9,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// getBuffer runs before main starts.
+// func "getBuffer" runs before main starts.
 func init() {
 	getBuffer()
 }

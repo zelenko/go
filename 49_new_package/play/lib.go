@@ -1,4 +1,4 @@
-package toy
+package play
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ type Toy struct {
 // NewToy returns a new Toy type. It supports the following optional params:
 func NewToy(v ...interface{}) *Toy {
 	if len(v) < 1 || v[0] == nil {
-		return nil
+		return &Toy{}
 	}
 
 	r := &Toy{Name: ""}
@@ -23,7 +23,8 @@ func NewToy(v ...interface{}) *Toy {
 	for i := range v {
 		switch v[i].(type) {
 		case string:
-			r.Name = v[i].(string) // convert interface to string
+			//r.Name = v[i].(string) // convert interface to string
+			r = &Toy{Name: v[i].(string)}
 		case []byte:
 			r.Name = string(v[i].([]byte)) // convert interface to []byte
 		case int:
