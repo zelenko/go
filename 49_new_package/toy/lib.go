@@ -33,7 +33,7 @@ func NewToy(v ...interface{}) *Toy {
 	return r
 }
 
-// Length returns the lenght as a string
+// Length returns the length as a string
 func (r *Toy) Length() string {
 	return strconv.Itoa(len(r.Name))
 }

@@ -140,3 +140,6 @@ func main() {
 }
 ```
 ![Go](http://farm4.staticflickr.com/3774/11740822616_e435d02a54_o.gif)
+
+> In Go, the code does exactly what it says on the page.
+> It’s the simplicity that makes Go awesome.
