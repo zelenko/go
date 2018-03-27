@@ -7,6 +7,7 @@ import "os/exec"
 func main() {
 
 	// Not working on Windows 10
+	// Will it work on Linux?
 	binary, lookErr := exec.LookPath("ver")
 	if lookErr != nil {
 		panic(lookErr)

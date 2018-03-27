@@ -27,7 +27,7 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 16_drop_down_menu_form      | Form /w drop down menu, template with sub-templates |
 | 17_mysql_user_login         | MySQL for user registration, login, and user list. |
 | 18_cookie_authentication    | Authentication with cookies. |
-| 19_importing_packages       | Importing functions from other packages. |
+| 19_os_global_variables      | Displaying all global system variables. |
 | 20_mongodb_crud             | Mongodb CRUD with REST using httprouter & HTML templates |
 | 21_httprouter_template      | html template with httprouter and ServeFiles |
 | 22_mongodb_crud_rest_html   | Mongodb CRUD with REST using httprouter & HTML templates |
@@ -56,6 +56,9 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 45_image_exif_data          | Get image attributes for each image in a folder. |
 | 46_video_capture            | Capture video from web camera and display live. |
 | 47_download_slice_as_csv    | Dowload link generates CSV or Tab Delimited file that can be saved localy on your computer. |
+| 48_keyboard_driver          | Testing IOT devices |
+| 49_new_package 		      | Example creating new package with allocation/constructor that accepts multiple types using interface. Experimenting with Readers and Writers. |
+
 ## The proper way to copy a slice
 ```GO
 package main

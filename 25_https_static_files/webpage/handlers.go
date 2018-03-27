@@ -9,22 +9,24 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-var (
-	// Buffer is the HTML page
-	Buffer = &bytes.Buffer{} // creates IO Writer
-)
-
+// getBuffer runs before main starts.
 func init() {
+	getBuffer()
+}
+
+// buffer has the HTML content
+var buffer = &bytes.Buffer{}
+
+// getBuffer: Open file then copy content to buffer.
+func getBuffer() {
 	f, err := os.Open(`public\index.gohtml`)
 	if err != nil {
-		log.Println(err)
-		return
+		log.Fatalln("Error opening file:", err)
 	}
 	defer f.Close()
-
-	_, err = Buffer.ReadFrom(f)
+	_, err = buffer.ReadFrom(f)
 	if err != nil {
-		log.Fatalln("Error reading file:", err)
+		log.Fatalln("Error reading from file:", err)
 	}
 }
 
@@ -66,7 +68,7 @@ func List(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 // HTMLPage displays content from HTML file
 func HTMLPage(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.Write(Buffer.Bytes())
+	w.Write(buffer.Bytes())
 }
 
 // Test2 function

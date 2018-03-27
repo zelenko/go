@@ -3,6 +3,7 @@ package toy
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 // Toy is the datatype
@@ -38,9 +39,26 @@ func (r *Toy) Length() string {
 	return strconv.Itoa(len(r.Name))
 }
 
-// GetName returns a string
-func (r *Toy) GetName() string {
+// String returns a string
+func (r *Toy) String() string {
 	return r.Name
+}
+
+// Write is to implement the Writer interface
+func (r *Toy) Write(p []byte) (n int, err error) {
+	r.Name = string(p) + "(w)"
+	return len(p), nil
+}
+
+// Read is to implement the Reader interface
+func (r *Toy) Read(p []byte) (n int, err error) {
+	r.Name = string(p) + "(r)"
+	return len(p), nil
+}
+
+// Reader returns a reader
+func (r *Toy) Reader() *strings.Reader {
+	return strings.NewReader(r.Name)
 }
 
 // NewToys returns a slice of Toy
