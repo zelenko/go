@@ -8,8 +8,13 @@ import (
 )
 
 func main() {
+	resizeImage("original.jpg", "original_1.jpg")
+}
+
+
+func resizeImage(original, newFile string){
 	// open image
-	file, err := os.Open("test.jpg")
+	file, err := os.Open(original)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -23,9 +28,9 @@ func main() {
 
 	// resize to width 1000 using Lanczos resampling
 	// and preserve aspect ratio
-	m := resize.Resize(0, 200, img, resize.Lanczos3)
+	m := resize.Resize(500, 0, img, resize.Lanczos3)
 
-	out, err := os.Create("test_resized_h200.jpg")
+	out, err := os.Create(newFile)
 	if err != nil {
 		log.Fatal(err)
 	}
