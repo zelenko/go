@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{.Title}}</title>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			h1 {
+				background: #ddd;
+			}
+			#sidebar {
+				float: right;
+				border: 1px solid #000;
+				padding: 10px;
+				height: 100%;
+				background: #eee;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>{{.Title}}</h1>
+
+		<div id="sidebar">
+			{{block "sidebar" .}}
+			<h2>Links</h2>
+			{{/* The dashes in the following template directives
+			     ensure the generated HTML of this list contains no
+			     extraneous spaces or line breaks. */}}
+			<ul>
+				{{- range .Links}}
+				<li><a href="{{.URL}}">{{.Title}}</a></li>
+				{{- end}}
+			</ul>
+			{{end}}
+		</div>
+
+		{{block "content" .}}
+		<div id="content">
+			{{.Body}}
+		</div>
+		{{end}}
+	</body>
+</html>
