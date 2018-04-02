@@ -40,21 +40,21 @@ func (p *integral) sum(b image.Rectangle) uint64 {
 	return c
 }
 
-func (m *integral) integrate() {
-	b := m.rect
+func (p *integral) integrate() {
+	b := p.rect
 	for y := b.Min.Y; y < b.Max.Y; y++ {
 		for x := b.Min.X; x < b.Max.X; x++ {
 			c := uint64(0)
 			if y > b.Min.Y && x > b.Min.X {
-				c += m.at(x-1, y)
-				c += m.at(x, y-1)
-				c -= m.at(x-1, y-1)
+				c += p.at(x-1, y)
+				c += p.at(x, y-1)
+				c -= p.at(x-1, y-1)
 			} else if y > b.Min.Y {
-				c += m.at(b.Min.X, y-1)
+				c += p.at(b.Min.X, y-1)
 			} else if x > b.Min.X {
-				c += m.at(x-1, b.Min.Y)
+				c += p.at(x-1, b.Min.Y)
 			}
-			m.pix[(y-m.rect.Min.Y)*m.stride+(x-m.rect.Min.X)] += c
+			p.pix[(y-p.rect.Min.Y)*p.stride+(x-p.rect.Min.X)] += c
 		}
 	}
 }

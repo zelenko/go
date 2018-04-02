@@ -5,7 +5,7 @@ import (
 	"image"
 	"image/color"
 	"image/jpeg"
-	_"image/png"
+	_ "image/png"
 	"log"
 	"os"
 )
@@ -22,13 +22,13 @@ func main() {
 	rotator("original.jpg", "original_370.jpg", 370)
 
 	/*
-	rotator("icon.png", "icon_10.png", 10)
-	rotator("icon.png", "icon_110.png", 110)
-	rotator("icon.png", "icon_80.png", 80)
-	rotator("icon.png", "icon_70.png", 70)
-	rotator("icon.png", "icon_45.png", 45)
-	rotator("icon.png", "icon_90.png", 90)
-	rotator("icon.png", "icon_350.png", 350)
+		rotator("icon.png", "icon_10.png", 10)
+		rotator("icon.png", "icon_110.png", 110)
+		rotator("icon.png", "icon_80.png", 80)
+		rotator("icon.png", "icon_70.png", 70)
+		rotator("icon.png", "icon_45.png", 45)
+		rotator("icon.png", "icon_90.png", 90)
+		rotator("icon.png", "icon_350.png", 350)
 	*/
 }
 
@@ -54,11 +54,14 @@ func rotator(source, newFileName string, degree float64) {
 	// Save new file
 	newFile, err := os.Create(newFileName)
 	if err != nil {
-		log.Printf("failed creating %s: %s", newFile, err)
+		log.Printf("failed creating %s: %s", newFile.Name(), err)
 		panic(err.Error())
 	}
 	defer newFile.Close()
 
 	//png.Encode(newFile,src)
-	jpeg.Encode(newFile, src, &jpeg.Options{jpeg.DefaultQuality})
+	err = jpeg.Encode(newFile, src, &jpeg.Options{Quality: jpeg.DefaultQuality})
+	if err != nil {
+		log.Printf("failed encoding/savid file: %s: ", err)
+	}
 }

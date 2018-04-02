@@ -53,12 +53,12 @@ func Blur(dst draw.Image, src image.Image, opt *BlurOptions) error {
 	}
 
 	// Normalize the weights to sum to 1.0.
-	kSum := 0.0
+	sum := 0.0
 	for _, k := range kernel {
-		kSum += k
+		sum += k
 	}
 	for i, k := range kernel {
-		kernel[i] = k / kSum
+		kernel[i] = k / sum
 	}
 
 	return convolve.Convolve(dst, src, &convolve.SeparableKernel{

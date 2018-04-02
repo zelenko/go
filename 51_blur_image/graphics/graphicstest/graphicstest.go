@@ -47,7 +47,7 @@ func ImageWithinTolerance(m0, m1 image.Image, tol int) error {
 	b0 := m0.Bounds()
 	b1 := m1.Bounds()
 	if !b0.Eq(b1) {
-		return errors.New(fmt.Sprintf("got bounds %v want %v", b0, b1))
+		return fmt.Errorf("got bounds %v want %v", b0, b1)
 	}
 
 	for y := b0.Min.Y; y < b0.Max.Y; y++ {

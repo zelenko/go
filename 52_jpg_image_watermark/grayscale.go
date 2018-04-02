@@ -53,7 +53,7 @@ func grayScale(filename, newFileName string) {
 	// Encode the grayScale image to the new file
 	newFile, err := os.Create(newFileName)
 	if err != nil {
-		log.Printf("failed creating %s: %s", newFile, err)
+		log.Printf("failed creating %s: %s", newFile.Name(), err)
 		panic(err.Error())
 	}
 	defer newFile.Close()

@@ -25,13 +25,13 @@ type xmlFeature struct {
 }
 
 type xmlStages struct {
-	Trees           []xmlFeature `xml:"trees>grp"`
-	Stage_threshold float64      `xml:"stage_threshold"`
-	Parent          int          `xml:"parent"`
-	Next            int          `xml:"next"`
+	Trees          []xmlFeature `xml:"trees>grp"`
+	StageThreshold float64      `xml:"stage_threshold"`
+	Parent         int          `xml:"parent"`
+	Next           int          `xml:"next"`
 }
 
-type opencv_storage struct {
+type opencvStorage struct {
 	Any struct {
 		XMLName xml.Name
 		Type    string      `xml:"type_id,attr"`
@@ -52,7 +52,7 @@ func buildFeature(r string) (f Feature, err error) {
 	return
 }
 
-func buildCascade(s *opencv_storage) (c *Cascade, name string, err error) {
+func buildCascade(s *opencvStorage) (c *Cascade, name string, err error) {
 	if s.Any.Type != "opencv-haar-classifier" {
 		err = fmt.Errorf("got %s want opencv-haar-classifier", s.Any.Type)
 		return
@@ -75,7 +75,7 @@ func buildCascade(s *opencv_storage) (c *Cascade, name string, err error) {
 	for _, stage := range s.Any.Stages {
 		cs := CascadeStage{
 			Classifier: []Classifier{},
-			Threshold:  stage.Stage_threshold,
+			Threshold:  stage.StageThreshold,
 		}
 		for _, tree := range stage.Trees {
 			if tree.Tilted != 0 {
@@ -116,7 +116,7 @@ func ParseOpenCV(r io.Reader) (cascade *Cascade, name string, err error) {
 	buf = bytes.Replace(buf, []byte("<_>"), []byte("<grp>"), -1)
 	buf = bytes.Replace(buf, []byte("</_>"), []byte("</grp>"), -1)
 
-	s := &opencv_storage{}
+	s := &opencvStorage{}
 	err = xml.Unmarshal(buf, s)
 	if err != nil {
 		return

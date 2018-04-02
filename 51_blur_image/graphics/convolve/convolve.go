@@ -41,6 +41,7 @@ type SeparableKernel struct {
 	X, Y []float64
 }
 
+// Weights calculation method
 func (k *SeparableKernel) Weights() []float64 {
 	n := len(k.X)
 	w := make([]float64, n*n)

@@ -5,8 +5,8 @@
 package graphics
 
 import (
-	"bytes"
 	"./graphicstest"
+	"bytes"
 	"image"
 	"image/color"
 	"testing"

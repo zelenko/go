@@ -11,8 +11,7 @@ func main() {
 	resizeImage("original.jpg", "original_1.jpg")
 }
 
-
-func resizeImage(original, newFile string){
+func resizeImage(original, newFile string) {
 	// open image
 	file, err := os.Open(original)
 	if err != nil {

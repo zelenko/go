@@ -24,6 +24,7 @@ type Index struct {
 	Links []Link
 }
 
+// Link data type
 type Link struct {
 	URL, Title string
 }

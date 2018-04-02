@@ -1,11 +1,11 @@
 package main
 
 import (
-	"os"
-	"math"
+	"./graphics"
 	"image"
 	"image/jpeg"
-	"./graphics"
+	"math"
+	"os"
 )
 
 func main() {

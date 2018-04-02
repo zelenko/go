@@ -139,7 +139,7 @@ func Rotate(img image.Image, angle float64, bgColor color.Color) *image.NRGBA {
 
 	switch angle {
 	case 0:
-	return Clone(img)
+		return Clone(img)
 	case 90:
 		return Rotate90(img)
 	case 180:

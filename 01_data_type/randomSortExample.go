@@ -17,7 +17,7 @@ func main() {
 	slice := generateSlice(20)
 	fmt.Println("\n--- Unsorted --- \n\n", slice)
 	sort(slice)
-	fmt.Println("\n--- Sorted ---\n\n", slice, "\n")
+	fmt.Println("\n--- Sorted ---\n\n", slice)
 }
 
 // Generates a slice of size, size filled with random numbers

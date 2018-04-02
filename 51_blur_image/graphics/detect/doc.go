@@ -1,7 +1,7 @@
+//Package detect implements an object detector cascade.
 // Copyright 2011 The Graphics-Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
-
 /*
 Package detect implements an object detector cascade.
 
