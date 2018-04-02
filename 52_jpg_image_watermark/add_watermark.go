@@ -41,6 +41,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to create: %s", err)
 	}
-	jpeg.Encode(third, image3, &jpeg.Options{jpeg.DefaultQuality})
+	jpeg.Encode(third, image3, &jpeg.Options{Quality: jpeg.DefaultQuality})
 	defer third.Close()
 }

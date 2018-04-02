@@ -59,5 +59,5 @@ func grayScale(filename, newFileName string) {
 	defer newFile.Close()
 
 	// png.Encode(newFile,grayScale)
-	jpeg.Encode(newFile, grayScale, &jpeg.Options{jpeg.DefaultQuality})
+	jpeg.Encode(newFile, grayScale, &jpeg.Options{Quality: jpeg.DefaultQuality})
 }

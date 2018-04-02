@@ -63,7 +63,7 @@ func ImageWithinTolerance(m0, m1 image.Image, tol int) error {
 	return nil
 }
 
-// SprintBox pretty prints the array as a hexidecimal matrix.
+// SprintBox pretty prints the array as a hexadecimal matrix.
 func SprintBox(box []byte, width, height int) string {
 	buf := bytes.NewBuffer(nil)
 	i := 0

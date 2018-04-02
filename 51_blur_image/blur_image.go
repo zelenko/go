@@ -18,5 +18,5 @@ func main() {
 
 	newImage, _ := os.Create("original_blurred.jpg")
 	defer newImage.Close()
-	jpeg.Encode(newImage, dstImage, &jpeg.Options{jpeg.DefaultQuality})
+	jpeg.Encode(newImage, dstImage, &jpeg.Options{Quality: jpeg.DefaultQuality})
 }

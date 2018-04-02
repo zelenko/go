@@ -9,7 +9,7 @@ type (
 )
 
 const (
-	test = "collection"
+	testCost = "collection"
 )
 
 var (
@@ -40,5 +40,5 @@ func main() {
 		fmt.Println("n:", output[n])
 	}
 
-	fmt.Println(test)
+	fmt.Println(testCost)
 }

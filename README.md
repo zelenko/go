@@ -9,7 +9,7 @@ You can incorporate these code snippets into your larger programming modules. Th
 | Name | Description |
 | :---- | :---- |
 | 00_persisting_go            | Installing Go, persisting on systemd, Upstart |
-| 01-dataType                 | type, error, recursion, reference, slice, switch, pointer |
+| 01_data_type                | type, error, recursion, reference, slice, switch, pointer |
 | 02_mongodb_aggregate_cli    | aggregate data from mongodb displayed in CLI |
 | 03_mongodb_find_sort_cli    | MongoDB Find All, Sort commands, results in CLI |
 | 04_get_url_variable         | Get "FormValue" variable from URL |
@@ -60,11 +60,11 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 49_constructor              | Example creating new package with allocation/constructor that accepts multiple types using interface. Experimenting with Readers and Writers. |
 | 50_golf_framework           | A fast, simple and lightweight micro-web framework for Go |
 | 51_blur_image               | Blur, Rotate, and Generate Thumbnails. |
-| 52_jpg_image_watermark      |  |
-| 53_regular_expression       |  |
-| 54_rotate_image             |  |
-| 55_html_template_std_lib    |  |
-| 56_HTML_formatter           |  |
+| 52_jpg_image_watermark      | Add watermark to image |
+| 53_regular_expression       | Validation, Find and replace, security |
+| 54_rotate_image             | Image rotation in degrees from 1 to 360. |
+| 55_html_template_std_lib    | HTML template using standard library packages |
+| 56_HTML_formatter           | Work in similar fashion as `go fmt`, but on HTML files. |
 
 
 ## The proper way to copy a slice
