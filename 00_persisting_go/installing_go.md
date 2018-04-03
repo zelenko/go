@@ -14,43 +14,11 @@ Packages are downloaded into folder specified in the `$GOPATH` system varible:
 
 The 'go get' command requires that the `git` is [installed](https://git-scm.com/download/win) on Windows.
 
+To download all package dependencies:
+
+`go get ./...`
+
 ---
-
-## Build on Linux
-* `export GOPATH=/var/go/web/`
-* `echo $GOPATH`
-```
-GOOS=linux GOARCH=amd64 go build -o web
-```
-
-## Build on Windows
-* `set GOARCH=amd64`
-* `set GOARCH=386`
-* `set GOOS=linux`
-* `set GOOS=windows`
-* `echo %GOROOT%`
-```
-go build -o hello.exe hello.go
-```
-[List of GOOS/GOARCH supported by Go](https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63#go-golang-goos-and-goarch)
-
-## Installing GO on Debian
-```
-cd /usr/local
-curl -LO https://redirector.gvt1.com/edgedl/go/go1.9.2.linux-amd64.tar.gz
-shasum -a 256 go1.9.2.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
-```
-
-`vi ~/.profile`
-```
-export PATH=$PATH:/usr/local/go/bin
-export GOROOT=/usr/local/go
-export GOPATH=/var/go
-```
-`source ~/.profile`
-
-`echo $GOROOT`
 
 ## Installing GO on Windows
 After [downloading](https://golang.org/dl/) and installing, specify where the code is stored in system variable.  CLI command: `set GOPATH=F:\GoCode`
@@ -76,3 +44,21 @@ golint ./...
 ```
 
 
+## Installing GO on Debian (old version 1.9.2)
+These instructions were written when version 1.9.2 came out.
+
+* `cd /usr/local`
+* `curl -LO https://redirector.gvt1.com/edgedl/go/go1.9.2.linux-amd64.tar.gz`
+* `shasum -a 256 go1.9.2.linux-amd64.tar.gz`
+* `tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz`
+
+
+Update path by editing profile file: `vi ~/.profile`
+```
+export PATH=$PATH:/usr/local/go/bin
+export GOROOT=/usr/local/go
+export GOPATH=/var/go
+```
+Reload profile: `source ~/.profile`
+
+Check where the variable points: `echo $GOROOT`
