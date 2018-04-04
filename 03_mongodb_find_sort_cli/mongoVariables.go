@@ -32,7 +32,7 @@ func main() {
 
 	// Run a command with an argument
 	var startupWarnings = &bson.M{}
-	if err := session.Run(bson.D{{"getLog", "startupWarnings"}}, startupWarnings); err != nil {
+	if err := session.Run(bson.D{{Name: "getLog", Value: "startupWarnings"}}, startupWarnings); err != nil {
 		panic(err)
 	} else {
 		//fmt.Println(*startupWarnings)

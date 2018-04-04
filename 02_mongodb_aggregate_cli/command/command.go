@@ -3,6 +3,7 @@ package main
 import (
 	"dblogin"
 	"fmt"
+
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -35,7 +36,7 @@ func main() {
 
 	// Run a command with an argument, works
 	var startupWarnings = &bson.M{}
-	if err := session.Run(bson.D{{"getLog", "startupWarnings"}}, startupWarnings); err != nil {
+	if err := session.Run(bson.D{{Name: "getLog", Value: "startupWarnings"}}, startupWarnings); err != nil {
 		check(err)
 	} else {
 		fmt.Println(*startupWarnings)

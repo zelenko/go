@@ -21,7 +21,7 @@ func main() {
 	collectionName := "people"
 
 	result := &bson.D{}
-	err = db.Run(&bson.D{bson.DocElem{"collstats", collectionName}}, result)
+	err = db.Run(&bson.D{bson.DocElem{Name: "collstats", Value: collectionName}}, result)
 	if err != nil {
 		log.Fatalf("Failed to get collection stats: %s", err)
 	}
