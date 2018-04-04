@@ -36,7 +36,7 @@ func Decode(r io.Reader, v interface{}) error {
 	// obj, ok := v.(Person)
 	if !ok {
 		//return nil // no OK method
-		return errors.New("Cannot convert 'v' to interface 'Valid'")
+		return errors.New("cannot convert 'v' to interface 'Valid'")
 	}
 	err = obj.OK()
 	if err != nil {

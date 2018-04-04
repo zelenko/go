@@ -12,7 +12,7 @@ import (
 func main() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/image/", imageHandler)
-	log.Fatal(http.ListenAndServe("localhost:80", nil))
+	log.Fatal(http.ListenAndServe(":80", nil))
 }
 
 var indexTemplate = template.Must(template.ParseFiles("index.tmpl"))
