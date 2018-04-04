@@ -10,6 +10,8 @@ import (
 )
 
 func main() {
+
+	// creating a slice of users
 	user := []struct {
 		Name, City string
 		level      int
@@ -26,11 +28,13 @@ func main() {
 		fmt.Printf("%s is in %s\n", user[i].Name, user[i].City)
 	}
 
+	// u is a type
 	type u struct {
 		Name, City string
 		level      int
 	}
 
+	// declaring and initializing
 	user1 := &u{"Eric", "Austin", 14}
 
 	user = append(user, *user1)
@@ -39,6 +43,7 @@ func main() {
 		fmt.Printf("%s is in %s\n", user[i].Name, user[i].City)
 	}
 
+	// generate random list.  c must be outside of loop to access it later.
 	c := ""
 	for i := 0; i < 20; i++ {
 		a := strconv.Itoa(rand.Intn(3))
@@ -65,6 +70,7 @@ func main() {
 
 }
 
+// getInterface prints a string or returns an error if something other than string given
 func getInterface(b interface{}) error {
 	a, ok := b.(string)
 	if !ok {
@@ -75,6 +81,7 @@ func getInterface(b interface{}) error {
 	return nil
 }
 
+// userInterface can accept these types are: string, int, byte, []byte, []string
 func useInterface(a interface{}) (string, error) {
 	s := ""
 	switch a.(type) {

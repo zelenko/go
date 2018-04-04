@@ -1,3 +1,6 @@
+// wait for goroutine to finish.
+// Another wait to do this is by using "select" inside of for loop
+
 package main
 
 import (

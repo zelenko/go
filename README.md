@@ -41,7 +41,7 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 30_mongodb_crud_json_api    | REST API using JSON, httprouter, and toml |
 | 31_send_email               | Send email with attachment |
 | 32_colorful_cli             | Create colorful CLI |
-| 33_goroutine_waitgroup      | wait for goroutines to finish, run code once |
+| 33_testing                  | testing package example |
 | 34_html_template_function   | Pass function to HTML template |
 | 35_mongodb_pipeline_page    | One page MGO aggregation with pipeline |
 | 36_concurrency_channel      | channel, waiting, concurrency, sleep, close, count, queue |
