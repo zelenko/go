@@ -110,13 +110,12 @@ func main() {
 	s.ListenAndServe()
 }
 
-func buildPage() (out string) {
-
+func buildPage() (string) {
+	out := ""
 	for i := range order {
 		out += page[order[i]]
 	}
-
-	return
+	return out
 }
 
 /*
