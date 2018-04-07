@@ -30,7 +30,8 @@ func main() {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, `<a href="/zip">zip</a> | <a href="/zipfolder">zip folder</a>`)
+	//fmt.Fprint(w, `<a href="/zip">zip</a> | <a href="/zipfolder">zip folder</a>`)
+	w.Write([]byte(`<a href="/zip">zip</a> | <a href="/zipfolder">zip folder</a>`))
 }
 
 // download zipfile

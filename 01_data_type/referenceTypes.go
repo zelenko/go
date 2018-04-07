@@ -5,6 +5,9 @@ The following are "reference" types:
 	channels
 	pointers
 	functions
+
+
+	otherwise it is Primitive
 */
 
 package main

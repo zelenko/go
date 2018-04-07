@@ -1,36 +1,54 @@
 package main
 
 import (
-	"fmt"
 	"github.com/julienschmidt/httprouter"
+	"log"
 	"net/http"
 	"time"
 )
 
-const navigationMenu string = `<a href="/">01</a> | 
-<a href="/02">02 login </a> | 
-<a href="/03">03 view</a> | 
-<a href="/04">04 logout</a> | 
-<a href="/hello/wow">hello</a> | <br>
-
+const navigationMenu string = `
+	<a href="/">home</a> |
+	<a href="/login">login </a> |
+	<a href="/view">view</a> |
+	<a href="/logout">logout</a> |
+	<a href="/hello/page-01">page 01</a> |
+	<a href="/hello/page-02">page 02</a> |
+	<a href="/hello/page-03">page 03</a> |
+	<br>
 `
 
+// main is the entry point for the program.
+func main() {
+	// Enable line numbers in logging
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
+	router := httprouter.New()
+	router.GET("/", indexH)
+	router.GET("/login", loginH)
+	router.GET("/view", view)
+	router.GET("/logout", logoutH)
+	router.GET("/hello/:name", hello)
+
+	log.Println(http.ListenAndServe(":8080", router))
+}
+
 // Index Main page
-func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	htmlString := navigationMenu + ` 01 `
+func indexH(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	htmlString := navigationMenu + ` main page `
 	output, err := r.Cookie("username")
 	if err == nil {
-		htmlString += output.Name + "(" + output.Value + ")"
+		htmlString += output.Name + " (" + output.Value + ")"
 	}
-
-	fmt.Fprint(w, htmlString)
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Write([]byte(htmlString))
 }
 
 // Login
-func p02(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func loginH(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	// set cookies
 	expiration := time.Now().Add(365 * 24 * time.Hour)
-	cookie := http.Cookie{Name: "username", Value: "astaxie", Expires: expiration}
+	cookie := http.Cookie{Name: "username", Value: "Superuser", Expires: expiration, HttpOnly: true} //Secure: true,
 	http.SetCookie(w, &cookie)
 
 	// Display all current cookies
@@ -38,46 +56,34 @@ func p02(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	for _, cookie := range r.Cookies() {
 		output += " " + cookie.Name + "(" + cookie.Value + ")"
 	}
-	htmlString := navigationMenu + ` 02` + output
-	fmt.Fprint(w, htmlString)
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Write([]byte(navigationMenu + ` login` + output))
 }
 
 // View
-func p03(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func view(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	// Display all current cookies
 	output := ""
 	for _, cookie := range r.Cookies() {
 		output += " " + cookie.Name + "(" + cookie.Value + ")"
 	}
-	htmlString := navigationMenu + ` 03` + output
-	fmt.Fprint(w, htmlString)
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Write([]byte(navigationMenu + ` view` + output))
 }
 
 // Logout
-func p04(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func logoutH(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	// remove cookie
 	expiration := time.Unix(0, 0)
-	cookie := http.Cookie{Name: "username", Value: "astaxie", Expires: expiration}
+	cookie := http.Cookie{Name: "username", Value: "Superuser", Expires: expiration, HttpOnly: true} //Secure: true,
 	http.SetCookie(w, &cookie)
-
-	fmt.Fprint(w, navigationMenu+` 04 logout`)
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Write([]byte(navigationMenu + ` logout`))
 }
 
 // Hello page
-func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	htmlString := navigationMenu + ` 03
-	` + ps.ByName("name")
-	fmt.Fprintf(w, htmlString)
-	//fmt.Fprintf(w, "hello, %s!\n", ps.ByName("name"))
-}
-
-func main() {
-	router := httprouter.New()
-	router.GET("/", Index)
-	router.GET("/02", p02)
-	router.GET("/03", p03)
-	router.GET("/04", p04)
-	router.GET("/hello/:name", Hello)
-
-	http.ListenAndServe(":80", router)
+func hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	htmlString := navigationMenu + ` >>	` + ps.ByName("name")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Write([]byte(htmlString))
 }
