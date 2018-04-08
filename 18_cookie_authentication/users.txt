@@ -1,0 +1,9 @@
+ID	Date Registered	Hash
+user6	2016-04-07_08-02-06pm	userPass6
+user1	2018-07-07_07-42-23pm	userPass1
+user4	2018-07-07_07-42-23pm	userPass4
+user9	2018-04-07_08-45-46pm	userPass6
+user10	2018-04-07_09-55-56pm	userPass61
+user5	2018-04-07_08-02-06pm	userPass5
+user8	2018-04-07_09-55-56pm	userPass5
+user51	2015-04-07_08-46-04pm	userPass61

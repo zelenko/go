@@ -2,13 +2,19 @@
 package main
 
 import (
+	b64 "encoding/base64"
 	"fmt"
+	"golang.org/x/crypto/bcrypt"
 	"log"
 	"net/http"
 	"time"
 )
 
 // is user authorised? Pointer to yes or no.
+// this is only for one single user.  Need different type for many users.
+// differentiate users based on: username, browser, ip.
+// single user can login from different locations, using multiple browsers.
+
 var authorized = new(bool)
 
 // main is the entry point for the program.
@@ -102,10 +108,12 @@ func login(w http.ResponseWriter, r *http.Request) {
 		}
 		http.SetCookie(w, &cookie)
 
+		passkey, _ := generatePasswordHash(r.PostFormValue("password"))
+
 		// set username cookie
 		cookiePass := http.Cookie{
 			Name:     "password",
-			Value:    r.PostFormValue("password"),
+			Value:    passkey,
 			Expires:  time.Now().Add(365 * 24 * time.Hour),
 			HttpOnly: true,
 			// Secure: true,
@@ -117,7 +125,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	} else if r.Method == "GET" && !*authorized {
 
-		formHTML := `
+		formHTML := []byte(`
 		<p><a href="/">home</a></p>
 		<form method="post" action="/login" enctype="application/x-www-form-urlencoded">
 			<fieldset>
@@ -128,11 +136,11 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 				<input type="submit" name="submit" value="Login">
 			</fieldset>
-		</form>`
+		</form>`)
 
 		// display page
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		w.Write([]byte(formHTML))
+		w.Write(formHTML)
 		return
 
 	} else {
@@ -188,4 +196,17 @@ func loginFormExamaple(w http.ResponseWriter, r *http.Request) {
 	}
 	out := fmt.Sprint(r.FormValue("username") + " and " + r.PostFormValue("password"))
 	w.Write([]byte(out + "; " + out1))
+}
+
+func generatePasswordHash(in string) (string, error) {
+
+	// generate password hash
+	password := []byte(in + "generate random password hash")
+	hashedPassword, err := bcrypt.GenerateFromPassword(password, bcrypt.DefaultCost)
+	if err != nil {
+		return "", err
+	}
+	pass64 := b64.StdEncoding.EncodeToString([]byte(hashedPassword))
+	// decodedString, _ := b64.StdEncoding.DecodeString(encodedString)
+	return pass64, nil
 }
