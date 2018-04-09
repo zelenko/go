@@ -10,6 +10,7 @@ import (
 func main() {
 
 	reg, err := regexp.Compile("[^A-Za-z0-9]+")
+	//reg, err := regexp.Compile("[^a-zA-Z0-9]+")
 	if err != nil {
 		log.Fatal(err)
 	}

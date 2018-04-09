@@ -19,10 +19,10 @@ func quiz(arr []int, n int) {
 	for i := 0; i < len(arr); i++ {
 		out += arr[i]
 
-		if (i+1)%n == 0 {
+		if (i+1)%n == 0 { // because slice index starts with zero
 			fmt.Printf("%d, ", out)
 			out = 0
-		} else if i+1 == len(arr) {
+		} else if i+1 == len(arr) { // if the end of the slice
 			fmt.Printf("%d ", out)
 			out = 0
 		}
