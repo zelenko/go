@@ -4,13 +4,14 @@ package sess
 
 import (
 	"bufio"
+	b64 "encoding/base64"
 	"io"
 	"log"
+	"math/rand"
 	"os"
 	"strings"
 	"time"
-	"math/rand"
-	b64 "encoding/base64"
+
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -174,6 +175,7 @@ func (sm *SManager) open() {
 	}
 }
 
+// RandomSession generates new random session ID
 func (sm *SManager) RandomSession() string {
 	out, _ := generatePasswordHash(getSessionID())
 	return out

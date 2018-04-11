@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/dustin/go-humanize"
 	"io"
 	"net/http"
 	"os"
@@ -23,6 +22,7 @@ func (wc *WriteCounter) Write(p []byte) (int, error) {
 	return n, nil
 }
 
+// PrintProgress displays results in cli
 func (wc WriteCounter) PrintProgress() {
 	// Clear the line by using a character return to go back to the start and remove
 	// the remaining characters by filling it with spaces
@@ -36,9 +36,8 @@ func (wc WriteCounter) PrintProgress() {
 func main() {
 	fmt.Println("Download Started")
 
-	//fileUrl := "https://upload.wikimedia.org/wikipedia/commons/d/d6/Wp-w4-big.jpg"
-	fileUrl := "https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73751/world.topo.bathy.200407.3x21600x21600.D1.png"
-	err := DownloadFile("world.png", fileUrl)
+	fileURL := "https://eoimages.gsfc.nasa.gov/images/imagerecords/73000/73751/world.topo.bathy.200407.3x21600x21600.D1.png"
+	err := DownloadFile("world.png", fileURL)
 	if err != nil {
 		panic(err)
 	}

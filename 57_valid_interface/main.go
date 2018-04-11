@@ -45,6 +45,7 @@ func Decode(r io.Reader, v interface{}) error {
 	return nil
 }
 
+// main is the entry point for the program.
 func main() {
 	json := `{"Name": "John Doe"}`
 	//user := &struct{ Name string }{}

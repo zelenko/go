@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// main is the entry point for the program.
 func main() {
 
 	messages := make(chan string)
