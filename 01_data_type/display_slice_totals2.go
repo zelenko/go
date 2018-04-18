@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// main is the entry point for the program.
 func main() {
 	numbers := []int{1, 2, 3, 4, 6, 7}
 

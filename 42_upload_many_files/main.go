@@ -91,6 +91,8 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
 }
+
+// main is the entry point for the program
 func main() {
 	http.HandleFunc("/upload", uploadHandler)
 	log.Print("Listening on port:8082...")

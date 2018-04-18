@@ -3,11 +3,13 @@ package main
 import (
 	"dblogin"
 	"fmt"
+	"reflect"
+
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"reflect"
 )
 
+// main is the entry point for the program
 func main() {
 
 	// Create a mgo session

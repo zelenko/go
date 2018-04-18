@@ -7,10 +7,11 @@ import (
 	"database/sql"
 	"dblogin"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
-	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"strconv"
+
+	_ "github.com/go-sql-driver/mysql"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var db *sql.DB
@@ -19,6 +20,26 @@ var err error
 type personaFields struct {
 	ID       int
 	Username string
+}
+
+// main is the entry point for the program
+func main() {
+	db, err = sql.Open("mysql", dblogin.Catalog) // user_name:password@tcp(192.168.0.2:3306)/database_name
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	err = db.Ping()
+	if err != nil {
+		panic(err.Error())
+	}
+
+	http.HandleFunc("/signup", signupPage)
+	http.HandleFunc("/login", loginPage)
+	http.HandleFunc("/", homePage)
+	http.HandleFunc("/all", allPage)
+	http.ListenAndServe(":8080", nil)
 }
 
 func signupPage(res http.ResponseWriter, req *http.Request) {
@@ -54,7 +75,7 @@ func signupPage(res http.ResponseWriter, req *http.Request) {
 		http.Error(res, "Server error, unable to create your account.", 500)
 		return
 	default:
-		http.Redirect(res, req, "/", 301)
+		http.Redirect(res, req, "/", http.StatusTemporaryRedirect)
 	}
 }
 
@@ -71,22 +92,24 @@ func loginPage(res http.ResponseWriter, req *http.Request) {
 	var databasePassword string
 
 	err := db.QueryRow("SELECT username, password FROM go_users WHERE username=?", username).Scan(&databaseUsername, &databasePassword)
-
+	// if database returns error
 	if err != nil {
-		http.Redirect(res, req, "/login", 301)
+		http.Redirect(res, req, "/login", http.StatusTemporaryRedirect)
 		return
 	}
 
 	err = bcrypt.CompareHashAndPassword([]byte(databasePassword), []byte(password))
+	// if password is NOT accepted
 	if err != nil {
-		http.Redirect(res, req, "/login", 301)
+		http.Redirect(res, req, "/login", http.StatusTemporaryRedirect)
 		return
 	}
 
+	// if password is accepted
 	res.Write([]byte("Hello " + databaseUsername))
-
 }
 
+// allPage displays all users
 func allPage(res http.ResponseWriter, req *http.Request) {
 
 	var (
@@ -95,10 +118,11 @@ func allPage(res http.ResponseWriter, req *http.Request) {
 	)
 
 	rows, err := db.Query("select id, username from go_users;")
-
 	if err != nil {
 		fmt.Print(err.Error())
 	}
+
+	// add objects into slice
 	for rows.Next() {
 		err = rows.Scan(&person.ID, &person.Username)
 		persons = append(persons, person)
@@ -121,23 +145,4 @@ func allPage(res http.ResponseWriter, req *http.Request) {
 
 func homePage(res http.ResponseWriter, req *http.Request) {
 	http.ServeFile(res, req, "index.html")
-}
-
-func main() {
-	db, err = sql.Open("mysql", dblogin.Catalog) // user_name:password@tcp(192.168.0.2:3306)/database_name
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close()
-
-	err = db.Ping()
-	if err != nil {
-		panic(err.Error())
-	}
-
-	http.HandleFunc("/signup", signupPage)
-	http.HandleFunc("/login", loginPage)
-	http.HandleFunc("/", homePage)
-	http.HandleFunc("/all", allPage)
-	http.ListenAndServe(":8080", nil)
 }

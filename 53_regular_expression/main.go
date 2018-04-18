@@ -7,6 +7,7 @@ import (
 	"regexp"
 )
 
+// main is the entry point for the program
 func main() {
 	str1 := "If I am 20 years 10 months and 14 days old as of August 17,2016 then my DOB would be 1995-10-03"
 

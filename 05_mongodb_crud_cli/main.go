@@ -3,10 +3,11 @@ package main
 import (
 	"dblogin"
 	"fmt"
-	"gopkg.in/mgo.v2"      // same as ==> labix.org/v2/mgo
-	"gopkg.in/mgo.v2/bson" // sames as ==> labix.org/v2/mgo/bson
 	"strconv"
 	"time"
+
+	"gopkg.in/mgo.v2"      // same as ==> labix.org/v2/mgo
+	"gopkg.in/mgo.v2/bson" // sames as ==> labix.org/v2/mgo/bson
 )
 
 type person struct {
@@ -21,6 +22,7 @@ var (
 	IsDrop = false
 )
 
+// main is the entry point for the program.
 func main() {
 	session, err := mgo.Dial(dblogin.Userpass) // mongodb://username:yourpasscode@serverip:27017/database?authSource=admin
 	if err != nil {

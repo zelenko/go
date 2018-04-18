@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// main is the entry point for the program.
 func main() {
 
 	fileName := func(i string) {

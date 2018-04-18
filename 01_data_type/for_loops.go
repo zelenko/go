@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// main is the entry point for the program.
 func main() {
 	ok := []int{1, 2, 3, 4, 5}
 	//for i := 0; i < len(ok); i++ {

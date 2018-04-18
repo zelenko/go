@@ -5,11 +5,13 @@ package main
 import (
 	"dblogin"
 	"fmt"
+	"time"
+
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"time"
 )
 
+// main is the entry point for the program
 type personaFields struct {
 	ID        bson.ObjectId `bson:"_id,omitempty"`
 	Name      string

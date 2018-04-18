@@ -1,10 +1,12 @@
 package main
 
 import (
-	"github.com/russross/blackfriday"
 	"net/http"
+
+	"github.com/russross/blackfriday"
 )
 
+// main is the entry point for the program
 func main() {
 	http.HandleFunc("/markdown", GenerateMarkdown)
 	http.Handle("/", http.FileServer(http.Dir("public")))
