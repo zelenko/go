@@ -1,0 +1,63 @@
+table {
+    border-collapse: collapse;
+}
+.table, .text-wrap table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+.table th, .text-wrap table th,
+.table td,
+.text-wrap table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th, .text-wrap table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody, .text-wrap table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.table .table, .text-wrap table .table, .table .text-wrap table, .text-wrap .table table, .text-wrap table table {
+    background-color: #f5f7fb;
+}
+
+
+.card-table {
+    margin-bottom: 0;
+}
+
+.card-table tr:first-child td,
+.card-table tr:first-child th {
+    border-top: 0;
+}
+
+.card-table tr td:first-child,
+.card-table tr th:first-child {
+    padding-left: 1.5rem;
+}
+
+.card-table tr td:last-child,
+.card-table tr th:last-child {
+    padding-right: 1.5rem;
+}
+
+.card-body + .card-table {
+    border-top: 1px solid rgba(0, 40, 100, 0.12);
+}
+
+
+.table-vcenter td,
+.table-vcenter th {
+    vertical-align: middle;
+}
+
+.text-nowrap {
+    white-space: nowrap !important;
+}

@@ -1,0 +1,17 @@
+{{template "header"}}
+
+<h1>Update A Book</h1>
+<form method="post" action="/items/update/process">
+    <input type="text" name="isbn" placeholder="isbn" required autofocus value="{{.Isbn}}">
+    <input type="text" name="title" placeholder="title" required value="{{.Title}}">
+    <input type="text" name="author" placeholder="author" required value="{{.Author}}">
+    <input type="text" name="price" placeholder="price" required value="{{.Price}}">
+    <input type="submit">
+</form>
+<p class="link">
+    <a href="/items">All Books</a> |
+    <a href="/items/show?isbn={{.Isbn}}">View</a> |
+</p>
+
+
+{{template "footer"}}

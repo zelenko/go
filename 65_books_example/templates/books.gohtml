@@ -1,0 +1,20 @@
+{{template "header"}}
+
+ <!--<table class="table card-table table-vcenter text-nowrap">-->
+        <table>
+	<thead><tr><th>ISBN</th><th>Title</th><th>Author - Price</th><th>Update</th><th>Delete</th></tr></thead>
+	
+    {{range .}}
+    <tr>
+        <td><a href="/items/show?isbn={{.Isbn}}">{{.Isbn}}</a></td>
+        <td>{{.Title}}</td>
+        <td>{{.Author}} - {{.Price}}</td>
+        <td><a href="/items/update?isbn={{.Isbn}}">update</a></td>
+        <td><a href="/items/delete/process?isbn={{.Isbn}}">delete</a></td>
+    </tr>
+    {{end}}
+	</table>
+
+<p class="link"><a href="/items/create">Insert A Book</a></p>
+
+{{template "footer"}}

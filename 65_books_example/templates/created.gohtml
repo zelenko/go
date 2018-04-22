@@ -1,0 +1,7 @@
+{{template "header"}}
+
+<p>Created A New Book</p>
+
+<p><a href="/items/show?isbn={{.Isbn}}">{{.Isbn}} - {{.Title}} - {{.Author}} {{.Price}}</a></p>
+<p class="link"><a href="/items">All Books</a></p>
+{{template "footer"}}

@@ -37,8 +37,8 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 26_url_not_found_handler    | Custom Not Found handler. |
 | 27_mongodb_bulk_upsert      | Mongodb bulk insert from TXT file |
 | 28_markdown                 | Generate Markdown using blackfriday |
-| 29_go_mgo_crud_json_api     | REST API using JSON with httprouter.  JavaScript is used to view, create, edit, and delete records. |
-| 30_mongodb_crud_json_api    | REST API using JSON, httprouter, and toml |
+| 29_go_crud_json_api         | REST API using JSON with httprouter.  JavaScript is used to view, create, edit, and delete records. |
+| 30_mongodb_crud_json_api    | REST API using JSON, httprouter, and toml, i/o to MongoDB |
 | 31_send_email               | Send email with attachment |
 | 32_colorful_cli             | Create colorful CLI |
 | 33_testing                  | testing package example |

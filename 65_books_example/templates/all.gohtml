@@ -1,0 +1,237 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Dashboard Core -->
+    <link href="./static/style.css" rel="stylesheet" />
+
+    <style>
+
+        /*
+        #404040	top bar background
+        #f2f2f2 home button text color
+        #4CAF50	home button background, top only
+
+        #595959 light background, top only, hover background
+        #f2f2f2 top only, nonmenu text color
+
+        top bar text color stays the same, hover or not, home button or not
+
+        #262626 submenu text
+        #f9f9f9 submenu background
+
+        #262626	submenu text color hover
+        #d9d9d9 submenu backround hover
+
+        submenu text color stays the same, hover or not.
+
+        ====== text color ================
+        #f2f2f2 top text
+        #262626 bottom text
+
+        ----- background color -----------
+        #404040	top bar background
+        #4CAF50	home button background, top only
+        #595959 light background, top only, hover background
+        #f9f9f9 submenu background
+        #d9d9d9 submenu backround hover
+
+         */
+
+        #topbar {
+            max-width: none;
+            background-color: #404040;
+        }
+        nav, section, footer {max-width: 950px; margin: auto;}
+
+        body {
+            margin:0;
+            font-family: Arial
+        }
+
+        section {
+            padding: 8px;
+        }
+
+        nav {
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: #f2f2f2;
+        }
+
+        nav .icon {
+            display: none;
+            padding: 12.5px 20px;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+            font-size: 17px;
+            border: none;
+            outline: none;
+            color: #f2f2f2;
+            padding: 14px 14px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: #262626;
+            padding: 14px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        nav a:hover, .dropdown:hover .dropbtn {
+            background-color: #595959;
+            color: #f2f2f2;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #d9d9d9;
+            color: #262626;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        @media screen and (max-width: 600px) {
+            nav a:not(:first-child), .dropdown .dropbtn {
+                display: none;
+            }
+            nav a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            nav.responsive {position: relative;}
+            nav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            nav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            nav.responsive .dropdown {float: none;}
+            nav.responsive .dropdown-content {position: relative;}
+            nav.responsive .dropdown .dropbtn {
+                display: block;
+                width: 100%;
+                text-align: left;
+            }
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div id="topbar">
+    <nav class="topnav" id="myTopnav">
+        <a href="index.html" class="active">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="index.html">Link 1 (home)</a>
+                <a href="menu4.html">Menu 4</a>
+                <a href="menu2b.html" accesskey="A">Menu 2B</a>
+                <a href="menu3.html">Menu 3</a>
+                <a href="menu3b.html">Menu 3B</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Settings
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#">Edit Profile</a>
+                <a href="#">Change Password</a>
+                <a href="#">Change Notifications</a>
+                <a href="#">Logout</a>
+                <a href="#">Login History</a>
+            </div>
+        </div>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </nav>
+</div>
+
+<section>
+    {{end}}
+   
+
+{{define "footer"}}
+
+</section>
+
+<footer>dStock. Build version 1.0.1.</footer>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+</body>
+</html>
+
+
+{{end}}
