@@ -20,7 +20,7 @@ type Book struct {
 
 // AllBooks finds all records
 func AllBooks() ([]Book, error) {
-	bks := []Book{}
+	bks := []Book{{}}
 	err := config.Books.Find(bson.M{}).All(&bks)
 	if err != nil {
 		return nil, err
