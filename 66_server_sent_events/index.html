@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The EventSource interface is web content's interface to server-sent events.</title>
+</head>
+
+<body>
+    <a href="example2.html">example 2</a>
+  <div id="events">
+
+  </div>
+  <script type="text/javascript">
+    var source = new EventSource("//localhost:8080/events", { withCredentials: true });
+    source.onmessage = function (e) {
+      //console.log(e);
+      var elem = document.createElement("div");
+      elem.innerHTML = "event: " + e.data;
+      if (events.firstChild) events.insertBefore(elem, events.firstChild);
+      else events.appendChild(elem);
+
+      window.last = e;
+    };
+    source.onerror = function (err) {
+      console.warn(err);
+    };
+    source.onclose = function (err) {
+      console.info("closed", err);
+    };
+    setTimeout(function () {
+      source.close();
+    }, 50 * 60 * 1000);
+  </script>
+</body>
+
+</html>
