@@ -158,4 +158,4 @@ func main() {
 
 > Go strives to keep things small and beautiful.
 
-> What I would have done in Python, Ruby, C, C# or C++, I’m now doing in Go.
+> What I would have done in Python, Java, Ruby, PHP, C, C# or C++, I’m now doing in Go.
