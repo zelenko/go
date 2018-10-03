@@ -54,8 +54,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 			Value:    "2916d10d492f6c1ab90ad5a3ee400994798a2916d10d492f6c1ab90ad5a3ee400994798a",
 			Expires:  expiration,
 			HttpOnly: true,
-			Secure: true,
-			SameSite: http.SameSiteStrictMode
+			Secure:   true,
+			SameSite: http.SameSiteStrictMode,
 		}
 		http.SetCookie(w, &cookie)
 		http.Redirect(w, r, "/", http.StatusSeeOther)
