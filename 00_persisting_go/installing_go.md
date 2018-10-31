@@ -87,3 +87,15 @@ Unzip it into "/usr/local" folder:
 
 Remove gzip file:
 ```rm go1.11.linux-amd64.tar.gz```
+
+Create directory:
+```mkdir /var/go```
+
+
+Update path by adding to end of profile file: `vi /etc/profile`
+```
+export PATH=$PATH:/usr/local/go/bin
+export GOROOT=/usr/local/go
+export GOPATH=/var/go
+```
+Reload profile: `. /etc/profile` (same as: `source /etc/profile`)
