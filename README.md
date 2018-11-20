@@ -118,36 +118,6 @@ func main() {
 	fmt.Printf("%v is a map? %v\n", map1, reflect.ValueOf(map1).Kind() == reflect.Map)
 	fmt.Printf("%v is a map? %v\n", map2, reflect.ValueOf(map2).Kind() == reflect.Map)
 	fmt.Printf("%v is a map? %v\n", slice1, reflect.ValueOf(slice1).Kind() == reflect.Map)
-
-	/*  More about reflect package: https://golang.org/pkg/reflect/
-		 	Invalid Kind = iota
-	        Bool
-	        Int
-	        Int8
-	        Int16
-	        Int32
-	        Int64
-	        Uint
-	        Uint8
-	        Uint16
-	        Uint32
-	        Uint64
-	        Uintptr
-	        Float32
-	        Float64
-	        Complex64
-	        Complex128
-	        Array
-	        Chan
-	        Func
-	        Interface
-	        Map
-	        Ptr
-	        Slice
-	        String
-	        Struct
-	        UnsafePointer
-	*/
 }
 ```
 ![Go](http://farm4.staticflickr.com/3774/11740822616_e435d02a54_o.gif)
@@ -159,3 +129,13 @@ func main() {
 > Go strives to keep things small and beautiful.
 
 > What I would have done in Python, Java, Ruby, PHP, C, C# or C++, I’m now doing in Go.
+
+# TODO :
+- [X] MongoDB connection
+- [X] MySQL connection
+- [X] Resize Images
+- [X] Set/Get Image tags
+- [ ] PostgreSQL connection
+- [ ] SQLite connection
+- [ ] MS SQL Server connection
+- [ ] React frontend
