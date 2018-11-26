@@ -63,7 +63,7 @@ func TestCSV(w http.ResponseWriter, r *http.Request) {
 	}
 	writerToCSV.Flush() // writes the csv writer data to the buffered data io writer(b(bytes.buffer))
 
-	filename := time.Now().Format("2006-03-02_03-04-05pm") + ".csv"
+	filename := time.Now().Format("2006-01-02_03-04-05pm") + ".csv"
 
 	w.Header().Set("Content-Type", "text/csv") // setting the content type header to text/csv
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
@@ -82,7 +82,7 @@ func csv2(w http.ResponseWriter, r *http.Request) {
 		{"Andrew", "Johnson", "ajohnson"},
 	}
 
-	filename := time.Now().Format("2006-03-02_03-04-05pm") + ".csv"
+	filename := time.Now().Format("2006-01-02_03-04-05pm") + ".csv"
 
 	w.Header().Set("Content-Type", "text/csv") // setting the content type header to text/csv
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
@@ -129,7 +129,7 @@ func tabDelimited(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	filename := time.Now().Format("2006-03-02_03-04-05pm") + ".txt"
+	filename := time.Now().Format("2006-01-02_03-04-05pm") + ".txt"
 
 	// Header
 	w.Header().Set("Content-Type", "application/csv-tab-delimited-table")
@@ -161,7 +161,7 @@ func csv4(w http.ResponseWriter, r *http.Request) {
 	}
 	writer.Flush() // writes the csv writer data to the buffered data io writer(b(bytes.buffer))
 
-	filename := time.Now().Format("2006-03-02_03-04-05pm") + ".csv"
+	filename := time.Now().Format("2006-01-02_03-04-05pm") + ".csv"
 
 	w.Header().Set("Content-Type", "text/csv") // setting the content type header to text/csv
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)

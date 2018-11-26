@@ -40,7 +40,7 @@ func zipFile(w http.ResponseWriter, r *http.Request) {
 	// list of files to zip
 	files := []string{"IMG_6869.JPG", "IMG_6911.JPG"}
 
-	filename := "images_" + time.Now().Format("2006-03-02_03-04-05pm") + ".zip"
+	filename := "images_" + time.Now().Format("2006-01-02_03-04-05pm") + ".zip"
 	w.Header().Set("Content-Type", "application/zip")
 	w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s\"", filename))
 
@@ -107,7 +107,7 @@ func zipFolder(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	filename := "images_" + time.Now().Format("2006-03-02_03-04-05pm") + ".zip"
+	filename := "images_" + time.Now().Format("2006-01-02_03-04-05pm") + ".zip"
 	w.Header().Set("Content-Type", "application/zip")
 	w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s\"", filename))
 

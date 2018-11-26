@@ -173,7 +173,7 @@ func tabDelimited(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		}
 	}
 
-	filename := time.Now().Format("2006-03-02_03-04-05pm") + ".txt"
+	filename := time.Now().Format("2006-01-02_03-04-05pm") + ".txt"
 
 	w.Header().Set("Content-Type", "application/csv-tab-delimited-table")
 	w.Header().Set("Content-Disposition", "attachment;filename="+filename)
