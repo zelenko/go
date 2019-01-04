@@ -9,7 +9,7 @@ You can incorporate these code snippets into your larger programming modules. Th
 | Name | Description |
 | :---- | :---- |
 | 00_persisting_go            | Installing Go, persisting on systemd, Upstart |
-| 01_data_type                | type, error, recursion, reference, slice, switch, pointer |
+| 01_data_type                | type, error, recursion, reference, sort, switch, type assertion |
 | 02_mongodb_aggregate_cli    | aggregate data from mongodb displayed in CLI |
 | 03_mongodb_find_sort_cli    | MongoDB Find All, Sort commands, results in CLI |
 | 04_get_url_variable         | Get "FormValue" variable from URL |
@@ -64,7 +64,17 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 53_regular_expression       | Validation, Find and replace, security |
 | 54_rotate_image             | Image rotation in degrees from 1 to 360. |
 | 55_html_template_std_lib    | HTML template using standard library packages |
-| 56_HTML_formatter           | Work in similar fashion as `go fmt`, but on HTML files. |
+| 56_html_formatter           | Work in similar fashion as `go fmt`, but on HTML files. |
+| 57_valid_interface		  | Interface as parameter. |
+| 58_GO_HTML_template         | Go HTML template examples. |
+| 59_zip_and_unzip            | Example for archive/zip package. |
+| 60_http_response_as_file    | HTTP handler responds with a copied file. |
+| 61_logging_middleware       | Save logs and error logs to file or database. |
+| 62_download_progress        | Progress shown on CLI. |
+| 63_graphql_todo_example     | One file GraphQL example. |
+| 64_date_and_time            | Using time package. |
+| 65_books_example            | MongoDB CRUD example. |
+| 66_server_sent_events       | Live logs (events) from server to browser using the [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) HTML interface. |
 
 
 ## The proper way to copy a slice

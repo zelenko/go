@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+        <h1>home.html /////</h1>
+    home page !!!!!!!!!!!<br>
+    {{ .one }}<br>
+    {{.two}}<hr>
+
+    {{- range .list }}
+	{{ .Message}} ==> {{ .Desc}}<br />
+    {{- end}}
+    <hr>
+    {{- range .list2 }}
+	{{ .}}<br />
+    {{- end}}
+    <hr>
+    {{- range .list3 }}
+	{{ .}}<br />
+    {{- end}}
+    <hr>
+
+    {{ range $key, $value := .list3 }}
+   <li><strong>{{ $key }}</strong>: {{ $value }}</li>
+    {{ end }}
+
+
+
+</body>
+
+</html>

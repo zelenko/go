@@ -30,3 +30,5 @@ func main() {
 	// run the server
 	fmt.Println(http.ListenAndServe(":8080", nil))
 }
+
+// https://developer.mozilla.org/en-US/docs/Web/API/EventSource

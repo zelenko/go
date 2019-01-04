@@ -18,6 +18,7 @@ func main() {
 	}
 }
 
+// String implements stringer interface
 func (p IPAddr) String() string {
 	s := strconv.Itoa(int(p[0])) + "." +
 		strconv.Itoa(int(p[1])) + "." +

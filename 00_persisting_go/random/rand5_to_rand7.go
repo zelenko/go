@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -8,8 +9,10 @@ import (
 func main() {
 
 	for i := 0; i < 110; i++ {
-		print(rand7(), " ")
+		print(randAB(1, 20), " ")
 	}
+
+	cryptRand()
 }
 
 func rand5() int {
@@ -26,5 +29,21 @@ func rand7() int {
 	}
 
 	return num%7 + 1
+
+}
+
+func randAB(a, b int) int {
+	rand.Seed(time.Now().UnixNano())
+	return a + rand.Intn(b-a+1) // a ≤ n ≤ b
+}
+
+func cryptRand() {
+	b := make([]byte, 10)
+	_, err := rand.Read(b)
+	if err != nil {
+		fmt.Println("error:", err)
+		return
+	}
+	fmt.Println("b:", b, " | ", string(b))
 
 }

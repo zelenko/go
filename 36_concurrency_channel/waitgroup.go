@@ -16,8 +16,8 @@ func main() {
 	completion.Add(1) // wait for one thing
 	go doSomething()
 
-	fmt.Println("end")
 	completion.Wait() // wait for all things to be done
+	fmt.Println("end")
 }
 
 func doSomething() {

@@ -12,11 +12,13 @@ func main() {
 
 	// No need to close loop for Println.
 	// Printing values removes them from channel.
+	fmt.Println("len:", len(queue))
 	fmt.Println(">", <-queue)
 	fmt.Println(">", <-queue)
 
 	// Channel must be closed before using for loop.
 	close(queue)
+	fmt.Println("len:", len(queue))
 
 	// Loop through rest of values in channel.
 	// Looping through values removes them from channel.
