@@ -22,7 +22,7 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 11_socket_send_receive      | Send/receive text between client/server via socket. |
 | 12_mgo_pipeline             | Mongodb pipeline query saved in one go file |
 | 13_qr_barcode               | QR code generator displays PNG image in browser. |
-| 14_read_txt_file            | compare ways to process TXT file |
+| 14_read_txt_file            | Compare ways to process TXT file |
 | 15_png_or_svg_barchart      | generate bar chart, PNG or SVG |
 | 16_drop_down_menu_form      | Form /w drop down menu, template with sub-templates |
 | 17_mysql_user_login         | MySQL for user registration, login, and user list. |
@@ -41,10 +41,10 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 30_mongodb_crud_json_api    | REST API using JSON, httprouter, and toml, i/o to MongoDB |
 | 31_send_email               | Send email with attachment |
 | 32_colorful_cli             | Create colorful CLI |
-| 33_testing                  | testing package example |
-| 34_html_template_function   | Pass function to HTML template |
+| 33_testing                  | Testing package example |
+| 34_channels                 | Buffered/unbuffered channels, forking channel, ranging over closed channel. |
 | 35_mongodb_pipeline_page    | One page MGO aggregation with pipeline |
-| 36_concurrency_channel      | channel, waiting, concurrency, sleep, close, count, queue |
+| 36_concurrency_channel      | Channel, waiting, concurrency, sleep, close, count, queue |
 | 37_html_template            | Simple html template with Go |
 | 38_url_request_JSON         | Convert data to/from JSON, get and parse file from URL |
 | 39_read_directory_content   | List files adn sub folders in a given folder |
@@ -75,7 +75,8 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 64_date_and_time            | Using time package. |
 | 65_books_example            | MongoDB CRUD example. |
 | 66_server_sent_events       | Live logs (events) from server to browser using the [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) HTML interface. |
-
+| 67_stringutil				  | Reverse a string, test included |
+| 68_iota                     | Iota identifier is used in const declarations to simplify definitions of incrementing numbers. |
 
 ## The proper way to copy a slice
 ```GO

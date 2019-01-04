@@ -6,11 +6,13 @@ import (
 	"net/http"
 )
 
+// HTMLfile is path and file to HTML template file
 type HTMLfile struct {
 	Folder string
 	File   string
 }
 
+// Display converts data into HTML and writes to writer
 func (e HTMLfile) Display(wr io.Writer, data interface{}) error {
 	t := template.Must(template.ParseFiles(e.Folder + e.File))
 	return t.ExecuteTemplate(wr, e.File, data)

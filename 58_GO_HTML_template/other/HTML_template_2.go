@@ -1,5 +1,7 @@
 package main
 
+// https://godoc.org/html/template
+// https://golang.org/pkg/html/template/
 import (
 	"fmt"
 	"html/template"
@@ -7,17 +9,20 @@ import (
 	"time"
 )
 
+// Account has first and last name
 type Account struct {
 	FirstName string
 	LastName  string
 }
 
+// Purchase is the purchase order placed by specific Accont
 type Purchase struct {
 	Date          time.Time
 	Description   string
 	AmountInCents int
 }
 
+// Statement can have many Purchase Orders
 type Statement struct {
 	FromDate  time.Time
 	ToDate    time.Time

@@ -1,7 +1,10 @@
 package main
 
+// https://godoc.org/html/template
+// https://golang.org/pkg/html/template/
+
 import (
-	"html/template" // https://golang.org/pkg/html/template/
+	"html/template"
 	"log"
 	"net/http"
 )
