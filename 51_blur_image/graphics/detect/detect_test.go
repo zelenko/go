@@ -13,7 +13,7 @@ import (
 var (
 	c0 = Classifier{
 		Feature: []Feature{
-			Feature{Rect: image.Rect(0, 0, 3, 4), Weight: 4.0},
+			{Rect: image.Rect(0, 0, 3, 4), Weight: 4.0},
 		},
 		Threshold: 0.2,
 		Left:      0.8,
@@ -21,7 +21,7 @@ var (
 	}
 	c1 = Classifier{
 		Feature: []Feature{
-			Feature{Rect: image.Rect(3, 4, 4, 5), Weight: 4.0},
+			{Rect: image.Rect(3, 4, 4, 5), Weight: 4.0},
 		},
 		Threshold: 0.2,
 		Left:      0.8,
@@ -29,8 +29,8 @@ var (
 	}
 	c2 = Classifier{
 		Feature: []Feature{
-			Feature{Rect: image.Rect(0, 0, 1, 1), Weight: +4.0},
-			Feature{Rect: image.Rect(0, 0, 2, 2), Weight: -1.0},
+			{Rect: image.Rect(0, 0, 1, 1), Weight: +4.0},
+			{Rect: image.Rect(0, 0, 2, 2), Weight: -1.0},
 		},
 		Threshold: 0.2,
 		Left:      0.8,

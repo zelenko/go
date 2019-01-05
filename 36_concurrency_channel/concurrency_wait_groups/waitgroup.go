@@ -7,19 +7,19 @@ import (
 	"sync"
 )
 
-var wg sync.WaitGroup
+var wg sync.WaitGroup // 1
 
 func main() {
 	fmt.Println("start")
 
-	wg.Add(1) // wait for one thing
+	wg.Add(1) // 2
 	go doSomething()
 
-	wg.Wait() // wait for all things to be done
+	wg.Wait() // 4
 	fmt.Println("end")
 }
 
 func doSomething() {
 	fmt.Println("do something")
-	wg.Done() // this is done
+	wg.Done() // 3
 }

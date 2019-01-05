@@ -67,12 +67,12 @@ func createMockStatement() Statement {
 			LastName:  "Dow",
 		},
 		Purchases: []Purchase{
-			Purchase{
+			{
 				Date:          time.Date(2016, 1, 3, 0, 0, 0, 0, time.UTC),
 				Description:   "Shovel",
 				AmountInCents: 2326,
 			},
-			Purchase{
+			{
 				Date:          time.Date(2016, 1, 8, 0, 0, 0, 0, time.UTC),
 				Description:   "Staple remover",
 				AmountInCents: 5432,

@@ -6,11 +6,11 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
-// DB bookstore database
-var DB *mgo.Database
-
-// Books collection
-var Books *mgo.Collection
+// DB variables
+var (
+	DB    *mgo.Database
+	Books *mgo.Collection
+)
 
 func init() {
 	// S get a mongo sessions

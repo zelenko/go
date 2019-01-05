@@ -139,7 +139,7 @@ func (sm *SManager) open() {
 
 	r := bufio.NewReaderSize(f, 4*1024)
 	// skip first title line
-	_, isPrefix, err := r.ReadLine()
+	r.ReadLine()
 	line, isPrefix, err := r.ReadLine()
 	// read each additional line
 	for err == nil && !isPrefix {

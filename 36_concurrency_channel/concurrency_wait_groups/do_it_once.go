@@ -15,28 +15,17 @@ func main() {
 	}
 
 	done := make(chan bool)
-	asking := make(chan string)
 	for i := 0; i < 10; i++ {
-		go func() {
-			fmt.Println("ask again", i)
-			asking <- "ask again "
+		go func(j int) {
+			fmt.Println("ask again", j)
 			once.Do(onceBody)
 			done <- true
 
-		}()
+		}(i)
 	}
 
 	for i := 0; i < 10; i++ {
 		<-done
 		fmt.Println("check", i)
 	}
-
-	close(asking)
-
-	for elem := range asking {
-		//	for range asking {
-		//fmt.Println(<- asking)
-		fmt.Println(elem)
-	}
-
 }

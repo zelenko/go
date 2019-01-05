@@ -6,20 +6,13 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
+// DB variables
 var (
-	// DB bookstore database
 	//DB *mgo.Database
-
-	// OS online-store database
 	OS *mgo.Database
-
-	// Books collection
 	//Books *mgo.Collection
-
-	// Products3 collection
 	Products3 *mgo.Collection
-
-	s *mgo.Session
+	s         *mgo.Session
 )
 
 func init() {
@@ -40,5 +33,4 @@ func init() {
 	Products3 = OS.C("products3")
 
 	fmt.Println("You connected to your mongo database.")
-
 }

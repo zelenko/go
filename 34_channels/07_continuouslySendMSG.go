@@ -11,7 +11,10 @@ import (
 func pinger(c chan string, id int) {
 	i := 1
 	for {
-		c <- strconv.Itoa(id) + " ping\t" + strconv.Itoa(i) + "\t" + bson.NewObjectId().Hex() + "\t" + strconv.FormatInt(time.Now().UnixNano(), 10)
+		c <- strconv.Itoa(id) + " ping\t" +
+			strconv.Itoa(i) + "\t" +
+			bson.NewObjectId().Hex() + "\t" +
+			strconv.FormatInt(time.Now().UnixNano(), 10)
 		i++
 		// if i > 30 {
 		// 	break

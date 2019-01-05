@@ -34,7 +34,7 @@ func (l *pList) String() string {
 
 // main is the entry point for the program.
 func main() {
-	list = &pList{items: []pipe{pipe{name: "one"}, pipe{name: "two"}}}
+	list = &pList{items: []pipe{{name: "one"}, {name: "two"}}}
 	fmt.Println(list)
 
 	fmt.Fprint(list, "three")

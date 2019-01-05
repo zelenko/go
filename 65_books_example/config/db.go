@@ -8,13 +8,12 @@ import (
 	"net"
 )
 
-// DB bookstore database
-var DB *mgo.Database
-
-// Books collection
-var Books *mgo.Collection
-
-var s *mgo.Session
+// DB variables
+var (
+	DB    *mgo.Database
+	Books *mgo.Collection
+	s     *mgo.Session
+)
 
 func init() {
 	dialInfo, err := mgo.ParseURL(dblogin.BookstoreM0)
