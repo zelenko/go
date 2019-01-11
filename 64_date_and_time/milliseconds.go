@@ -8,9 +8,6 @@ import (
 
 func main() {
 	start := time.Now()
-
-	//(int64(time.Millisecond)/int64(time.Nanosecond))
-	//time.Sleep(1 * time.Second)
 	time.Sleep(1 * time.Millisecond)
 
 	println(strconv.FormatInt(time.Since(start).Nanoseconds()/int64(time.Millisecond), 10))

@@ -4,6 +4,7 @@ import "fmt"
 import "time"
 
 func main() {
+	// Create new date.
 	a := time.Date(2018, 4, 11, 0, 0, 0, 0, time.UTC)
 
 	delta := time.Now().Sub(a)

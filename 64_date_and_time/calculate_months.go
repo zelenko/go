@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	//...
 	originalTime := time.Date(2011, 9, 2, 0, 0, 0, 0, time.UTC)
 	fmt.Println("months:", countMonthsSince(originalTime))
 
