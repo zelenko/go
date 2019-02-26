@@ -79,5 +79,6 @@ Update path by adding to end of profile file: `vi /etc/profile`
 export PATH=$PATH:/usr/local/go/bin
 export GOROOT=/usr/local/go
 export GOPATH=/var/go
+export PATH=$PATH:/var/go/bin
 ```
 Reload profile: `. /etc/profile` (same as: `source /etc/profile`)
