@@ -45,7 +45,7 @@ Reload profile: `source ~/.profile`
 
 Check where the variable points: `echo $GOROOT`
 
-## Intalling on RedHat (and CentOS)
+## Intalling/Upgrading on RedHat (and CentOS)
 Check where Go is installed:
 ```which go```
 
@@ -56,19 +56,19 @@ Remove older version
 ```rm -rf /usr/local/go```
 
 Download it:
-```wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz```
+```wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz```
 
 Verify the file was downloaded correctly:
 ```
-sha256sum go1.11.linux-amd64.tar.gz
-md5sum go1.11.linux-amd64.tar.gz
+sha256sum go1.12.linux-amd64.tar.gz
+md5sum go1.12.linux-amd64.tar.gz
 ```
 
 Unzip it into "/usr/local" folder:
-```tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz```
+```tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz```
 
 Remove gzip file:
-```rm go1.11.linux-amd64.tar.gz```
+```rm go1.12.linux-amd64.tar.gz```
 
 Create directory:
 ```mkdir /var/go```
