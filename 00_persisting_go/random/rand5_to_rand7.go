@@ -37,6 +37,10 @@ func randAB(a, b int) int {
 	return a + rand.Intn(b-a+1) // a ≤ n ≤ b
 }
 
+func randInt(min, max int) int {
+	return min + rand.Intn(max-min+1)
+}
+
 func cryptRand() {
 	b := make([]byte, 10)
 	_, err := rand.Read(b)

@@ -24,6 +24,14 @@ func randomGenerator() string {
 	return base64.URLEncoding.EncodeToString(b)
 }
 
+func randomString(l int) string {
+	bytes := make([]byte, l)
+	for i := 0; i < l; i++ {
+		bytes[i] = byte(randInt(65, 90))
+	}
+	return string(bytes)
+}
+
 func randomString(length int) string {
 	b := make([]byte, length)
 	if _, err := rand.Read(b); err != nil {
