@@ -1,33 +1,19 @@
 
-# Persisting Go using systemd
-Start your go app when the server starts.  In other word _daemonize_ your golang program.
-
-## Systemd
-`cd /etc/systemd/system/`
-
-`nano golang.service`
-
-```
-[Unit]
-Description=Go Server
-
-[Service]
-ExecStart=/var/www/web
-WorkingDirectory=/var/www/
-User=root
-Group=root
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
+### Validate Input
+```go
+func validInput(input string) bool {
+	switch input {
+	case "Option1", "OPtion2", "valid1", "valid2", "valid3":
+		return true
+	}
+	return false
+}
 ```
 
-### Start the service
-* `systemctl enable golang.service`
-* `systemctl start golang.service`
-* `systemctl status golang.service`
-* `systemctl stop golang.service`
-
-#### Find the version of systemd
-* `dpkg -l systemd` will give you name, version, and architecture description.
-* `systemctl --version` Print a short version string
+### AlphaNumeric
+```go
+func alphaNumeric(input string) string {
+	reg, _ := regexp.Compile("[^a-zA-Z0-9]+")
+	return reg.ReplaceAllString(input, "")
+}
+```
