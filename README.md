@@ -143,6 +143,8 @@ func main() {
 
 > The code must be like a piece of music.
 
+> Code less, compile quicker, execute faster.
+
 # TODO :
 - [X] MongoDB connection
 - [X] MySQL connection
