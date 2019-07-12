@@ -141,6 +141,8 @@ func main() {
 
 > What I would have done in Python, Java, Ruby, PHP, C, C# or C++, I’m now doing in Go.
 
+> The code must be like a piece of music.
+
 # TODO :
 - [X] MongoDB connection
 - [X] MySQL connection
