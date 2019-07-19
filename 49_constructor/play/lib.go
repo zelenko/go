@@ -40,7 +40,7 @@ func (r *Toy) Length() string {
 	return strconv.Itoa(len(r.Name))
 }
 
-// String returns a string
+// String returns a string, implements Stringer interface
 func (r *Toy) String() string {
 	return r.Name
 }

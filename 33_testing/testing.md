@@ -5,4 +5,5 @@
 * `go test -v` show details
 * `go test -coverprofile cp.out`
 * `go tool cover -html=cp.out`
-
+* `go help test` more info on testing
+* `go get -u github.com/cweill/gotests/...` generate testfiles

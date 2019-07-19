@@ -6,7 +6,11 @@ import (
 )
 
 func main() {
-	exampleFunc()
+	// Add these two lines to show function execution time
+	stop := StartTimer("exampleFunc")
+	defer stop()
+
+	time.Sleep(1 * time.Second)
 }
 
 // StartTimer measures time it took to run function
@@ -18,13 +22,4 @@ func StartTimer(name string) func() {
 		log.Println(name, "took", duration)
 
 	}
-}
-
-// exampleFunc is a test function
-func exampleFunc() {
-	// Add these two lines to show function time
-	stop := StartTimer("exampleFunc")
-	defer stop()
-
-	time.Sleep(1 * time.Second)
 }

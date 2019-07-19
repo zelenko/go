@@ -45,7 +45,24 @@ Reload profile: `source ~/.profile`
 
 Check where the variable points: `echo $GOROOT`
 
-## Intalling/Upgrading on RedHat (and CentOS)
+## Installing Go on ubuntu (Ubuntu 16.04.5 LTS)
+
+* `wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz`
+* `sha256sum go1.12.7.linux-amd64.tar.gz`
+* `sudo tar -C /usr/local -xzf go1.12.7.linux-amd64.tar.gz`
+
+Update path by editing profile file: `vi ~/.profile`
+```
+export PATH=$PATH:/usr/local/go/bin
+export GOROOT=/usr/local/go
+export GOPATH=/home/ubuntu/go
+export PATH=$PATH:$GOPATH/bin
+```
+Reload profile: `source ~/.profile`
+`go version`
+
+
+## Intalling/Upgrading Go on RedHat (and CentOS)
 Check where Go is installed:
 ```which go```
 
