@@ -1,5 +1,4 @@
-// Example dial info
-// package config
+package config
 
 // import (
 // 	"log"
