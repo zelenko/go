@@ -58,8 +58,8 @@ export GOROOT=/usr/local/go
 export GOPATH=/home/ubuntu/go
 export PATH=$PATH:$GOPATH/bin
 ```
-Reload profile: `source ~/.profile`
-`go version`
+* Reload profile: `source ~/.profile`
+* check version: `go version`
 
 
 ## Intalling/Upgrading Go on RedHat (and CentOS)
