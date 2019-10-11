@@ -137,6 +137,8 @@ func main() {
 
 > It’s the simplicity that makes Go awesome.
 
+> Go: Statically typed yet expressive language with a focus on concurrency.
+
 > Go strives to keep things small and beautiful.
 
 > What I would have done in Python, Java, Ruby, PHP, C, C# or C++, I’m now doing in Go.
