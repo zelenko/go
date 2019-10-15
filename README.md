@@ -149,6 +149,8 @@ func main() {
 
 > Any of your code that you haven’t looked at for 6 or more months may as well have been written by someone else.
 
+> General guideline: accept interfaces, return structs
+
 # TODO :
 - [X] MongoDB connection
 - [X] MySQL connection
