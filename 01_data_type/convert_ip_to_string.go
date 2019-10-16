@@ -1,12 +1,12 @@
 package main
 
-import "fmt"
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
-// IPAddr is the ip address
+// IPAddr is the IPv4 address
 type IPAddr [4]byte
-
-// TODO: Add a "String() string" method to IPAddr.
 
 func main() {
 	hosts := map[string]IPAddr{

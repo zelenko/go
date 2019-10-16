@@ -17,3 +17,15 @@ func main() {
 		rounded = rounded.Add(oneDay)
 	}
 }
+
+// Bod is Begining of Day
+func Bod(t time.Time) time.Time {
+	year, month, day := t.Date()
+	return time.Date(year, month, day, 0, 0, 0, 0, t.Location())
+}
+
+// Eod is End of Day
+func Eod(t time.Time) time.Time {
+	year, month, day := t.Date()
+	return time.Date(year, month, day, 0, 0, 0, 0, t.Location()).Add((-1 + (24 * 60 * 60)) * time.Second)
+}
