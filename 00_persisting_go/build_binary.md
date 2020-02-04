@@ -9,11 +9,19 @@ GOOS=linux GOARCH=amd64 go build -o web
 ```
 
 ## Build on Windows
+### Command Prompt
 * `set GOARCH=amd64`
 * `set GOARCH=386`
 * `set GOOS=linux`
 * `set GOOS=windows`
 * `echo %GOROOT%`
+
+### PowerShell
+* `$env:GOARCH = "amd64"`
+* `$env:GOARCH = "386"`
+* `$env:GOOS = "linux"`
+* `$env:GOOS = "windows"`
+* `echo $env:GOOS`
 ```
 go build -o hello.exe hello.go
 ```
