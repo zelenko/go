@@ -47,9 +47,9 @@ Check where the variable points: `echo $GOROOT`
 
 ## Installing Go on ubuntu (Ubuntu 16.04.5 LTS)
 
-* `wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz`
-* `sha256sum go1.12.7.linux-amd64.tar.gz`
-* `sudo tar -C /usr/local -xzf go1.12.7.linux-amd64.tar.gz`
+* `wget https://dl.google.com/go/go1.15.5.linux-amd64.tar.gz`
+* `sha256sum go1.15.5.linux-amd64.tar.gz`
+* `sudo tar -C /usr/local -xzf go1.15.5.linux-amd64.tar.gz`
 
 Update path by editing profile file: `vi ~/.profile`
 ```
@@ -77,15 +77,15 @@ Download it:
 
 Verify the file was downloaded correctly:
 ```
-sha256sum go1.12.1.linux-amd64.tar.gz
-md5sum go1.12.1.linux-amd64.tar.gz
+sha256sum go1.15.5.linux-amd64.tar.gz
+md5sum go1.15.5.linux-amd64.tar.gz
 ```
 
 Unzip it into "/usr/local" folder:
-```tar -C /usr/local -xzf go1.12.1.linux-amd64.tar.gz```
+```tar -C /usr/local -xzf go1.15.5.linux-amd64.tar.gz```
 
 Remove gzip file:
-```rm go1.12.1.linux-amd64.tar.gz```
+```rm go1.15.5.linux-amd64.tar.gz```
 
 Create directory:
 ```mkdir /var/go```
