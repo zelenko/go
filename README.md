@@ -77,6 +77,7 @@ You can incorporate these code snippets into your larger programming modules. Th
 | 66_server_sent_events       | Live logs (events) from server to browser using the [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) HTML interface. |
 | 67_stringutil				  | Reverse a string, test included |
 | 68_iota                     | Iota identifier is used in const declarations to simplify definitions of incrementing numbers. |
+| 69_JSON                     | JSON input/output examples |
 
 ## The proper way to copy a slice
 ```GO
