@@ -152,11 +152,13 @@ func main() {
 
 > General guideline: accept interfaces, return structs
 
+> Go is simple but not easy.
+
 # TODO :
 - [X] MongoDB connection
 - [X] MySQL connection
 - [X] Resize Images
 - [X] Set/Get Image tags
 - [X] SQLite connection
-- [ ] MS SQL Server connection
+- [X] Postgres connection
 - [X] React frontend
